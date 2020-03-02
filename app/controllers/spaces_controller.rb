@@ -25,7 +25,9 @@ class SpacesController < ApplicationController
   end
 
   def destroy
+    @user = @space.user
     @space.destroy
+    redirect_to user_path(@user)
   end
 
   def update
