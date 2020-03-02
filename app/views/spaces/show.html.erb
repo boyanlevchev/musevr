@@ -1,0 +1,11 @@
+<h2><%= @space.name %></h2>
+<p><%= @space.description %></p>
+
+<button>Launch Room</button>
+
+<button>Add Artwork</button>
+<!-- modal pop over for adding artwork -->
+
+<% @artworks.each do |artwork| %>
+  <%= @artwork.name %>
+<% end %>

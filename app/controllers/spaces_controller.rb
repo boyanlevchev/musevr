@@ -1,11 +1,15 @@
 class SpacesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_space, only: [:show, :edit, :destoy, :update]
 
   def index
     @spaces = Space.all
+    @users = User.all
   end
 
   def show
+    @artworks = Artwork.all
+    @artwork = Artwork.new
   end
 
   def new

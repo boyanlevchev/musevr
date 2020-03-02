@@ -7,4 +7,6 @@ class User < ApplicationRecord
 
   has_many :spaces, dependent: :destroy
   has_many :artworks, through: :spaces
+
+  validates :username, presence: true, uniqueness: true
 end
