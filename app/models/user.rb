@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :spaces
-
+  has_many :spaces, dependent: :destroy
+  has_many :artworks, through: :spaces
 end
