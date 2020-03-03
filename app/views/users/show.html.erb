@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <%= @user.username %>
-<%= @user.photo %>
-<%= @user.description %>
+<%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+<%= @user.bio %>
 <% @spaces.each do |space| %>
   <%= space.name %>
   <%= space.description %>

@@ -10,6 +10,10 @@ class SpacesController < ApplicationController
   def show
     @artworks = Artwork.all
     @artwork = Artwork.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -18,6 +22,7 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
+    @space.user = current_user
     if @space.save!
       redirect_to @space
     else

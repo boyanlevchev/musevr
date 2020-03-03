@@ -3,3 +3,6 @@
 
 const channels = require.context('.', true, /_channel\.js$/)
 channels.keys().forEach(channels)
+
+$("#modal-window").find(".modal-content").html("<%= j (render 'add_artwork') %>");
+$("#modal-window").modal();
