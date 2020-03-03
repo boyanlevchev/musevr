@@ -34,7 +34,7 @@
 </div>
 <!-- modal pop over for adding artwork -->
 <ul>
-<% @artworks.each do |artwork| %>
+<% @space.artworks.each do |artwork| %>
   <li><%= artwork.name %> <br>
   <%= cl_image_tag artwork.photo.key %></li>
 <% end %>
