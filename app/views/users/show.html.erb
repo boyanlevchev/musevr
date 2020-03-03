@@ -1,0 +1,9 @@
+<h1>Profile</h1>
+<%= @user.username %>
+<%= @user.photo %>
+<%= @user.description %>
+<% @spaces.each do |space| %>
+  <%= space.name %>
+  <%= space.description %>
+  <!-- space.photo -->
+<% end %>
