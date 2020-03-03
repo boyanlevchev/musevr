@@ -2,7 +2,6 @@ class ArtworksController < ApplicationController
   def create
     @artwork = Artwork.new(artwork_params)
     @space = Space.find(params[:space_id])
-    @artwork.user = current_user
     @artwork.space = @space
     if @artwork.save!
       redirect_to space_path(@space)

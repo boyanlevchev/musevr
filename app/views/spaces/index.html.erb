@@ -2,11 +2,11 @@
 
 <h1>Spaces</h1>
 <% @spaces.each do |space| %>
-  <%= space.name %>
+  <%= link_to space.name, space_path(space) %>
 <% end %>
 
 <h1>Artists</h1>
 <% @users.each do |user| %>
-  <%= user.username %>
+  <%= link_to user.username, user_path(user) %>
 <% end %>
 

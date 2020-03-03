@@ -1,6 +1,12 @@
 <h1>Profile</h1>
 <%= @user.username %>
-<%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+
+<% if @user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+<% else  %>
+  <%= image_tag "avatar_placeholder", class: "avatar-large" %>
+<% end %>
+
 <%= @user.bio %>
 <% @spaces.each do |space| %>
   <%= space.name %>
