@@ -1,0 +1,26 @@
+#user-page-header {
+  font-size: 64px;
+  font-weight: 600;
+  color: $text;
+}
+
+#user-page-bio {
+  font-size: 24px;
+  color: $text-faded;
+}
+
+.user-contact {
+  margin-top: 8px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: $text-faded;
+  text-decoration: underline;
+  transition: 0.3s;
+  &:hover {
+    color: $text;
+  }
+}
+
+.show-page-container {
+  margin-top: 48px;
+}
