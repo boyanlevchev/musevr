@@ -2,15 +2,23 @@
 <div id="background-1">
   <% @users.each do |user| %>
     <div id="background-2">
+      
       <div class="back-left">
         <h2><%= user.username %></h2><br>
         <p><%= user.bio %></p>
         <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
       </div>
 
-      <div class="back-right">
+      <% if user.spaces.any? && user.spaces.first.photo.attached? %>
+      <% image = cl_image_path user.spaces.first.photo.key %>
+      <% else %>
+      <% image = "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1418&q=80" %>
+      <% end %>
 
+      <div class="back-right" style="background-image: url(<%= image %>);">
+        
       </div>
+      
     </div>
   <% end %>
 </div>
