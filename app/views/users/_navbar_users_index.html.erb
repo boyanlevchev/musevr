@@ -1,6 +1,6 @@
-<div class="navbar navbar-expand-xl navbar-light navbar-lewagon align-items-center">
-  <%= link_to "/", class: "navbar-brand" do %>
-    <h1>Muse</h1>
+<div class="navbar navbar-expand-xl navbar-light navbar-lewagon align-items-center transparent px-0 py-4">
+  <%= link_to "/", class: "navbar-brand", style: "margin-left: 96px;" do %>
+    <h1 class="logo">MUSE</h1>
   <% end %>
 
   <div class="mr-auto medium-width" id="navbar-search">
@@ -11,8 +11,8 @@
   </div>
 
   <div id="menu">
-    <%= link_to 'Galleries', spaces_path %>
-    <%= link_to 'Artists', users_path  %>
+    <%= link_to 'Galleries', spaces_path, class: "menu-item #{'active' if params[:controller] == 'spaces'}" %>
+    <%= link_to 'Artists', users_path, class: "menu-item #{'active' if params[:controller] == 'users'}"  %>
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,11 +20,11 @@
   </button>
 
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <i class="fas fa-bars fa-2x" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <i class="fal fa-bars fa-2x dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <div class="dropdown-menu dropdown-menu-right transparent border-0" style="text-align: right; margin-right: -24px;" aria-labelledby="navbarDropdown">
             <%= link_to "Home", spaces_path, class: "dropdown-item" %>
             <% if user_signed_in? %>
               <%= link_to "My spaces", user_path(current_user), class: "dropdown-item" %>
