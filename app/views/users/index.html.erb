@@ -9,13 +9,7 @@
       </div>
 
       <div class="back-right">
-        <% unless @spaces.empty? %>
-        <% @spaces.each do |space| %>
 
-          <%= cl_image_tag space.photo.key %>
-
-        <% end %>
-        <% end %>
       </div>
     </div>
   <% end %>
