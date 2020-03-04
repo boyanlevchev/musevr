@@ -4,14 +4,20 @@
   <% end %>
 
   <div class="mr-auto medium-width" id="navbar-search">
-
-  <!--   <form action="/spaces" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
-      <input class="form-control form-control-sm mr-3 w-75 search-bar transparent" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px;" type="text" placeholder="Search" name="search" aria-label="Search">
-      <button type="submit" class="border-0 transparent"><i class="fas fa-search" aria-hidden="true"></i></button>
-    </form> -->
-
-
+    <form action="/spaces" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+      <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px;" type="text" placeholder="Search" name="search" aria-label="Search">
+      <button type="submit" class="border-0"><i class="fas fa-search" aria-hidden="true"></i></button>
+    </form>
   </div>
+
+  <div id="menu">
+    <%= link_to 'Galleries', spaces_path, class: "menu-item #{'active' if params[:controller] == 'spaces'}" %>
+    <%= link_to 'Artists', users_path, class: "menu-item #{'active' if params[:controller] == 'users'}"  %>
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
@@ -32,4 +38,3 @@
     </ul>
   </div>
 </div>
-
