@@ -1,16 +1,20 @@
-<!-- <div style="width: 100vw; " class="d-flex justify-content-center" > -->
 
-        <div class="card w3-panel w3-padding" >
-          <div style = "width:500px">
-            <%= image_tag 'spaces.png', class: 'card-img' %>
+        <div class = main >
+          <%= link_to space_path(space) do  %>
+           <div class="card w3-padding d-flex m-4"  >
+            <%= image_tag 'VR.jpg', class: 'card-img  w3-padding d-flex mb-4' %>
             <div class="card-img-overlay">
-
-              <div style="width: 500px">
-                <h4><%= space.name %></h4>
-                <h4><%= space.user.username %></h4>
+              <div class= "spaces-card-text">
+                <h4 class= "name_of_space"><%= space.name %></h4>
+                <h4 class= "owner_of_space"><%= space.user.username %></h4>
               </div>
             </div>
           </div>
-        </div>
 
-<!-- </div> -->
+        <%end %>
+      </div>
+
+
+
+
+
