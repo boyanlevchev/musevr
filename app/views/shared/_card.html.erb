@@ -1,8 +1,8 @@
 
-
+        <div class = main >
           <%= link_to space_path(space) do  %>
-           <div class="card  w3-padding d-flex"  >
-            <%= image_tag 'VR.png', class: 'card-img' %>
+           <div class="card w3-padding d-flex m-4"  >
+            <%= image_tag 'VR.jpg', class: 'card-img  w3-padding d-flex mb-4' %>
             <div class="card-img-overlay">
               <div class= "spaces-card-text">
                 <h4 class= "name_of_space"><%= space.name %></h4>
@@ -10,6 +10,11 @@
               </div>
             </div>
           </div>
+
         <%end %>
+      </div>
+
+
+
 
 
