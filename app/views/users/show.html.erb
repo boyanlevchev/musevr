@@ -1,3 +1,5 @@
+<%= render 'shared/navbar' %>
+
 <h1>Profile</h1>
 <%= @user.username %>
 
@@ -9,7 +11,8 @@
 
 <%= @user.bio %>
 <% @spaces.each do |space| %>
-  <%= space.name %>
-  <%= space.description %>
-  <!-- space.photo -->
+  <%= link_to "#{space.name} #{space.description}", space_path(space) %>
+  <%  if space.photo.attached? %>
+    <%= cl_image_tag space.photo.key %>
+  <% end %>
 <% end %>
