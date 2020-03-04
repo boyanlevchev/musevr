@@ -1,0 +1,22 @@
+<%= render 'navbar_users_index' %>
+<div id="background-1">
+  <% @users.each do |user| %>
+    <div id="background-2">
+      <div class="back-left">
+        <h2><%= user.username %></h2><br>
+        <p><%= user.bio %></p>
+        <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
+      </div>
+
+      <div class="back-right">
+        <% unless @spaces.empty? %>
+        <% @spaces.each do |space| %>
+
+          <%= cl_image_tag space.photo.key %>
+
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
