@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
-  before_action :show_navbar
-
   before_action :configure_permitted_parameters, if: :devise_controller?
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -11,7 +9,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:bio, :photo, :username])
   end
 
-  def show_navbar
-    @show_navbar = true
-  end
+
 end
