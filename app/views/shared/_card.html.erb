@@ -1,11 +1,12 @@
 
+
           <%= link_to space_path(space) do  %>
            <div class="card  w3-padding d-flex"  >
-            <%= image_tag 'spaces.png', class: 'card-img' %>
+            <%= image_tag 'VR.png', class: 'card-img' %>
             <div class="card-img-overlay">
               <div class= "spaces-card-text">
-                <h4><%= space.name %></h4>
-                <h4><%= space.user.username %></h4>
+                <h4 class= "name_of_space"><%= space.name %></h4>
+                <h4 class= "owner_of_space"><%= space.user.username %></h4>
               </div>
             </div>
           </div>

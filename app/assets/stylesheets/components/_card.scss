@@ -6,4 +6,24 @@
 }
 .spaces-card-text h4{
   color:$text;
+
+}
+.spaces-index-heading h1 {
+  color:$text;
+  text-align: center;
+}
+
+.name_of_space{
+ position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: 18px;
+
+}
+
+.owner_of_space {
+  position:absolute;
+  bottom:8px;
+  right : 16px;
+  font-size: 18px;
 }
