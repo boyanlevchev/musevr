@@ -8,7 +8,6 @@ class SpacesController < ApplicationController
   end
 
   def show
-    @artworks = Artwork.all
     @artwork = Artwork.new
     respond_to do |format|
       format.html

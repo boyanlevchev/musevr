@@ -4,9 +4,7 @@
 <p><%= @space.description %></p>
 
 <button>Launch Room</button>
-
-
-
+<button type="button" class="btn btn-secondary">Edit</button>
 
 
 
@@ -36,8 +34,8 @@
 </div>
 <!-- modal pop over for adding artwork -->
 <ul>
-<% @artworks.each do |artwork| %>
-  <li><%= artwork.name %> <br>
+<% @space.artworks.each do |artwork| %>
+  <li><%= artwork.name %> | <%= link_to 'delete', artwork_path(artwork), method: :delete %> <br>
   <%= cl_image_tag artwork.photo.key %></li>
 <% end %>
 </ul>

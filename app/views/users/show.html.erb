@@ -11,8 +11,11 @@
 
 <%= @user.bio %>
 <% @spaces.each do |space| %>
+
   <%= link_to "#{space.name} #{space.description}", space_path(space) %>
   <%  if space.photo.attached? %>
     <%= cl_image_tag space.photo.key %>
   <% end %>
+  <%= space.description %>
+
 <% end %>
