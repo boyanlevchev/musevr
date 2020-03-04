@@ -7,3 +7,22 @@
 .navbar {
   background: transparent;
 }
+
+.menu-item {
+  padding-right: 2px;
+  padding-left: 2px;
+  margin-right: 35px;
+  text-align: center;
+  color: black;
+  font-size: 18px;
+
+  &:hover {
+    text-decoration: none;
+    color: gray;
+    transition: 0.3s;
+  }
+}
+
+.menu-item.active {
+  border-bottom: solid 3px black;
+}
