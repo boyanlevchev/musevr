@@ -12,6 +12,13 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   before_create :set_color_to_random_value
 
+  include PgSearch::Model
+  pg_search_scope :search_users,
+    against: [ :username, :bio ],
+    using: {
+      tsearch: { prefix: true }
+    }
+
   COLORS = ['#fce2db', '#DE7800', '#FFFFDD']
 
   private
