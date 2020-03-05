@@ -3,7 +3,9 @@
   <% @users.each do |user| %>
     <div id="background-2">
 
-      <div class="back-left">
+
+
+      <div class="back-left" style="background-color: <%= user.color %> ">
         <h2><%= user.username %></h2><br>
         <p><%= user.bio %></p>
         <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
