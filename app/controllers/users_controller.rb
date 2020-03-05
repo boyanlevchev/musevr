@@ -12,7 +12,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    if params[:search] == "" || params[:search].nil?
+      @users = User.all
+    else
+      @users = User.search_users(params[:search])
+    # raise
+    end
+
     # @spaces = []
     # @users.each do |user|
     #   space = Space.where('user_id = ?', user.id).first
