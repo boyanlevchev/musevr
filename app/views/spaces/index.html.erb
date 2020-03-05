@@ -1,25 +1,31 @@
 <!-- show all the spaces -->
 <%= render 'shared/navbar' %>
-<div class="spaces-index-heading">
- <h1>GALLERIES</h1>
 
+<div class="page-container">
+  <div class="spaces-index-heading">
+    <h1>GALLERIES</h1>
+  </div>
 
-</div>
-
-
-
-<h1>Spaces</h1>
-
-
-<div  class="container" style="width: 1100px">
-  <div class="row ">
-    <% @spaces.each do |space| %>
-      <div class="col-md-6">
-        <%= (render partial: 'shared/card', locals: { space: space }) %>
-      </div>
+  <div class="spaces-index-subtitle">
+    <% if @spaces.count == 0 %>
+      <h2> No galleries to browse on Muse </h2>
+    <% elsif @spaces.count == 1 %>
+      <h2> Browse 1 gallery on Muse </h2>
+    <% else %>
+      <h2> Browse the <%=@spaces.count%> galleries on Muse </h2>
     <% end %>
   </div>
-</div>
+
+
+  <div  class="container show-page-container" style="width: 1100px">
+    <div class="row justify-content-around">
+      <% @spaces.each do |space| %>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
+          <%= (render partial: 'shared/card', locals: { space: space }) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
 </div>
 
