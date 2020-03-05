@@ -8,9 +8,8 @@
       <% end %>
 
     <div class="card" style="width: 500px; height:500px; background-image: url(<%= card_image %>)">
-      <div class= "spaces-card-text">
-        <h4 class= "name_of_space"><%= space.name %></h4>
-        <h4 class= "owner_of_space"><%= space.user.username %></h4>
+      <div class= "spaces-card-text d-flex justify-content-center align-items-center h-100 w-100">
+        <h4 class= "name_of_space"> View <%=space.name%></h4>
       </div>
     </div>
   <%end %>

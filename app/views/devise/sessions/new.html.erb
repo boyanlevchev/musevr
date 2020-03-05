@@ -1,20 +1,59 @@
-<h2>Log in</h2>
+<!-- <h2>Log in</h2>
+ -->
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<%= render 'shared/navbar_landing' %>
+
+<!--
+<p>ADD ARTISTS AND SPACES FOR FEATURED STUFF</p><br>
+<p>ADD PHOTOS</p> -->
+
+<div class="d-flex" id="landing-flex-box">
+  <div id="landing-panel-left">
+
+    <div class="d-flex flex-column" style="height:100%; margin-left: 86px;">
+      <div style="height:45%;"></div>
+
+      <div style="height:25%;">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+            <%= f.input :password,
+                        required: false,
+                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Log in" %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div style="height:30%">
+        <div>
+          <span id="biglogo">MUSE</span>
+          <span id="biglogovr">VR</span>
+          <span id="biglogoart">.art</span>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+  <div id="landing-image-strip" style="background-image: url(<%= image_path('gallery.jpg') %>);">
+
   </div>
-<% end %>
+
+  <div id="landing-panel-right" style="position: relative;">
+    <span id="featured-artist">Featured Artist: Jemima Jackson</span>
+
+  </div>
+</div>
+
 
 <%= render "devise/shared/links" %>
