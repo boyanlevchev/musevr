@@ -3,7 +3,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @spaces = Space.where('user_id = ?', @user.id)
+    if params[:search] == "" || params[:search].nil?
+      @spaces = Space.all
+    else
+      @spaces = Space.search(params[:search])
+    # raise
+    end
   end
 
   def index

@@ -4,10 +4,10 @@ require("channels")
 
 import "bootstrap";
 
-import fullpage from 'fullpage.js';
+// import fullpage from 'fullpage.js';
 
-new fullpage('#fullpage', {
-  //options here
-  autoScrolling:true,
-  scrollHorizontally: true
-});
+// new fullpage('#fullpage', {
+//   //options here
+//   autoScrolling:true,
+//   scrollHorizontally: true
+// });

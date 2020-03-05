@@ -1,5 +1,9 @@
 .page-container {
-  padding-top: 80px;
+  position: absolute;
+  z-index: -1;
+  padding-top: 100px;
+  width: 100vw;
+  // height: 100vh;
 }
 
 #user-page-header {

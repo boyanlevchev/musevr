@@ -1,9 +1,12 @@
 #background-1 {
   position: absolute;
   // width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
   top: 0;
   z-index: -1;
-  // scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  // scroll-snap-points-y: repeat(100vh);
 }
 
 
@@ -12,7 +15,7 @@
   width: 100vw;
   // position: absolute;
   display: flex;
-  // scroll-snap-align: start;
+  scroll-snap-align: start;
 }
 
 .back-left {
