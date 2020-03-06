@@ -47,6 +47,11 @@ class SpacesController < ApplicationController
     @space.update(space_params)
   end
 
+
+  def vr
+    @space = Space.find(params[:space_id])
+  end
+
   private
 
   def set_space

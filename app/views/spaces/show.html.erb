@@ -3,7 +3,8 @@
 <h2><%= @space.name %></h2>
 <p><%= @space.description %></p>
 
-<button>Launch Room</button>
+<%= link_to "Launch Room", space_vr_path(@space) %>
+<!-- <button>Launch Room</button> -->
 <button type="button" class="btn btn-secondary">Edit</button>
 
 
