@@ -1,13 +1,12 @@
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
+require('aframe');
+// require('aframe-event-set-component');
+require('aframe-mouse-dragndrop-component');
 
 import "bootstrap";
 
-// import fullpage from 'fullpage.js';
-
-// new fullpage('#fullpage', {
-//   //options here
-//   autoScrolling:true,
-//   scrollHorizontally: true
+// document.addEventListener('turbolinks:load', () => {
+//   //add all JS functions here!!
 // });
