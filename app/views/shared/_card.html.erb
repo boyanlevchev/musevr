@@ -1,6 +1,6 @@
 
 <div class="main" >
-  <%= link_to space_path(space) do  %>
+  <%= link_to space_vr_path(space) do  %>
       <%  if space.photo.attached? %>
         <% card_image = cl_image_path space.photo.key %>
       <% else %>
