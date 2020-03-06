@@ -1,23 +1,47 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  position: fixed;
+  width: 100%;
 }
 
-#sitename {
-  font-family: 'Spartan', ;
+.logo {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  // font-weight: lighter;
+  font-size: 28px;
+  letter-spacing: 10px;
+  font-weight: 200;
+  color: $text;
 }
 
-#sitename-landing{
-  font-family: 'Spartan', ;
-  color: white;
-}
-
-// .navbar-search-hide {
-//   display: none;
-// }
-
-.navbar-lewagon-transparent {
+.transparent {
   background: transparent;
+}
+
+.dropdown-item {
+  color: $text-faded;
+  background-image: none;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  transition: 0.3s;
+  &:hover {
+    color: $text;
+    background: transparent;
+    background-image: none;
+  }
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.dropdown-toggle {
+  color: $text-faded;
+  transition: 0.2s;
+  &[aria-expanded="true"] {
+    color: $text;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -53,10 +77,6 @@
 }
 
 
-// .active-purple-2 input.form-control[type=text]:focus:not([readonly]) {
-//   box-shadow: 0 3px #ce93d8;
-// }
-
 .active-purple-2 .fas {
   color: #CCC9A1;
 }
@@ -69,12 +89,7 @@
 }
 
 .search-bar-landing::placeholder {
-  color: rgb(200,200,200);
+  color: $text-faded;
 }
 
-
-// .active-purple-2 input[type=text]:focus:not([readonly]) {
-//   border-bottom: 1px solid #ce93d8;
-//   box-shadow: 0 1px 0 0 #ce93d8;
-// }
 

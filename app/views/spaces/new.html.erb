@@ -1,4 +1,6 @@
-<h1>New Space</h1>
+<%= render 'shared/navbar_landing' %>
+
+<div class="page-container">
 
 <%= simple_form_for @space do |f| %>
   <%= f.input :name %>
@@ -6,3 +8,5 @@
   <%= f.input :photo, as: :file %>
   <%= f.submit %>
 <% end %>
+
+</div>

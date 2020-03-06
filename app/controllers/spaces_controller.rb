@@ -3,8 +3,13 @@ class SpacesController < ApplicationController
   before_action :set_space, only: [:show, :edit, :destoy, :update]
 
   def index
-    @spaces = Space.all
-    @users = User.all
+    if params[:search] == "" || params[:search].nil?
+      @spaces = Space.all
+    else
+      @spaces = Space.search(params[:search])
+    # raise
+    end
+    # @users = User.all
   end
 
   def show
@@ -49,6 +54,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id)
+    params.require(:space).permit(:name, :description, :user_id, :photo)
   end
 end

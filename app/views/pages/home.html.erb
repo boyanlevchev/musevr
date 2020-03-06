@@ -1,5 +1,42 @@
+<%= render 'shared/navbar_landing' %>
 
-
+<!--
 <p>ADD ARTISTS AND SPACES FOR FEATURED STUFF</p><br>
-<p>ADD PHOTOS</p>
+<p>ADD PHOTOS</p> -->
 
+<div class="d-flex" id="landing-flex-box">
+  <div id="landing-panel-left">
+
+    <div class="d-flex flex-column" style="height:100%; margin-left: 86px;">
+      <div style="height:45%;"></div>
+
+      <div style="height:25%;">
+        <ul style="list-style-type: none; padding: 0px;">
+          <li class="landing-list"><%= link_to 'About us', '#' %></li>
+          <li class="landing-list"><%= link_to 'View Galleries', spaces_path %></li>
+          <li class="landing-list"><%= link_to 'View Artists', users_path %></li>
+          <li class="landing-list"><%= link_to 'Make your own', new_space_path %></li>
+        </ul>
+      </div>
+
+      <div style="height:30%">
+        <div>
+          <span id="biglogo">MUSE</span>
+          <span id="biglogovr">VR</span>
+          <span id="biglogoart">.art</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="landing-image-strip" style="background-image: url(<%= image_path('gallery.jpg') %>);">
+
+  </div>
+
+  <div id="landing-panel-right" style="position: relative;">
+    <span id="featured-artist">Featured Artist: Jemima Jackson</span>
+
+  </div>
+</div>

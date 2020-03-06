@@ -1,0 +1,39 @@
+.page-container {
+  position: absolute;
+  z-index: -1;
+  padding-top: 100px;
+  width: 100vw;
+  // height: 100vh;
+}
+
+#user-page-header {
+  font-size: 64px;
+  font-weight: 600;
+  color: $text;
+}
+
+#user-page-bio {
+  font-size: 24px;
+  color: $subtext;
+}
+
+.user-contact {
+  margin-top: 8px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: $text-faded;
+  text-decoration: underline;
+  transition: 0.3s;
+  &:hover {
+    color: $text;
+  }
+}
+
+.show-page-container {
+  margin-top: 48px;
+  justify-content: center;
+}
+
+.bottom-buffer {
+  margin-bottom: 56px;
+}
