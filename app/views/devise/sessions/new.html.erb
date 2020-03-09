@@ -1,19 +1,18 @@
 <!-- <h2>Log in</h2>
  -->
 
-<%= render 'shared/navbar_landing' %>
 
 <!--
 <p>ADD ARTISTS AND SPACES FOR FEATURED STUFF</p><br>
 <p>ADD PHOTOS</p> -->
 
-<div class="d-flex" id="landing-flex-box">
+<!-- <div class="d-flex" id="landing-flex-box">
   <div id="landing-panel-left">
 
     <div class="d-flex flex-column" style="height:100%; margin-left: 86px;">
       <div style="height:45%;"></div>
 
-      <div style="height:25%;">
+      <div style="height:25%;"> -->
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-inputs">
             <%= f.input :email,
@@ -30,7 +29,7 @@
             <%= f.button :submit, "Log in" %>
           </div>
         <% end %>
-
+<!--
       </div>
 
       <div style="height:30%">
@@ -55,5 +54,5 @@
   </div>
 </div>
 
-
+-->
 <%= render "devise/shared/links" %>

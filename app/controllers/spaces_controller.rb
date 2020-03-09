@@ -1,5 +1,5 @@
 class SpacesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :vr]
   before_action :set_space, only: [:show, :edit, :destoy, :update]
 
   def index
@@ -45,6 +45,11 @@ class SpacesController < ApplicationController
 
   def update
     @space.update(space_params)
+  end
+
+
+  def vr
+    @space = Space.find(params[:space_id])
   end
 
   private

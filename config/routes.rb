@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :spaces do
     resources :artworks, only: [:create, :update]
+
+    get 'vr', to: 'spaces#vr'
   end
 
   resources :artworks, only: :destroy

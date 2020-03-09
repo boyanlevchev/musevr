@@ -3,6 +3,7 @@
   background: white;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 .logo {
@@ -17,6 +18,12 @@
 .transparent {
   background: transparent;
 }
+
+.white-background {
+  background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0));
+}
+
+
 
 .dropdown-item {
   color: $text-faded;
@@ -42,6 +49,10 @@
   &[aria-expanded="true"] {
     color: $text;
   }
+}
+
+.white-background .dropdown-toggle {
+  color: $text;
 }
 
 .navbar-lewagon .navbar-collapse {
