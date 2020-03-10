@@ -103,4 +103,14 @@
   color: $text-faded;
 }
 
+.navbarUnderContent {
+  position: absolute;
+  top:0;
+  left: -50px;
+  z-index: -1;
+  height: 99px;
+  width: 350px;
+  background-color: $pink;
+  transform: skewX(-45deg);
+}
 
