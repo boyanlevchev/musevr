@@ -20,11 +20,13 @@ import { menuOpen } from './aframe.js'
 
 
 document.addEventListener('turbolinks:load', () => {
-
-  scaleControl();
-  rotationControl();
-  showPanel();
+  const vr = document.getElementById('embeddedScene');
+  if (vr) {
+    scaleControl();
+    rotationControl();
+    showPanel();
+    menuOpen();
+  }
   addClass();
-  menuOpen();
 
 });
