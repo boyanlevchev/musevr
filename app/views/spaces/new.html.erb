@@ -1,18 +1,86 @@
-<%= render 'shared/navbar_landing' %>
+<%= render 'shared/navbar_new_gallery' %>
+
 <div class="page-container">
-<div class="form-container">
 
-<h2>Create New Space</h2>
-<p></p>
-<p></p>
 
-<%= simple_form_for @space do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :photo, as: :file %>
-  <%= f.button :submit, "Create Space"%>
-<% end %>
 
 </div>
-</div>
+
+<div class="d-flex" id="landing-flex-box">
+  <div style="width: 50%; height:100%;">
+        <div id="carouselExampleControls" class="carousel slide" data-interval="false" style="width: 100%; height:100%;">
+          <div class="carousel-inner" style="width: 100%; height:100%;">
+          <%= simple_form_for @space, html: {class:"w-100 h-100"} do |f| %>
+          <%= f.collection_radio_buttons(
+              :modelURL,
+              [ ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/abandoned_warehouse_-_interior_scene_comp/scene.gltf', 'abandoned_warehouse.png' ],
+                ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/bagan_-_khayiminga_temple_interior/scene.gltf', 'bagan_temple.png'],
+                ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/gd55_el_a1_erikhernandez/scene.gltf', 'space_station.png'],
+                ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf', 'white_gallery.png'],
+                ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019/scene.gltf', 'office_gallery.png'],
+                ['https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_vintage_for_product_showcase_2019/scene.gltf', 'vintage_gallery.png']
+              ],
+              :first, :last,  :item_wrapper_class => 'carousel-item w-100 h-100') do |space| %>
+
+                <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: "spaces/#{space.text}", space: space }) } %>
+
+              <% end %>
+<!-- , html_options = {type:"hidden"} -->
+          </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          <div id="carouselTextHolder">
+          </div>
+          <h2 id="carouselText">Click an image above to pick your gallery</h2>
+        </div>
+      </div>
+
+  <div>
+    <div class="d-flex flex-column" style="height:100%; width: 100%; margin-left: 86px;">
+      <div style="height:35%;"></div>
+
+      <div style="height:25%; width: 100%;">
+       <!--  <ul style="list-style-type: none; padding: 0px;">
+          <li class="landing-list"><%= link_to 'About us', '#' %></li>
+          <li class="landing-list"><%= link_to 'View Galleries', spaces_path %></li>
+          <li class="landing-list"><%= link_to 'View Artists', users_path %></li>
+          <li class="landing-list"><%= link_to 'Make your own', new_space_path %></li>
+        </ul> -->
+          <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Name your gallery" %>
+          <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Gallery description" %>
+          <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
+          <%= f.submit "Add art to your gallery>>", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+     <!--  <div style="height:30%">
+        <div>
+          <span id="biglogo">MUSE</span>
+          <span id="biglogovr">VR</span>
+          <span id="biglogoart">.art</span>
+        </div>
+      </div>
+
+
+  <div id="landing-image-strip" style="background-image: url(<%= image_path('gallery.jpg') %>);">
+
+  </div>
+
+  <div id="landing-panel-right" style="position: relative;">
+    <span id="featured-artist">Featured Artist: Jemima Jackson</span>
+
+  </div> -->
 </div>

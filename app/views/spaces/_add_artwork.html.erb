@@ -11,8 +11,8 @@
  -->
 
 <%= simple_form_for [@space, @artwork] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
+  <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "The name of your artwork" %>
+  <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Describe your artwork", placeholder: 'Talk about materials, size-dimensions, historical context...' %>
+  <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
+  <%= f.submit "Add artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
 <% end %>
