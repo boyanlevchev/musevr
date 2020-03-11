@@ -43,7 +43,20 @@
 
   <div>
     <div class="d-flex flex-column" style="height:100%; width: 100%; margin-left: 86px;">
-      <div style="height:35%;"></div>
+      <div style="height:35%;">
+        <div class="h-100 d-flex flex-column justify-content-end">
+          <% if @space.errors.any? %>
+            <div id="error_explanation">
+              <ul style="list-style: none; color: red; padding-left: 0;">
+                <li style="padding-bottom: 24px;"><% error = @space.errors.full_messages.last.split(" ")%>
+                  <% error.shift %>
+                  <%= error.join(" ") %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
       <div style="height:25%; width: 100%;">
        <!--  <ul style="list-style-type: none; padding: 0px;">

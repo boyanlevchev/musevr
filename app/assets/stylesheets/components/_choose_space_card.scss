@@ -15,6 +15,11 @@
   width: 50vh;
   height: 100vh;
   opacity: 0;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .simpleFormInput:focus {

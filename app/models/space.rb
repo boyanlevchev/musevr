@@ -4,6 +4,7 @@ class Space < ApplicationRecord
   has_one_attached :photo
 
   validates :name, presence: true
+  validates :modelURL, presence: { message: "You must choose a gallery template from the left" }
 
   include PgSearch::Model
   pg_search_scope :search,
