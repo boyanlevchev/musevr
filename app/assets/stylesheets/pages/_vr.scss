@@ -67,3 +67,15 @@
 //   top: 20px;
 //   right: 20px;
 // }
+
+#key-prompts{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index:1;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 25px;
+
+
+}

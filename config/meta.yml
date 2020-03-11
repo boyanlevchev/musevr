@@ -1,0 +1,5 @@
+meta_product_name: "Muse VR"
+meta_title: "Muse VR - Art in Virtual Reality"
+meta_description: "Experience a new reality of contemporary art - a space for artists exploring new frontiers, and art lovers in quest of new inspirations."
+meta_image: "cover.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards

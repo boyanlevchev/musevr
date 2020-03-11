@@ -1,4 +1,8 @@
-<h2>Sign up</h2>
+<%= render 'shared/navbar_landing' %>
+<div class="page-container">
+<div class="form-container">
+
+<h2 class="text-center">Sign up </h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -16,9 +20,12 @@
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :username %>
+
     <%= f.input :bio, as: :text %>
-    <%= f.input :photo, as: :file %>
-  </div>
+    <%= f.input :photo, as: :file, class: "btn btn-success" %>
+
+
+
 
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
@@ -26,3 +33,5 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>

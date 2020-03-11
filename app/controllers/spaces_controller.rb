@@ -22,12 +22,15 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @images = Dir.chdir(Rails.root.join('app/assets/images')) do
+      Dir.glob("spaces/*.png")
+    end
   end
 
   def create
     @space = Space.new(space_params)
     @space.user = current_user
-    if @space.save!
+    if @space.save
       redirect_to @space
     else
       render :new
@@ -59,6 +62,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id, :photo)
+    params.require(:space).permit(:name, :description, :user_id, :photo, :modelURL)
   end
 end

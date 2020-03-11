@@ -9,5 +9,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:bio, :photo, :username])
   end
 
+  def default_url_options
+    { host: ENV["www.musevr.art"] || "localhost:3000" }
+  end
 
 end
