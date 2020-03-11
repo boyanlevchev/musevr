@@ -1,0 +1,56 @@
+.form-container{
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 30px;
+  font: $body-font;
+  padding: 20px;
+  // border : 2px dotted  $text;
+    .btn {
+        border: none;
+        background-color: $button-pink;
+        padding: 8px 24px;
+
+    }
+  a{
+    color: $text;
+      margin: 0 auto ;
+      padding: 5px;
+
+  }
+
+  .simple_form input[type=text] {
+    width: 100%;
+
+  }
+
+
+  form {
+    input {
+      background-color: $pink;
+      border: none;
+      border-bottom: 1px solid $text;
+      border-radius: 0;
+
+
+      &:focus {
+        background-color: $pink;
+      }
+    }
+
+    textarea {
+       background-color: transparent;
+       border-color: $text;
+    }
+    #user_photo{
+      background-color: transparent;
+      border-bottom: none;
+    }
+    #space_photo{
+      background-color: transparent;
+      border-bottom: none;
+    }
+
+
+  }
+}
+
