@@ -1,6 +1,16 @@
-require('aframe');
-require('aframe-event-set-component');
-require('aframe-mouse-dragndrop-component');
+
+export const menuOpen = () => {
+AFRAME.registerComponent('menuopen', {
+    init: function () {
+      const el = this.el;
+      console.log(`${el.id}`);
+      el.addEventListener('click', function () {
+        const menu = document.querySelector(`#${el.id}menu`);
+        menu.setAttribute('visible', !menu.getAttribute('visible'))
+      });
+    }
+  });
+};
 
 
 // var camera = document.getElementById('camera')
@@ -39,8 +49,7 @@ require('aframe-mouse-dragndrop-component');
 
 
 
-document.addEventListener('turbolinks:load', () => {
-  console.log("tubolinks loaded!")
+
   //add all JS functions here!!
 // AFRAME.registerComponent('rotateCamera', {
 //     // Could use a schem to preserve the color! then simply change it on update
@@ -96,4 +105,4 @@ document.addEventListener('turbolinks:load', () => {
   //   }
   // });
 
-});
+
