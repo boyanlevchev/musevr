@@ -747,10 +747,29 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@commitlint/config-angular-type-enum@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-angular-type-enum/-/config-angular-type-enum-7.6.0.tgz#9c3ffff18037b375a078eb704d118c7929968a49"
+  integrity sha512-oWGBo6P7gN07qNczMeviq2dxenq1LOnJcXlF4EFj3ifje3EoQMvZicM2gJaqBAZ3K7ZMHrG5l/njL61wKyyikg==
+
+"@commitlint/config-angular@^7.0.1":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-angular/-/config-angular-7.6.0.tgz#41d4ce9698d9ae5eb858a8a8e90bc64e1507f3a3"
+  integrity sha512-Rt0LxOTMxR0a6CWF3U5Y8zCMXz7vJqGrR0fBxjRw6fjndKehED78gbphiqKxjDaTJ4NDs259urR/BPhHCkYuAg==
+  dependencies:
+    "@commitlint/config-angular-type-enum" "^7.6.0"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
+
+"@editvr/aframe-dialog-popup-component@^1.7.3":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@editvr/aframe-dialog-popup-component/-/aframe-dialog-popup-component-1.7.3.tgz#e956c30ea6f98115b178a89df461b34618e32c43"
+  integrity sha512-1SQqnaT+MHk4GVJXqKZz78XDHsJWt6nV35x7aFxPmJVVsjeK+q9GdfQ8wg26CvaKtQhrsLqAlsP/w8bojlCS/Q==
+  dependencies:
+    "@commitlint/config-angular" "^7.0.1"
 
 "@rails/actioncable@^6.0.0":
   version "6.0.2"
@@ -1027,6 +1046,11 @@ aframe-event-set-component@^5.0.0:
   integrity sha512-O9Bhs8Qu2cEilXQ6F2xUxxJIbaZEA2atdIxTwq5qPHRHaIa+8ZghkirUBicNs92aHR9QQwk6ZnRx+SmBXi+B9Q==
   dependencies:
     debug "^2.6.9"
+
+aframe-look-at-component@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/aframe-look-at-component/-/aframe-look-at-component-0.8.0.tgz#668ec0a1f16a66bfda96d2c39aa143effbc0db73"
+  integrity sha512-eU+PbFNmRFOj27DJzWyMeYIHvLxTvPs1AyfT4hqP/upk85YKgjzgRik2ImzCXYDZNRqozjdHq2HsrstvQFE6Zw==
 
 aframe-mouse-dragndrop-component@^1.1.0:
   version "1.1.0"
