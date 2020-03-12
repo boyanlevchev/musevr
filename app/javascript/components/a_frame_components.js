@@ -17,17 +17,6 @@ const scaleControl = () =>  { AFRAME.registerComponent('scale-control', {
 
 const rotationControl = () => { AFRAME.registerComponent('rotation-control', {
 
-    init: function () {
-      const rx = document.querySelector("#rx");
-      const ry = document.querySelector("#ry");
-      const rz = document.querySelector("#rz");
-
-      rx.value = this.el.getAttribute('rotation').x;
-      ry.value = this.el.getAttribute('rotation').y;
-      rz.value = this.el.getAttribute('rotation').z;
-    },
-
-
     update: function () {
       const rx = document.querySelector("#rx");
       const ry = document.querySelector("#ry");
