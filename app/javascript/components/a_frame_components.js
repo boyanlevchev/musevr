@@ -37,11 +37,13 @@ const rotationControl = () => { AFRAME.registerComponent('rotation-control', {
                 THREE.Math.degToRad(ry.value),
                 THREE.Math.degToRad(rz.value)
               );
-              info.object3D.rotation.set(
-                THREE.Math.degToRad(0),
-                THREE.Math.degToRad(ry.value-90),
-                THREE.Math.degToRad(0)
-              );
+              if (info != null ) {
+                info.object3D.rotation.set(
+                  THREE.Math.degToRad(0),
+                  THREE.Math.degToRad(ry.value-90),
+                  THREE.Math.degToRad(0)
+                );
+              }
             }
           });
         })
@@ -63,7 +65,6 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
         const ry = document.querySelector("#ry");
         const rz = document.querySelector("#rz");
         const size = document.querySelector("#size")
-
 
         if (panel.children[0].innerText !== pic.alt) {
           panel.children[0].innerText = pic.alt;

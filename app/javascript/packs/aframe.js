@@ -3,11 +3,15 @@ export const menuOpen = () => {
 AFRAME.registerComponent('infoopen', {
     init: function () {
       const el = this.el;
-      el.addEventListener('click', function () {
-        const id = el.id.replace("selected", "");
-        const info = document.querySelector(`[id^='${id}info']`);
-        info.setAttribute('visible', !info.getAttribute('visible'))
-      });
+      if (el != null ) {
+        el.addEventListener('click', function () {
+          const id = el.id.replace("selected", "");
+          const info = document.querySelector(`[id^='${id}info']`);
+          if (info != null ) {
+            info.setAttribute('visible', !info.getAttribute('visible'))
+          }
+        });
+      }
     }
   });
 };
@@ -16,7 +20,9 @@ export const selected = () => {
   AFRAME.registerComponent('selected', {
   init: function () {
     const el = this.el;
-    el.addEventListener('click', function () {
+
+    el.addEventListener('mouseup', function () {
+
       const others = document.querySelectorAll("[id$='selected']")
       if (others != null) {
         others.forEach(other =>
@@ -27,7 +33,9 @@ export const selected = () => {
       const rotator = document.getElementById(`${el.id}innerinforotator`)
       el.id = el.id.concat("selected");
       innerEl.id = innerEl.id.concat("selected");
-      rotator.id = rotator.id.concat("selected");
+      if (rotator != null) {
+        rotator.id = rotator.id.concat("selected");
+      }
     });
   }
 });
