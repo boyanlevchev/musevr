@@ -53,18 +53,24 @@
     <!-- Add all objects below -->
 
       <% @space.artworks.each_with_index do |artwork, id| %>
-        <a-entity id="entity<%=id+1%>" geometry="primitive: sphere; radius: 1.15;" material="transparent: true; opacity: 0;" position="-3.8 2 1" rotation="0 0 0" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
+        <% if @space.user == current_user%>
+          <a-entity id="entity<%=id+1%>" geometry="primitive: sphere; radius: 1.15;" material="transparent: true; opacity: 0;" position="-3.8 2 1" rotation="0 0 0" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
+        <% else %>
+          <a-entity id="entity<%=id+1%>" geometry="primitive: sphere; radius: 1.15;" material="transparent: true; opacity: 0;" position="-3.8 2 1" rotation="0 0 0" selected updatedimensions infoopen>
+        <% end %>
           <a-entity id="entity<%=id+1%>inner" rotation-control rotation="0 90 0">
             <a-image src="#entity<%=id+1%>painting" id="entity<%=id+1%>innerimage" material="shader:flat" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
             <a-gltf-model src="#frame" id="entity<%=id+1%>innerimageframe" scale="1 1 1" material="shader:flat" rotation="0 -90 0"></a-gltf-model>
           </a-entity>
+          <% if @space.user != current_user %>
             <a-entity id="entity<%=id+1%>innerinforotator" visible="true" geometry="primitive: sphere; radius: 1;" material="transparent: true; opacity: 0;" position="0 0 0" rotation="0 0 0">
               <a-text id="entity<%=id+1%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="0 0 1.25" rotation="0 90 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
             </a-entity>
+          <% end %>
         </a-entity>
       <% end %>
 
-    <% if @space.user == current_user %>
+    <%# if @space.user == current_user %>
     <div id="#side-panel" class="sidePanel hidden">
       <h2>Howdy</h2>
 
@@ -84,7 +90,7 @@
       <input type="range" id="rz" name="rotation-z"
         min="0" max="360" value="0" step="1">
     </div>
-  <% end %>
+  <%# end %>
   </a-scene>
 </div>
 
