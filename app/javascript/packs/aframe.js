@@ -1,108 +1,53 @@
 
 export const menuOpen = () => {
-AFRAME.registerComponent('menuopen', {
+AFRAME.registerComponent('infoopen', {
     init: function () {
       const el = this.el;
-      console.log(`${el.id}`);
       el.addEventListener('click', function () {
-        const menu = document.querySelector(`#${el.id}menu`);
-        menu.setAttribute('visible', !menu.getAttribute('visible'))
+        const id = el.id.replace("selected", "");
+        const info = document.querySelector(`[id^='${id}info']`);
+        info.setAttribute('visible', !info.getAttribute('visible'))
       });
     }
   });
 };
 
+export const selected = () => {
+  AFRAME.registerComponent('selected', {
+  init: function () {
+    const el = this.el;
+    el.addEventListener('click', function () {
+      const others = document.querySelectorAll("[id$='selected']")
+      if (others != null) {
+        others.forEach(other =>
+          other.id = other.id.replace("selected", "")
+        );
+      }
+      const innerEl = document.getElementById(`${el.id}inner`)
+      const rotator = document.getElementById(`${el.id}innerinforotator`)
+      el.id = el.id.concat("selected");
+      innerEl.id = innerEl.id.concat("selected");
+      rotator.id = rotator.id.concat("selected");
+    });
+  }
+});
+};
 
-// var camera = document.getElementById('camera')
+export const updateDimensions = () => {
+  AFRAME.registerComponent('updatedimensions', {
+    init: function () {
+      const el = this.el;
+      const painting = document.getElementById(`${el.id}painting`)
 
-// AFRAME.registerComponent('rotation-reader', {
-//   tick: function () {
-//     // `this.el` is the element.
-//     // `object3D` is the three.js object.
-
-//     // `rotation` is a three.js Euler using radians. `quaternion` also available.
-//     // console.log(this.el.object3D.rotation);
-//     this.el.addEventListener('click', function() {
-//       camera.
-
-//     })
-
-//     // `position` is a three.js Vector3.
-//     console.log(this.el.object3D.position);
-//   }
-// });
-// var el = document.querySelector('#object1');
-// var cam = document.querySelector('#camera')
-// // el.addEventListener('click', function() {
-// //   console.log("clicked!!")
-// // });
-
-// AFRAME.registerComponent('rotateCamera', {
-//     // Could use a schem to preserve the color! then simply change it on update
-//     // if clicked?
-//     init: function () {
-//     this.el.addEventListener('click', function (evt) {
-//       console.log('I was clicked at: ');
-//     });
-//     }
-//     });
+      const aImage = document.getElementById(`${el.id}innerimage`)
+      const imageFrame = document.getElementById(`${el.id}innerimageframe`)
 
 
+      aImage.setAttribute('height', painting.height/1000);
+      aImage.setAttribute('width', painting.width/1000);
 
+      imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 });
 
-  //add all JS functions here!!
-// AFRAME.registerComponent('rotateCamera', {
-//     // Could use a schem to preserve the color! then simply change it on update
-//     // if clicked?
-//     init: function () {
-//     this.el.addEventListener('click', function (evt) {
-//       console.log('I was clicked at: ');
-//     });
-//     }
-//     });
-
-
-
-//   AFRAME.registerComponent('rotation-reader', {
-//   tick: function () {
-//     // `this.el` is the element.
-//     // `object3D` is the three.js object.
-
-//     // `rotation` is a three.js Euler using radians. `quaternion` also available.
-//     console.log(this.el.object3D.rotation);
-
-//     // `position` is a three.js Vector3.
-//     console.log(this.el.object3D.position);
-//   }
-// });
-
-  // var el = document.querySelector('#object1');
-  // var cam = document.querySelector('#camera')
-  // el.addEventListener('click', function() {
-
-  // });
-
-
-
-
-  // AFRAME.registerComponent('change-color-on-hover', {
-  //   schema: {
-  //     color: {default: 'red'}
-  //   },
-
-  //   init: function () {
-  //     var data = this.data;
-  //     var el = this.el;  // <a-box>
-  //     var defaultColor = el.getAttribute('material').color;
-
-  //     el.addEventListener('mouseenter', function () {
-  //       el.setAttribute('color', data.color);
-  //     });
-
-  //     el.addEventListener('mouseleave', function () {
-  //       el.setAttribute('color', defaultColor);
-  //     });
-  //   }
-  // });
-
-
+    }
+  });
+}

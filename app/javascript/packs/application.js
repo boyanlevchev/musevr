@@ -16,17 +16,27 @@ import { scaleControl } from '../components/a_frame_components';
 import { rotationControl } from '../components/a_frame_components';
 import { showPanel } from '../components/a_frame_components';
 import { addClass } from './new_gallery.js'
-import { menuOpen } from './aframe.js'
+import { menuOpen, updateDimensions, selected } from './aframe.js'
+
 
 
 document.addEventListener('turbolinks:load', () => {
+  addClass();
+
   const vr = document.getElementById('embeddedScene');
   if (vr) {
+    updateDimensions();
+    selected();
     scaleControl();
     rotationControl();
     showPanel();
     menuOpen();
   }
-  addClass();
 
 });
+
+
+// document.querySelector(".submitButton").addEventListener("click", (e)=>{
+// e.preventDefault();
+// document.querySelector("form").submit()
+// })
