@@ -1,81 +1,51 @@
-/*#hello {
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  z-index: 1;
-}*/
-
-// body {
-//   margin: 0px;
-// }
-
-// .color {
-//   #FFC65D
-// }
-
 #embeddedScene {
-  /*display: flex;*/
   border: 5px solid black;
   padding: 0px;
-  // margin-top: 50px;
   height: 100vh;
   width: 100vw;
   z-index: -1;
 }
 
 .sidePanel {
-  // display: none;
   border: 5px solid rgb(150,150,150);
   border-radius: 5px;
   position: absolute;
   top: 20px;
   right: 20px;
-  /*margin: 20px;*/
   height: 90%;
   width: 200px;
   z-index: 1;
   background-color: rgba(255,255,255,0.7);
-  /*opacity: 70%;*/
 }
 
 .sidePanel.hidden {
   visibility: hidden;
 }
 
-// .sidePanelOptions {
-//   display: none;
-//   border: 5px solid rgb(150,150,150);
-//   border-radius: 5px;
-//   position: absolute;
-//   top: 20px;
-//   right: 20px;
-//   /*margin: 20px;*/
-//   height: 90%;
-//   width: 200px;
-//   z-index: 1;
-//   background-color: rgba(255,255,255,0.7);
-//   /*opacity: 70%;*/
-// }
 
-// #sidePanelList {
-//   list-style-type: none;
-// }
-
-// #editSceneButton {
-//   position: absolute;
-//   z-index: 1;
-//   top: 20px;
-//   right: 20px;
-// }
-
-#key-prompts{
+#key-prompts {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index:1;
-  max-width: 200px;
-  margin: 0 auto;
-  padding: 25px;
-
-
+  left: 500px;
+  top: 200px;
+  z-index: 1;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.6);
+  padding: 30px;
+  padding-top: 43px;
+  text-align: center;
+  font-weight: bold;
+}
+.close {
+  z-index: 1;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  color: black;
+  font-size: 15px;
+  border: 1px solid rgb(150,150,150);
+}
+.wasd {
+  width: 370px;
+  height: 100px;
+  margin-bottom: 30px;
 }

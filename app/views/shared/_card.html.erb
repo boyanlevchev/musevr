@@ -5,7 +5,7 @@
         <%  if space.photo.attached? %>
           <% card_image = cl_image_path space.photo.key %>
         <% else %>
-          <% card_image = image_path 'VR.jpg', class: 'card-img  w3-padding d-flex mb-4' %>
+          <% card_image = "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1418&q=80" %>
         <% end %>
 
       <div class="card" style="width: 500px; height:500px; background-image: url(<%= card_image %>)">
