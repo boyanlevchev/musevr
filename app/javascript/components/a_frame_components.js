@@ -17,6 +17,7 @@ const scaleControl = () =>  { AFRAME.registerComponent('scale-control', {
 
 const rotationControl = () => { AFRAME.registerComponent('rotation-control', {
 
+
     update: function () {
       const rx = document.querySelector("#rx");
       const ry = document.querySelector("#ry");
