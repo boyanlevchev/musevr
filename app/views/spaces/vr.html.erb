@@ -55,16 +55,17 @@
 
       <% @space.artworks.each_with_index do |artwork, id| %>
         <% if @space.user == current_user%>
-          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat;" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
+          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
         <% else %>
           <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat;" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
         <% end %>
           <a-entity id="entity<%=artwork.id%>inner" rotation-control rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>">
-            <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
+            <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
             <a-gltf-model src="#frame" id="entity<%=artwork.id%>innerimageframe" scale="1 1 1" material="shader:flat" rotation="0 -90 0"></a-gltf-model>
+            <a-plane id="entity<%=artwork.id%>innerimageback" position="0 0 -0.02" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-plane>
           </a-entity>
           <% if @space.user != current_user %>
-            <a-entity id="entity<%=artwork.id%>innerinforotator" visible="true" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat;" position="0 0 0" rotation="0 <%=artwork.roty%> 0">
+            <a-entity id="entity<%=artwork.id%>innerinforotator" visible="true" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="0 0 0" rotation="0 <%=artwork.roty%> 0">
               <a-text id="entity<%=artwork.id%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="-1.15 0 0" rotation="0 0 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
             </a-entity>
           <% end %>
