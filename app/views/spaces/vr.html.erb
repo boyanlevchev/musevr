@@ -57,7 +57,7 @@
         <% if @space.user == current_user%>
           <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
         <% else %>
-          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat;" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
+          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
         <% end %>
           <a-entity id="entity<%=artwork.id%>inner" rotation-control rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>">
             <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
