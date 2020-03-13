@@ -6,6 +6,12 @@
   <p>Use WASD keys or ARROW keys to move around!</p><br>
   <%= image_tag "wasd2.png", class: 'wasd'%>
   <p>Use your mouse to look around!</p>
+  <% if @space.user == current_user %>
+    <p>Click on artworks to edit them!</p>
+    <p>Drag artworks to move them around!</p>
+  <% else %>
+    <p>Click on artworks to view information!</p>
+  <% end %>
 </div>
 
 <div id="embeddedScene">
@@ -76,11 +82,11 @@
     <div id="#side-panel" class="sidePanel hidden">
       <h2>Howdy</h2>
 
-      <label for="size">Size</label>
-      <input type="range" id="size" name="size"
-        min="0" max="10" value="1" step="0.1">
+      <label for="size">="1" step="0.1">
 
-      <label for="rotation-x">Rotation x</label>
+      <label for="rotationSize</label>
+      <input type="range" id="size" name="size"
+        min="0" max="10" value-x">Rotation x</label>
       <input type="range" id="rx" name="rotation-x"
         min="0" max="360" value="0" step="1">
 
