@@ -46,10 +46,15 @@ export const updateDimensions = () => {
     init: function () {
       const el = this.el;
       const painting = document.getElementById(`${el.id}painting`)
+      // const rotator = document.getElementById(`${el.id}innerinforotator`)
 
       const aImage = document.getElementById(`${el.id}innerimage`)
       const imageFrame = document.getElementById(`${el.id}innerimageframe`)
 
+      // el.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
+      // if ( rotator != null ) {
+      //   rotator.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
+      // }
 
       aImage.setAttribute('height', painting.height/1000);
       aImage.setAttribute('width', painting.width/1000);

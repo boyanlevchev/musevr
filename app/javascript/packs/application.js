@@ -17,6 +17,7 @@ import { rotationControl } from '../components/a_frame_components';
 import { showPanel } from '../components/a_frame_components';
 import { addClass } from './new_gallery.js'
 import { menuOpen, updateDimensions, selected } from './aframe.js'
+import { saveArtwork } from './vr.js'
 
 
 
@@ -25,16 +26,17 @@ document.addEventListener('turbolinks:load', () => {
 
   const vr = document.getElementById('embeddedScene');
   if (vr) {
+    saveArtwork();
     updateDimensions();
     selected();
     scaleControl();
     rotationControl();
     showPanel();
     menuOpen();
+
   }
 
 });
-
 
 // document.querySelector(".submitButton").addEventListener("click", (e)=>{
 // e.preventDefault();

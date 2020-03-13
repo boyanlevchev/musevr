@@ -11,13 +11,19 @@ class ArtworksController < ApplicationController
   end
 
   def update
+
     @artwork = Artwork.find(params[:id])
-    @space = @artwork.space
-    if @artwork.update!(artwork_params)
-      redirect_to space_path(@artwork.space)
+    if params[:space_id]
+      @artwork.space.id = params[:space_id]
     else
-      render 'spaces/show'
+      @artwork.space = @space
     end
+    @artwork.update!(artwork_params)
+    # if @artwork.update!(artwork_params)
+    #   redirect_to space_path(@artwork.space)
+    # else
+    #   render 'spaces/show'
+    # end
   end
 
   def destroy
@@ -30,6 +36,6 @@ class ArtworksController < ApplicationController
   private
 
   def artwork_params
-    params.require(:artwork).permit(:name, :description, :user_id, :photo)
+    params.require(:artwork).permit(:name, :description, :user_id, :photo, :posx, :posy, :posz, :rotx, :roty, :rotz, :scale)
   end
 end
