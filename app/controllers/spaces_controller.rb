@@ -62,6 +62,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id, :photo, :modelURL)
+    params.require(:space).permit(:name, :description, :user_id, :photo, :modelURL, :savedHTML)
   end
 end

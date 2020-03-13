@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_09_173214) do
+ActiveRecord::Schema.define(version: 2020_03_13_000549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_03_09_173214) do
     t.bigint "space_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "posx"
+    t.float "posy"
+    t.float "posz"
+    t.float "rotx"
+    t.float "roty"
+    t.float "rotz"
+    t.float "scale"
     t.index ["space_id"], name: "index_artworks_on_space_id"
   end
 
@@ -52,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_03_09_173214) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "modelURL"
+    t.text "savedHTML"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 

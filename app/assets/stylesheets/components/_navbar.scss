@@ -27,6 +27,29 @@
   z-index: 3;
 }
 
+.vr-save-button{
+  color: $text;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 20px;
+  border: 2px solid $text;
+  border-radius: 2px;
+  padding: 0 16px 2px 16px;
+  margin: 0 36px 20px 0;
+  // border-radius: 4px;
+  transition: 0.3s;
+  outline: 0px solid $pink;
+  // box-shadow: 0 0 4px $pink;
+
+  &:hover {
+    text-decoration: none;
+    color: $text;
+    outline: 2px solid $pink;
+    outline-offset: -6px;
+
+  }
+}
 
 .dropdown-item {
   color: $text-faded;
