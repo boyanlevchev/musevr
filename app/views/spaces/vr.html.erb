@@ -10,7 +10,7 @@
     <p>Click on artworks to edit them!</p>
     <p>Drag artworks to move them around!</p>
   <% else %>
-    <p>Click on artworks to view information!=</p>
+    <p>Click on artworks to view information!</p>
   <% end %>
 </div>
 
@@ -35,22 +35,34 @@
       <a-gltf-model src="#scene" position="1 0 0" scale="0.02 0.02 0.02"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
       <a-sky src="#city"></a-sky>
+      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
+      </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019/scene.gltf' %>
       <a-gltf-model src="#scene" position="0 5 0" scale="0.04 0.04 0.04"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 2.7" position="4 6 4"></a-entity>
       <a-sky src="#outerspace"></a-sky>
+      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
+      </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
-      <a-gltf-model src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
+      <a-gltf-model src="#scene" position="2.6 0 -5" scale="0.01 0.01 0.01"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
+      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
+      </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/gd55_el_a1_erikhernandez/scene.gltf' %>
       <a-gltf-model src="#scene" position="0 0 0"></a-gltf-model>
       <a-entity light="type:point; intensity:7;" position="0.2 0.2 0.2"></a-entity>
       <a-sky src="#outerspace"></a-sky>
+      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
+      </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/abandoned_warehouse_-_interior_scene_comp/scene.gltf' %>
-      <a-gltf-model src="#scene" position="-6 5.7 0" scale="10 10 10"></a-gltf-model>
+      <a-gltf-model src="#scene" position="-10 5.7 13" scale="10 10 10"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
       <a-sky src="#city"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
+      <a-entity setCamera id='cameraWrapper' position="0 0 3">
         <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% end %>
