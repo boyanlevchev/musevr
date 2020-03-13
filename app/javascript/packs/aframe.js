@@ -49,6 +49,7 @@ export const updateDimensions = () => {
       // const rotator = document.getElementById(`${el.id}innerinforotator`)
 
       const aImage = document.getElementById(`${el.id}innerimage`)
+      const aImageBack = document.getElementById(`${el.id}innerimageback`)
       const imageFrame = document.getElementById(`${el.id}innerimageframe`)
 
       // el.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
@@ -58,6 +59,9 @@ export const updateDimensions = () => {
 
       aImage.setAttribute('height', painting.height/1000);
       aImage.setAttribute('width', painting.width/1000);
+
+      aImageBack.setAttribute('height', painting.height/1000);
+      aImageBack.setAttribute('width', painting.width/1000);
 
       imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 });
 
