@@ -33,11 +33,25 @@
               <%= link_to "Create new space", new_space_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             <% else %>
-              <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
+              <!-- <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal"> -->
+              <%= link_to "Login", "#", class: "dropdown-item", data: {toggle: "modal", target: "#loginModal", backdrop: false} %>
+
             <% end %>
           </div>
         </li>
     </ul>
+  </div>
+</div>
+
+
+<div class="modal fade login-modal-backdrop" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background: transparent; border: 0; margin-top: 120px;">
+      <a type="button" class="login-close" data-dismiss="modal" aria-label="Close" style="border:none;text-align:right;">X</a>
+      <div class="modal-body pt-3" style="">
+        <%= render partial: "shared/login_modal" %>
+      </div>
+    </div>
   </div>
 </div>
 

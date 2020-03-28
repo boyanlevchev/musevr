@@ -1,0 +1,73 @@
+.login-modal-backdrop {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // z-index: 1;
+  // width: 100%;
+  // height: 100%;
+  background-color: rgba(252, 226, 219, 0.3);
+  backdrop-filter: blur(40px);
+}
+
+.fa-times-circle {
+  color: white;
+  mix-blend-mode: lighten;
+}
+
+.login-title-label {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  font-size: 32px;
+  color: $text;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.modal-label {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  font-size: 16px;
+  color: $text;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+.login-submit {
+  color: $text;
+  transition: 0.2s;
+  &:hover {
+    color: white;
+  }
+}
+
+.login-close {
+  font-size: 28px;
+  transition: 0.2s;
+  font-weight: 200;
+  &:first-child {
+    color: $text;
+  }
+  &:first-child:hover {
+    color: white;
+  }
+}
+
+.modal-input {
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  font-size: 40px;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 200;
+  // mix-blend-mode: lighten;
+  &:focus {
+    color: white;
+    border: 0;
+    box-shadow: none;
+    mix-blend-mode: normal;
+    &::placeholder {
+      color: rgba(255,255,255,0);
+    }
+  }
+  &::placeholder {
+    transition: 0.1s;
+    color: white;
+  }
+}

@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     { host: ENV["www.musevr.art"] || "localhost:3000" }
   end
 
+  def after_sign_in_path_for(resource)
+    request.referrer
+  end
+
 end
