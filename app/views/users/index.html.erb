@@ -1,4 +1,4 @@
-<%= render 'shared/navbar_user_index' %>
+<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 <div id="background-1">
   <% @users.each do |user| %>
     <div id="background-2">

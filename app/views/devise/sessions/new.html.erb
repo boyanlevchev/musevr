@@ -1,57 +1,84 @@
-<%#= render 'shared/navbar_landing' %>
+<div id="login-modal-view" style="">
+  <div class="container">
 
+    <h2 class="login-title-label" style="padding-bottom: 24px;">Log in</h2>
 
-
-<div class="page-container">
-  <div class="form-container">
-    <!-- <p></p>
-    <p></p> -->
-
-    <h2>Log in</h2>
-
-    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-inputs">
-        <%= f.input :email,
-            required: false,
-            autofocus: true,
-            input_html: { autocomplete: "email" } %>
-             <%= f.input :password,
-                          required: false,
-                          input_html: { autocomplete: "current-password" } %>
-              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              </div>
-
-              <div class="form-actions">
-                <%= f.button :submit, "Log in" %>
-              </div>
-            <% end %>
-            <%= render "devise/shared/links" %>
-  </div>
-</div>
-<!--
-      </div>
-
-      <div style="height:30%">
-        <div>
-          <span id="biglogo">MUSE</span>
-          <span id="biglogovr">VR</span>
-          <span id="biglogoart">.art</span>
+    <div>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
+        <div class="errors"></div>
+        <div class="form-inputs">
+          <%= f.input :email,
+              label: "EMAIL",
+              required: false,
+              autofocus: true,
+              placeholder: "type email here...",
+              input_html: { autocomplete: "email", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
+              label_html: { class: "modal-label" } %>
+          <%= f.input :password,
+              label: "PASSWORD",
+              required: false,
+              placeholder: "type password here...",
+              input_html: { autocomplete: "current-password", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
+              label_html: { class: "modal-label" } %>
+          <%= f.input :remember_me, label: "Remember me", label_html: { class: "modal-label" }, as: :boolean if devise_mapping.rememberable? %>
         </div>
-      </div>
 
+        <div class="form-actions">
+          <%= f.submit "SUBMIT", inner_text: "SUBMIT", style: "float: right; background: none; border: 0;", class: "modal-label login-submit" %>
+        </div>
+      <% end %>
     </div>
 
-  </div>
 
-  <div id="landing-image-strip" style="background-image: url(<%= image_path('gallery.jpg') %>);">
+    <div style="display:none; margin-top: 64px;">
+      <%- if devise_mapping.omniauthable? %>
+      <h3 class="modal-label" style="margin-bottom: 36px;">Or login with socials:</h2>
+        <div class="w-100 d-flex justify-content-center">
+          <div class="d-flex justify-content-between pb-5 border-bottom border-dark" style="width:40%;">
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <% if provider == :facebook %>
+                <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-facebook-f fa-3x fa-logo" %>
+              <% elsif provider == :github %>
+                <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-github fa-3x fa-logo" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-  </div>
+    <div class="container">
+        <div class="d-flex flex-column align-items-center" style="margin-top: 64px; width: 100%;">
+          <%- if devise_mapping.omniauthable? %>
+              <div>
+                <h3 class="modal-label border-top border-dark" style="margin-bottom: 36px; text-align: center; padding-top: 16px;">Or login with socials:</h2>
+              </div>
 
-  <div id="landing-panel-right" style="position: relative;">
-    <span id="featured-artist">Featured Artist: Jemima Jackson</span>
+              <div class="d-flex justify-content-center pb-5 border-bottom border-dark">
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <% if provider == :facebook %>
+                    <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-facebook-f fa-3x fa-logo" %>
+                    <div style="width:144px;"></div>
+                  <% elsif provider == :github %>
+                    <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-github fa-3x fa-logo" %>
+                  <% end %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
+    </div>
 
+    <div class="d-flex justify-content-between pt-2" >
+      <%#- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%#= link_to "Don't have an account?", new_registration_path(resource_name), class: "modal-label login-submit pt-3" %>
+      <%# end %>
+      <button class="modal-label login-submit transparent pt-3 remove-glow" id="switch-to-signup" style="height: 20px; border: 0;" >Don't have an account?</button>
+
+
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "modal-label login-submit pt-3 remove-glow" %>
+      <% end %>
+    </div>
   </div>
 </div>
-
--->
 

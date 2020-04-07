@@ -1,0 +1,32 @@
+// $("#signupErrorsTest").html("<%= resource.errors.full_messages %>");
+
+<% if resource.errors.any? %>
+  console.log("resources exist!");
+  $('.signupLabelAppendage').remove();
+
+  <% if resource.errors.full_messages.include?("Email can't be blank") %>
+    $("label[for='newUserSignupEmail']").append("<span class='signupLabelAppendage'> - Email can't be blank</span>");
+  <% elsif resource.errors.full_messages.include?("Email is invalid") %>
+    $("label[for='newUserSignupEmail']").append("<span class='signupLabelAppendage'> - Email is invalid</span>");
+  <% end %>
+
+  <% if resource.errors.full_messages.include?("Password can't be blank") %>
+    $("label[for='newUserSignupPassword']").append("<span class='signupLabelAppendage'> - Password can't be blank</span>");
+  <% elsif resource.errors.full_messages.include?("Password is too short (minimum is 6 characters)") %>
+    $("label[for='newUserSignupPassword']").append("<span class='signupLabelAppendage'> - Password is too short (minimum 6 characters)</span>");
+  <% end %>
+
+  <% if resource.errors.full_messages.include?("Password confirmation doesn't match Password") %>
+    $("label[for='newUserSignupPasswordConfirm']").append("<span class='signupLabelAppendage'> - Must match password</span>");
+  <% end %>
+
+  <% if resource.errors.full_messages.include?("Username can't be blank") %>
+    $("label[for='newUserSignupUsername']").append("<span class='signupLabelAppendage'> - Username can't be blank</span>");
+  <% end %>
+
+  $(".signupLabelAppendage").attr("style", "color: red;");
+  $('.signUpErrors').html("Please fill in the required fields marked with * | ");
+<% else %>
+  location.reload();
+<% end %>
+

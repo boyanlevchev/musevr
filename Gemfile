@@ -8,9 +8,9 @@ gem 'pg', '~> 0.21'
 gem 'puma'
 gem 'rails', '6.0.2.1'
 gem 'redis'
-# gem 'bootstrap'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'pg_search', '~> 2.3.0'
-
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'
@@ -20,6 +20,10 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'cloudinary', '~> 1.12.0'
 gem 'popper_js'
+
+gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
+gem 'activerecord-session_store', '~> 1.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

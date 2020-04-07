@@ -9,12 +9,14 @@ Bundler.require(*Rails.groups)
 module Musevr
   class Application < Rails::Application
     config.generators do |generate|
-          generate.assets false
-          generate.helper false
-          generate.test_framework  :test_unit, fixture: false
-        end
+      generate.assets false
+      generate.helper false
+      generate.test_framework  :test_unit, fixture: false
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    # config.autoload_paths += %W(#{config.root}/lib)
+
 
     # config.assets.enabled = true
     # config.assets.paths << "#{Rails.root}/app/assets/models"

@@ -6,7 +6,7 @@ AFRAME.registerComponent('infoopen', {
       if (el != null ) {
         el.addEventListener('click', function () {
           const id = el.id.replace("selected", "");
-          const info = document.querySelector(`[id^='${id}info']`);
+          const info = document.getElementById(`${id}info`);
           if (info != null ) {
             info.setAttribute('visible', !info.getAttribute('visible'))
           }
@@ -30,7 +30,7 @@ export const selected = () => {
         );
       }
       const innerEl = document.getElementById(`${el.id}inner`)
-      const rotator = document.getElementById(`${el.id}innerinforotator`)
+      const rotator = document.getElementById(`${el.id}inforotator`)
       el.id = el.id.concat("selected");
       innerEl.id = innerEl.id.concat("selected");
       if (rotator != null) {
@@ -46,7 +46,6 @@ export const updateDimensions = () => {
     init: function () {
       const el = this.el;
       const painting = document.getElementById(`${el.id}painting`)
-      // const rotator = document.getElementById(`${el.id}innerinforotator`)
 
       const aImage = document.getElementById(`${el.id}innerimage`)
       const aImageBack = document.getElementById(`${el.id}innerimageback`)
@@ -56,6 +55,8 @@ export const updateDimensions = () => {
       // if ( rotator != null ) {
       //   rotator.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
       // }
+      el.setAttribute('geometry', `height: ${(painting.height/1000)}`)
+      el.setAttribute('geometry', `width: ${(painting.width/1000)}`)
 
       aImage.setAttribute('height', painting.height/1000);
       aImage.setAttribute('width', painting.width/1000);

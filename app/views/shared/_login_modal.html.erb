@@ -1,33 +1,70 @@
-<!-- <div class="page-container">
-  <div class="form-container"> -->
-    <!-- <p></p>
-    <p></p> -->
-<div>
+<div id="login-modal-view" style="">
+  <div class="container">
 
-  <h2 class="login-title-label" style="padding-bottom: 24px;">Log in</h2>
+    <h2 class="login-title-label" style="padding-bottom: 24px;">Log in</h2>
 
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="form-inputs">
-      <%= f.input :email,
-          label: "EMAIL",
-          required: false,
-          autofocus: true,
-          placeholder: "type email here...",
-          input_html: { autocomplete: "email", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
-          label_html: { class: "modal-label" } %>
-      <%= f.input :password,
-          label: "PASSWORD",
-          required: false,
-          placeholder: "type password here...",
-          input_html: { autocomplete: "current-password", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
-          label_html: { class: "modal-label" } %>
-      <%= f.input :remember_me, label: "Remember me", label_html: { class: "modal-label" }, as: :boolean if devise_mapping.rememberable? %>
+    <div>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true, html: {id: "newUserLogin"}) do |f| %>
+        <%#= render 'shared/flashes', :object => f.object %>
+
+        <div class="form-inputs">
+          <%= f.input :email,
+              label: "EMAIL",
+              required: false,
+              autofocus: true,
+              placeholder: "type email here...",
+              input_html: { autocomplete: "email", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;", id: "newUserLoginEmail" },
+              label_html: { class: "modal-label" } %>
+          <%= f.input :password,
+              label: "PASSWORD",
+              required: false,
+              placeholder: "type password here...",
+              input_html: { autocomplete: "current-password", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;", id: "newUserLoginPassword" },
+              label_html: { class: "modal-label" } %>
+          <%= f.input :remember_me, label: "Remember me", label_html: { class: "modal-label" }, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+
+        <div class="form-actions">
+          <div class="d-flex justify-content-end">
+            <div class="errors modal-label" style="color: red;"></div>
+            <%= f.submit "SUBMIT", inner_text: "SUBMIT", style: "float: right; background: none; border: 0;", class: "modal-label login-submit" %>
+          </div>
+        </div>
+      <% end %>
     </div>
 
-    <div class="form-actions">
-      <%= f.submit "SUBMIT", inner_text: "SUBMIT", style: "float: right; background: none; border: 0;", class: "modal-label login-submit" %>
+    <div class="container">
+        <div class="d-flex flex-column align-items-center" style="margin-top: 24px; width: 100%;">
+          <%- if devise_mapping.omniauthable? %>
+              <div>
+                <h3 class="modal-label border-top border-dark" style="margin-bottom: 36px; text-align: center; padding-top: 16px;">Or login with socials:</h2>
+              </div>
+
+              <div class="d-flex justify-content-center pb-5 border-bottom border-dark">
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <% if provider == :facebook %>
+                    <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-facebook-f fa-3x fa-logo" %>
+                    <div style="width:144px;"></div>
+                  <% elsif provider == :github %>
+                    <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-github fa-3x fa-logo" %>
+                  <% end %>
+                <% end %>
+              </div>
+          <% end %>
+        </div>
     </div>
-  <% end %>
-  <%#= render "devise/shared/links" %>
+
+    <div class="d-flex justify-content-between pt-2" >
+      <%#- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%#= link_to "Don't have an account?", new_registration_path(resource_name), class: "modal-label login-submit pt-3" %>
+      <%# end %>
+      <button class="modal-label login-submit transparent pt-3 remove-glow" id="switch-to-signup" style="height: 20px; border: 0;" >Don't have an account?</button>
+
+      <button class="modal-label login-submit transparent pt-3 remove-glow" id="switch-to-password-reset" style="height: 20px; border: 0;" >Forgot your password?</button>
+
+      <%#- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%#= link_to "Forgot your password?", new_password_path(resource_name), class: "modal-label login-submit pt-3 remove-glow" %>
+      <%# end %>
+    </div>
+  </div>
 </div>
-<!-- </div> -->

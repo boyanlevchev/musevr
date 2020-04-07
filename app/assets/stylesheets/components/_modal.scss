@@ -1,18 +1,71 @@
-.login-modal-backdrop {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // z-index: 1;
-  // width: 100%;
-  // height: 100%;
-  background-color: rgba(252, 226, 219, 0.3);
-  backdrop-filter: blur(40px);
+// .login-modal-backdrop {
+//   background-color: rgba(252, 226, 219, 0.3);
+//   transition: all .3s ease-in;
+// }
+
+// .login-modal-backdrop.show {
+//     // background-color: rgba(252, 226, 219, 0.3);
+//     background-color: rgba(252, 226, 219, 0.9);
+//   }
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+  .login-modal-backdrop {
+    background-color: rgba(252, 226, 219, 0.3);
+    backdrop-filter: blur(1px);
+    transition: all .3s ease-in;
+    filter: blur(20px);
+  }
+
+  .login-modal-backdrop.show {
+    backdrop-filter: blur(40px);
+    filter: blur(0px);
+    transition: all .3s ease-in;
+  }
+  .login-modal-backdrop-blurout.show {
+    backdrop-filter: blur(0px);
+    filter: blur(20px);
+    background-color: rgba(252, 226, 219, 0);
+  }
 }
 
-.fa-times-circle {
-  color: white;
-  mix-blend-mode: lighten;
+.remove-glow:focus {
+  outline: 0;
 }
+
+.fa-logo {
+  color: $text;
+  transition: 0.2s;
+  position: relative;
+  &.fa-github:hover{
+    color: white;
+    text-decoration: none;
+    &:after {
+      position: absolute;
+      left: 50%;
+      margin-left: -50%;
+      bottom: -50%;
+      content: 'GitHub';
+      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+      font-size: 16px;
+    }
+  }
+  &.fa-facebook-f:hover{
+    color: #4267B2;
+    text-decoration: none;
+    &:after {
+      position: absolute;
+      left: 0;
+      margin-left: -50%;
+      bottom: -50%;
+      content: 'Facebook';
+      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+      font-size: 16px;
+      mix-blend-mode: color-dodge;
+    }
+  }
+}
+
 
 .login-title-label {
   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
@@ -35,6 +88,7 @@
   transition: 0.2s;
   &:hover {
     color: white;
+    text-decoration: none;
   }
 }
 
