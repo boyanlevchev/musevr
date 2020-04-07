@@ -1,10 +1,28 @@
+const updatePosition = () =>  { AFRAME.registerComponent('update-position', {
+    tick: function () {
+      const el = this.el
+
+      if (el.id.includes("selected")){
+        const id = el.id.replace("selected", "");
+        const infoRotator = document.getElementById(`${id}inforotatorselected`)
+
+        infoRotator.object3D.position.set(
+          el.object3D.position.x,
+          el.object3D.position.y,
+          el.object3D.position.z
+        );
+      }
+    }
+  });
+}
+
 const scaleControl = () =>  { AFRAME.registerComponent('scale-control', {
-    // init: function () {
-    //   this.el.object3D.scale.set(1, 1, 1)
-    // },
     update: function () {
       const size = document.querySelector("#size")
       const el = this.el
+
+      // console.log("I WORK!!")
+
       const scale = document.getElementById("savescale")
       size.addEventListener('input', (event) => {
         if (el.id.includes("selected")) {
@@ -49,7 +67,7 @@ const rotationControl = () => { AFRAME.registerComponent('rotation-control', {
               if (info != null ) {
                 info.object3D.rotation.set(
                   THREE.Math.degToRad(0),
-                  THREE.Math.degToRad(ry.value-90),
+                  THREE.Math.degToRad(ry.value),
                   THREE.Math.degToRad(0)
                 );
               }
@@ -75,9 +93,9 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
       el.addEventListener('mouseup', function (event) {
         end = +new Date();
         const diff = end - start;
-        console.log(`${diff} is the amount of time`)
+        // console.log(`${diff} is the amount of time`)
 
-        const innerEl = document.querySelector(`#${el.id.replace("selected", "")}innerselected`);
+        // const innerEl = document.getElementById(el.id);
 
         const rx = document.querySelector("#rx");
         const ry = document.querySelector("#ry");
@@ -92,6 +110,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
         const rotz = document.getElementById("saverotz")
         const scale = document.getElementById("savescale")
         const form = document.getElementById('saveArtworkForm')
+
         const spaceID = document.getElementById('space-id').value
         const artworkID = el.id.replace("entity", "").replace("selected", "")
 
@@ -101,9 +120,9 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
           if (panel.children[0].innerText !== pic.alt) {
             panel.children[0].innerText = pic.alt;
             panel.classList.remove("hidden");
-            rx.value = innerEl.getAttribute('rotation').x;
-            ry.value = innerEl.getAttribute('rotation').y;
-            rz.value = innerEl.getAttribute('rotation').z;
+            rx.value = el.getAttribute('rotation').x;
+            ry.value = el.getAttribute('rotation').y;
+            rz.value = el.getAttribute('rotation').z;
             size.value = el.getAttribute('scale').x;
 
             form.action = `/spaces/${spaceID}/artworks/${artworkID}`
@@ -113,17 +132,17 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
             posx.value = el.getAttribute('position').x
             posy.value = el.getAttribute('position').y
             posz.value = el.getAttribute('position').z
-            rotx.value = innerEl.getAttribute('rotation').x
-            roty.value = innerEl.getAttribute('rotation').y
-            rotz.value = innerEl.getAttribute('rotation').z
+            rotx.value = el.getAttribute('rotation').x
+            roty.value = el.getAttribute('rotation').y
+            rotz.value = el.getAttribute('rotation').z
             scale.value = el.getAttribute('scale').x
 
           } else if (panel.classList.contains("hidden")) {
             panel.children[0].innerText = pic.alt;
             panel.classList.remove("hidden");
-            rx.value = innerEl.getAttribute('rotation').x;
-            ry.value = innerEl.getAttribute('rotation').y;
-            rz.value = innerEl.getAttribute('rotation').z;
+            rx.value = el.getAttribute('rotation').x;
+            ry.value = el.getAttribute('rotation').y;
+            rz.value = el.getAttribute('rotation').z;
             size.value = el.getAttribute('scale').x;
 
             form.action = `/spaces/${spaceID}/artworks/${artworkID}`
@@ -132,9 +151,9 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
             posx.value = el.getAttribute('position').x
             posy.value = el.getAttribute('position').y
             posz.value = el.getAttribute('position').z
-            rotx.value = innerEl.getAttribute('rotation').x
-            roty.value = innerEl.getAttribute('rotation').y
-            rotz.value = innerEl.getAttribute('rotation').z
+            rotx.value = el.getAttribute('rotation').x
+            roty.value = el.getAttribute('rotation').y
+            rotz.value = el.getAttribute('rotation').z
             scale.value = el.getAttribute('scale').x
           } else {
             panel.children[0].innerText = "";
@@ -149,4 +168,4 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
 export { scaleControl };
 export { rotationControl };
 export { showPanel };
-
+export { updatePosition };

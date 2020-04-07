@@ -1,0 +1,78 @@
+<div class="navbar navbar-expand-xl navbar-light navbar-lewagon align-items-center px-0 py-4 <%= params[:action] == "vr" ? "white-background z-index" : "transparent" %>">
+  <%= link_to "/", class: "navbar-brand", style: "margin-left: 96px;" do %>
+    <h1 class="logo">MUSE</h1>
+    <% if (params[:controller] == 'spaces' && params[:action] == 'new') %>
+      <div class="navbarUnderContent" style=""></div>
+    <% end %>
+  <% end %>
+
+  <%  if (params[:controller] == 'users' && params[:action] == 'show') %>
+    <div class="mr-auto medium-width" id="navbar-search" class="artist-index-search" style="margin-left: 250px;">
+      <form action="/users/<%=user.id%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+        <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search for a gallery" name="search" aria-label="Search">
+        <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
+      </form>
+    </div>
+  <% end %>
+
+
+  <% if (params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index' %>
+    <div class="mr-auto medium-width" id="navbar-search" class="artist-index-search" style="margin-left: 250px;">
+      <form action="/spaces" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+        <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
+        <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
+      </form>
+    </div>
+
+    <div id="menu">
+      <%= link_to 'Galleries', spaces_path, class: "menu-item #{'active' if params[:controller] == 'spaces'}" %>
+      <%= link_to 'Artists', users_path, class: "menu-item #{'active' if params[:controller] == 'users'}"  %>
+    </div>
+  <% end %>
+
+
+
+<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <i class="fas fa-bars fa-2x  dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <div class="dropdown-menu dropdown-menu-right transparent border-0" style="text-align: right; margin-right: -24px;" aria-labelledby="navbarDropdown">
+            <%= link_to "Home", spaces_path, class: "dropdown-item" %>
+            <% if user_signed_in? %>
+              <%= link_to "My spaces", user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Create new space", new_space_path, class: "dropdown-item" %>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <% else %>
+              <!-- <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal"> -->
+              <%= link_to "Login", "#", id: "login-modal-trigger" , class: "dropdown-item", data: {toggle: "modal", target: "#loginModal", backdrop: false} %>
+
+            <% end %>
+          </div>
+        </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="modal login-modal-backdrop" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" id="login-modal-dialog" style="margin-top: 2vh; margin-bottom: 2vh;" role="document">
+    <div class="modal-content modal-blur-in" id="login-modal-content" style="background: transparent; border: 0; margin-top: 32px;">
+      <div class="d-flex justify-content-end">
+        <button id="close-login-modal" class="login-close remove-glow" style="border:none; width:10%; text-align:center; background: transparent;">X</button>
+      </div>
+      <div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
+        <%#=  render file: 'devise/sessions/new' %>
+        <%#=  render file: 'devise/registrations/new' %>
+
+        <%= render partial: "shared/login_modal" %>
+        <%= render partial: "shared/signup_modal" %>
+        <%= render partial: "shared/password_modal" %>
+      </div>
+    </div>
+  </div>
+</div>

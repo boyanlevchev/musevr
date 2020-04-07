@@ -1,5 +1,5 @@
 
-<%= render partial: 'shared/navbar_vr', locals: { space: @space } %>
+<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 <div id="key-prompts">
   <button class="close" onclick="document.getElementById('key-prompts').style.display='none'" >close</button>
@@ -14,7 +14,10 @@
   <% end %>
 </div>
 
-<div id="embeddedScene">
+
+
+
+<div id="embeddedScene" style="">
   <input type="hidden" id="space-id" value="<%= @space.id %>">
 
   <a-scene id="aframeScene" background="color: #FAFAFA" embedded>
@@ -35,59 +38,56 @@
       <a-gltf-model src="#scene" position="1 0 0" scale="0.02 0.02 0.02"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
       <a-sky src="#city"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+      <a-entity setCamera id='cameraWrapper' position="0 0 0">
         <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019/scene.gltf' %>
       <a-gltf-model src="#scene" position="0 5 0" scale="0.04 0.04 0.04"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 2.7" position="4 6 4"></a-entity>
       <a-sky src="#outerspace"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+      <a-entity setCamera id='cameraWrapper' position="0 0 0">
         <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
       <a-gltf-model src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
-      <a-entity setCamera id='cameraWrapper' position="0 0 3">
-        <a-camera setCamera id='camera' position="-1.2 1 5" look-controls></a-camera>
+      <a-entity setCamera id='cameraWrapper' position="0 0 0">
+        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/gd55_el_a1_erikhernandez/scene.gltf' %>
       <a-gltf-model src="#scene" position="0 0 0"></a-gltf-model>
       <a-entity light="type:point; intensity:7;" position="0.2 0.2 0.2"></a-entity>
       <a-sky src="#outerspace"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+      <a-entity setCamera id='cameraWrapper' position="0 0 0">
         <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/abandoned_warehouse_-_interior_scene_comp/scene.gltf' %>
       <a-gltf-model src="#scene" position="-10 5.7 13" scale="10 10 10"></a-gltf-model>
       <a-entity light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
       <a-sky src="#city"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 3">
+      <a-entity setCamera id='cameraWrapper' position="0 0 0">
         <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
       </a-entity>
     <% end %>
-
-
 
     <!-- Add all objects below -->
 
       <% @space.artworks.each_with_index do |artwork, id| %>
         <% if @space.user == current_user%>
-          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions scale-control toggle-side-panel dragndrop infoopen>
+        <!--transparent: true; opacity: 0; depthWrite: false-->
+          <a-entity id="entity<%=artwork.id%>" geometry="primitive: box; depth: 0.05" material="color:red; shader: flat; " position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" rotation-control selected updatedimensions scale-control toggle-side-panel dragndrop infoopen update-position>
         <% else %>
-          <a-entity id="entity<%=artwork.id%>" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
+          <a-entity id="entity<%=artwork.id%>" geometry="primitive: box;" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
         <% end %>
-          <a-entity id="entity<%=artwork.id%>inner" rotation-control rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>">
-            <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
-            <a-gltf-model src="#frame" id="entity<%=artwork.id%>innerimageframe" scale="1 1 1" material="shader:flat" rotation="0 -90 0"></a-gltf-model>
-            <a-plane id="entity<%=artwork.id%>innerimageback" position="0 0 -0.02" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-plane>
-          </a-entity>
-          <% if @space.user != current_user %>
-            <a-entity id="entity<%=artwork.id%>innerinforotator" visible="true" geometry="primitive: sphere; radius: 1" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="0 0 0" rotation="0 <%=artwork.roty%> 0">
-              <a-text id="entity<%=artwork.id%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="-1.15 0 0" rotation="0 0 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
+            <a-entity id="entity<%=artwork.id%>inner">
+              <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
+              <a-gltf-model src="#frame" id="entity<%=artwork.id%>innerimageframe" scale="1 1 1" material="shader:flat" rotation="0 -90 0"></a-gltf-model>
+              <a-plane id="entity<%=artwork.id%>innerimageback" position="0 0 -0.02" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-plane>
             </a-entity>
-          <% end %>
-        </a-entity>
+          </a-entity>
+          <a-entity id="entity<%=artwork.id%>inforotator" visible="true" geometry="primitive: box; depth: 0.02" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" rotation="0 <%=artwork.roty%> 0">
+            <a-text id="entity<%=artwork.id%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="-1.15 0 0" rotation="0 0 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
+          </a-entity>
       <% end %>
 
     <%# if @space.user == current_user %>

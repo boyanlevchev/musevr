@@ -4,51 +4,37 @@
     <h2 class="login-title-label" style="padding-bottom: 24px;">Log in</h2>
 
     <div>
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
-        <div class="errors"></div>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), remote: true, html: {id: "newUserLogin"}) do |f| %>
+        <%#= render 'shared/flashes', :object => f.object %>
+
         <div class="form-inputs">
           <%= f.input :email,
               label: "EMAIL",
               required: false,
               autofocus: true,
               placeholder: "type email here...",
-              input_html: { autocomplete: "email", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
+              input_html: { autocomplete: "email", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;", id: "newUserLoginEmail" },
               label_html: { class: "modal-label" } %>
           <%= f.input :password,
               label: "PASSWORD",
               required: false,
               placeholder: "type password here...",
-              input_html: { autocomplete: "current-password", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;" },
+              input_html: { autocomplete: "current-password", class: "modal-input", style: "background: none; border: 0; border-bottom: 1px solid white;", id: "newUserLoginPassword" },
               label_html: { class: "modal-label" } %>
           <%= f.input :remember_me, label: "Remember me", label_html: { class: "modal-label" }, as: :boolean if devise_mapping.rememberable? %>
         </div>
 
         <div class="form-actions">
-          <%= f.submit "SUBMIT", inner_text: "SUBMIT", style: "float: right; background: none; border: 0;", class: "modal-label login-submit" %>
-        </div>
-      <% end %>
-    </div>
-
-
-    <div style="display:none; margin-top: 64px;">
-      <%- if devise_mapping.omniauthable? %>
-      <h3 class="modal-label" style="margin-bottom: 36px;">Or login with socials:</h2>
-        <div class="w-100 d-flex justify-content-center">
-          <div class="d-flex justify-content-between pb-5 border-bottom border-dark" style="width:40%;">
-            <%- resource_class.omniauth_providers.each do |provider| %>
-              <% if provider == :facebook %>
-                <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-facebook-f fa-3x fa-logo" %>
-              <% elsif provider == :github %>
-                <%= link_to "", omniauth_authorize_path(resource_name, provider), class: "fab fa-github fa-3x fa-logo" %>
-              <% end %>
-            <% end %>
+          <div class="d-flex justify-content-end">
+            <div class="errors modal-label" style="color: red;"></div>
+            <%= f.submit "SUBMIT", inner_text: "SUBMIT", style: "float: right; background: none; border: 0;", class: "modal-label login-submit" %>
           </div>
         </div>
       <% end %>
     </div>
 
     <div class="container">
-        <div class="d-flex flex-column align-items-center" style="margin-top: 64px; width: 100%;">
+        <div class="d-flex flex-column align-items-center" style="margin-top: 24px; width: 100%;">
           <%- if devise_mapping.omniauthable? %>
               <div>
                 <h3 class="modal-label border-top border-dark" style="margin-bottom: 36px; text-align: center; padding-top: 16px;">Or login with socials:</h2>
@@ -74,11 +60,11 @@
       <%# end %>
       <button class="modal-label login-submit transparent pt-3 remove-glow" id="switch-to-signup" style="height: 20px; border: 0;" >Don't have an account?</button>
 
+      <button class="modal-label login-submit transparent pt-3 remove-glow" id="switch-to-password-reset" style="height: 20px; border: 0;" >Forgot your password?</button>
 
-      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "Forgot your password?", new_password_path(resource_name), class: "modal-label login-submit pt-3 remove-glow" %>
-      <% end %>
+      <%#- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%#= link_to "Forgot your password?", new_password_path(resource_name), class: "modal-label login-submit pt-3 remove-glow" %>
+      <%# end %>
     </div>
   </div>
 </div>
-

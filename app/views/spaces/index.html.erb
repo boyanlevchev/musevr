@@ -1,6 +1,6 @@
 <!-- show all the spaces -->
 
-<%= render 'shared/navbar_gallery_index' %>
+<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 <div class="page-container">
   <div class="spaces-index-heading">
