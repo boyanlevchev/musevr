@@ -36,6 +36,6 @@ class ArtworksController < ApplicationController
   private
 
   def artwork_params
-    params.require(:artwork).permit(:name, :description, :user_id, :photo, :posx, :posy, :posz, :rotx, :roty, :rotz, :scale)
+    params.require(:artwork).permit(:name, :description, :user_id, :photo, :posx, :posy, :posz, :rotx, :roty, :rotz, :scale, :artwork_type)
   end
 end

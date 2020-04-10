@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_30_212127) do
+ActiveRecord::Schema.define(version: 2020_04_08_165835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_03_30_212127) do
     t.float "roty"
     t.float "rotz"
     t.float "scale"
+    t.string "artwork_type"
     t.index ["space_id"], name: "index_artworks_on_space_id"
   end
 

@@ -13,6 +13,10 @@
 <%= simple_form_for [@space, @artwork] do |f| %>
   <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "The name of your artwork" %>
   <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Describe your artwork", placeholder: 'Talk about materials, size-dimensions, historical context...' %>
+  <%=  f.label :artwork_type, label: "What type of artwork are you uploading?", required: true %>
+  <div class="d-flex justify-content-around pb-3">
+    <%= f.input_field :artwork_type, as: :radio_buttons, collection: Artwork::OPTIONS, required: true, checked: "Image", item_wrapper_class: "artworkTypeSelection" %>
+  </div>
   <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
   <%= f.submit "Add artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
 <% end %>

@@ -28,10 +28,11 @@
   // position: absolute;
   // bottom: 8px;
   // left: 16px;
+  padding-top: 8px;
   color:$text;
-  font-size: 36px;
+  font-size: 20px;
   // color: $subtext;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 // .owner_of_space {
@@ -79,6 +80,33 @@
   // background-image: linear-gradient(rgb(250,250,250), rgb(220,220,220));
 }
 
+
+.cardShowPage {
+  position: relative;
+  z-index: 0;
+}
+
+.cardShowPage:after {
+  position: absolute;
+  content: '';
+  width: 250px;
+  height: 250px;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(250,250,250, 0.6);
+  z-index: 1;
+  opacity: 0;
+  transition: 0.2s;
+  outline: 20px solid $pink;
+  outline-offset: -40px;
+}
+.cardShowPage:hover:after {
+  opacity: 1;
+}
+
 .card:hover:after {
   opacity: 1;
 }
@@ -97,8 +125,8 @@
 .cardMain:after {
   position: absolute;
   content: '';
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
   display: block;
   left: 0;
   right: 0;
@@ -113,11 +141,11 @@
   box-shadow: none;
 }
 
-.cardMain h4 {
-  font-size: 24px;
-  font-weight: 200;
-  letter-spacing: 1px;
-}
+// .cardMain h4 {
+//   font-size: 24px;
+//   font-weight: 200;
+//   letter-spacing: 1px;
+// }
 
 // .addArtButton {
 //   outline: 0;
@@ -125,11 +153,22 @@
 //   transition: 0.2s;
 // }
 
-.cardMain:hover{
-  border: 1px solid $text-faded;
-  transition: 0.2s;
+// .cardMain:hover{
+//   border: 1px solid $text-faded;
+//   transition: 0.2s;
+// }
+
+.addArtButton {
+  font-size: 24px;
+  font-weight: 200;
+  letter-spacing: 1px;
 }
 
 .addArtButton:focus {
   outline: 0;
+}
+
+.artworkTypeSelection .collection_radio_buttons {
+  margin-left: 8px;
+
 }

@@ -93,7 +93,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
       el.addEventListener('mouseup', function (event) {
         end = +new Date();
         const diff = end - start;
-        // console.log(`${diff} is the amount of time`)
+        console.log(`${diff} is the amount of time`)
 
         // const innerEl = document.getElementById(el.id);
 
@@ -120,6 +120,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
           if (panel.children[0].innerText !== pic.alt) {
             panel.children[0].innerText = pic.alt;
             panel.classList.remove("hidden");
+
             rx.value = el.getAttribute('rotation').x;
             ry.value = el.getAttribute('rotation').y;
             rz.value = el.getAttribute('rotation').z;
