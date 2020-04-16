@@ -1,4 +1,5 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
+
 <div id="background-1">
   <% @users.each do |user| %>
     <div id="background-2">
@@ -6,9 +7,15 @@
 
 
       <div class="back-left" style="background-color: <%= user.color %> ">
-        <h2><%= user.username %></h2><br>
-        <p><%= user.bio %></p>
-        <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
+        <div class="d-flex flex-column">
+        <div class="back-left-top" style="height:auto;"></div>
+        <div class="back-left-text">
+          <h2><%= user.username %></h2><br>
+          <p><%= user.bio %></p>
+          <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
+        </div>
+        <div class="back-left-bottom" style="height:15vh;"></span>
+        </div>
       </div>
 
       <% if user.spaces.any? && user.spaces.first.photo.attached? %>

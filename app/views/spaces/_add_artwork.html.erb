@@ -17,6 +17,8 @@
   <div class="d-flex justify-content-around pb-3">
     <%= f.input_field :artwork_type, as: :radio_buttons, collection: Artwork::OPTIONS, required: true, checked: "Image", item_wrapper_class: "artworkTypeSelection" %>
   </div>
+  <%#= f.label :photo, label: "Choose your artwork", label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" } %>
+  <%#= cl_upload_tag(@artwork.id) %>
   <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
   <%= f.submit "Add artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
 <% end %>

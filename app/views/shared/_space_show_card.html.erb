@@ -2,16 +2,23 @@
     <div class="cardShowPage d-flex justify-content-center" style="width: 250px; height:250px;">
 
       <% if artwork.artwork_type == "3D Model" %>
-        <%= cl_image_tag("#{artwork.photo.key}.gltz", fetch_format: "jpg", height: "250px") %>
+        <%= cl_image_tag("#{artwork.photo.key}.gltz", fetch_format: "jpg", height: "250px", background: "#FCE2DB") %>
         <%#= image_tag model_path, alt: "alttext" %>
       <% elsif artwork.artwork_type == "Image" %>
         <%= cl_image_tag(artwork.photo.key, height: "250px") %>
+      <% elsif artwork.artwork_type == "Video" %>
+        <%= cl_video_tag(artwork.photo.key, width: "250px", controls: true) %>
+      <% elsif artwork.artwork_type == "Audio" %>
+        <div style="height:250;">
+          <%= cl_image_tag(artwork.photo.key, width: "250px", height: "100px", flags: "waveform", resource_type: "video", color: "black", background: "#FCE2DB",  controls: true, style: "margin-top: 85px;") %>
+          <%= cl_video_tag(artwork.photo.key, width: "250px", height: "50px", controls: true) %>
+        </div>
       <% end %>
 
-      <div class= "spaces-card-text d-flex justify-content-center align-items-center h-100 w-100 flex-column">
+      <!-- <div class= "spaces-card-text d-flex justify-content-center align-items-center h-100 w-100 flex-column">
         <h4> <%= link_to 'delete', artwork_path(artwork), method: :delete %> </h4>
         <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal">Edit</button>
-      </div>
+      </div> -->
     </div>
     <h4 class="name_of_space" ><%=artwork.name%></h4><br>
 </div>

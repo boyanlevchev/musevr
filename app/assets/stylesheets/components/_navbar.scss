@@ -117,6 +117,7 @@
 .active-purple-2 .fas {
   color: #CCC9A1;
 }
+
 .trans-bg {
   background: transparent
 }
@@ -140,3 +141,46 @@
   transform: skewX(-45deg);
 }
 
+//.........................................
+//.........................................
+
+.navbar-logo-margin {
+  @include for-phone-only {
+    margin-left: 24px;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    margin-left: 96px;
+    transition: 0.2s;
+  }
+}
+
+.navbar-collapse-search-custom {
+  @include for-tablet-landscape-down  {
+    display: none;
+  }
+  @include for-desktop-up {
+    display: block;
+  }
+}
+.navbar-collapse-search-dropdown-custom {
+  @include for-tablet-landscape-down  {
+    display: block;
+  }
+  @include for-desktop-up {
+    display: none;
+  }
+}
+
+// .navbar-collapse-links-custom {
+//   @include for-tablet-portrait-down  {
+//     display: none;
+//   }
+//   @include for-tablet-landscape-up {
+//     display: block;
+//   }
+// }
+
+.divider-color{
+  border-color: $text-faded;
+}

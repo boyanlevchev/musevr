@@ -15,29 +15,48 @@
 #landing-panel-left {
   // position: absolute;
   // top: 0;
-  // height: 100%;
-  width: 45%;
+  height: 100vh;
   background-color: $pink;
   overflow: hidden;
   white-space: nowrap;
+  @include for-phone-only {
+    width: 50%;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    width: 45%;
+    transition: 0.2s;
+  }
+}
+.left-panel-top-space {
+  @include for-phone-only {
+    height: 75%;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    height: 45%;
+    transition: 0.2s;
+  }
+
 }
 
 #landing-image-strip {
   // background-image: image-url('gallery.jpg');
   background-size: cover;
+  background-position: center top;
   // position: absolute;
   // top: 0;
-  width: 40%;
-  height:100%;
 
-}
+  height:100vh;
+  @include for-phone-only {
+    width: 50%;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    width: 40%;
+    transition: 0.2s;
+  }
 
-#landing-panel-right {
-  // position: absolute;
-  // top: 0;
-  height: 100%;
-  width: 15%;
-  background-color: $pink;
 }
 
 .landing-list {
@@ -86,7 +105,7 @@
 }
 
 #featured-artist {
-  width: 400px;
+  width: 380px;
   position: absolute;
   bottom: 392px;
   left: 8px;
@@ -98,4 +117,27 @@
   letter-spacing: 4px;
   color: $text-faded;
   margin-left: -8px;
+}
+
+.main-page-logo {
+  @include for-phone-only {
+    opacity: 0;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    opacity: 100;
+    transition: 0.2s;
+  }
+}
+
+.main-page-button-list {
+  @include for-phone-only {
+    margin-left: 24px;
+    transition: 0.2s;
+  }
+  @include for-tablet-portrait-up {
+    margin-left: 86px;
+    opacity: 100;
+    transition: 0.2s;
+  }
 }
