@@ -1,62 +1,77 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 
- <div class="modal fade" id="artworkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content" style="background-color: rgba(255,255,255,0.93); border-radius: 8px;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Upload an artwork</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+<div class="page-container">
+
+  <!-- <div class="d-flex justify-content-between w-75" style="margin:auto; height:300px;"> -->
+  <div class="container">
+    <div class="row">
+    <!-- <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer"> -->
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <div class="d-flex justify-content-center pb-2">
+          <%= (render partial: 'shared/space_show_add_artwork_card', locals: { space: @space }) %>
         </div>
-        <div class="modal-body pt-4">
-          <%= render "add_artwork" %>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-lg-8 col-xl-9">
+        <div class="d-flex flex-column align-items-left pl-4 pb-2" style="width:100%;">
+
+          <div class="pr-4" style="font-size: 20px; padding-bottom: 16px; text-align: right;">
+            <%= link_to "Launch room", space_vr_path(@space), class:"launchRoomButton", data: {turbolinks: false} %></li>
+          </div>
+
+          <div class="spaces-show-heading">
+            <h1><%= @space.name %></h1>
+          </div>
+
+          <div class="spaces-index-subtitle">
+            <h2><%= @space.description %></h2>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
-
-
-<div class="page-container">
-
-
-
-  <!-- <button>Launch Room</button> -->
-
-<div class="spaces-index-heading">
-    <h1><%= @space.name %></h1>
+  <div class="container pt-2">
+    <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal">+ Add artwork +</button>
   </div>
-
-
-
-  <div class="spaces-index-subtitle">
-    <h2><%= @space.description %></h2>
-  </div>
-
-
-  <div class="d-flex justify-content-around align-items-center" style="font-size: 20px; height: 50px; width: 100%; margin-top: 16px;">
-    <%= link_to "Launch room", space_vr_path(@space), class:"launchRoomButton", data: {turbolinks: false} %></li>
-  </div>
-
-
 
   <!-- Modal -->
 
   <!-- modal pop over for adding artwork -->
 
-<div  class="container show-page-container" style="width: 1100px">
+  <div style="display:none;" id="3dGallery">
+    <%= cl_video_tag("rl05n69qkovmon00wn8b8imelbv2", width: "250px", controls: true) %>
+    <%#= cl_image_tag("yayx8cje0aifta3q7gvqs0oa4bo3.gltz", :transformation=>[
+      {:fetch_format=>"jpg"},
+      {:aspect_ratio=>"1", :background=>"#FCE2DB", :flags=>"animated", :height=>200, :crop=>"fill"}
+      ]) %>
+
+  </div>
+
+  <div class="container show-page-container">
     <div class="row">
-      <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer">
-        <%= (render partial: 'shared/space_show_add_artwork_card', locals: { space: @space }) %>
-      </div>
       <% @space.artworks.each do |artwork| %>
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center bottom-buffer">
           <%= (render partial: 'shared/space_show_card', locals: { artwork: artwork }) %>
         </div>
       <% end %>
     </div>
   </div>
+</div>
 
-
+<div class="modal fade" id="artworkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color: rgba(255,255,255,0.93); border-radius: 8px;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Upload an artwork</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body pt-4">
+        <%= render "add_artwork" %>
+      </div>
+    </div>
+  </div>
 </div>

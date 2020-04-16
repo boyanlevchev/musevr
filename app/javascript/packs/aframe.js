@@ -31,8 +31,12 @@ export const selected = () => {
       }
       const innerEl = document.getElementById(`${el.id}inner`)
       const rotator = document.getElementById(`${el.id}inforotator`)
+
       el.id = el.id.concat("selected");
-      innerEl.id = innerEl.id.concat("selected");
+
+      if (innerEl != null) {
+        innerEl.id = innerEl.id.concat("selected");
+      }
       if (rotator != null) {
         rotator.id = rotator.id.concat("selected");
       }
