@@ -7,14 +7,14 @@
 
 
       <div class="back-left" style="background-color: <%= user.color %> ">
-        <div class="d-flex flex-column">
-        <div class="back-left-top" style="height:auto;"></div>
-        <div class="back-left-text">
-          <h2><%= user.username %></h2><br>
-          <p><%= user.bio %></p>
-          <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
-        </div>
-        <div class="back-left-bottom" style="height:15vh;"></span>
+        <div class="d-flex flex-column justify-content-end" style="height:100vh;">
+          <div class="back-left-top" style="height:;"></div>
+          <div class="back-left-text">
+            <h2><%= user.username %></h2>
+            <p><%= user.bio %></p><br>
+            <%= link_to 'View Galleries', user_path(user), class: 'btn-galleries' %>
+          </div>
+          <div class="back-left-bottom" style="height:15vh;"></div>
         </div>
       </div>
 
