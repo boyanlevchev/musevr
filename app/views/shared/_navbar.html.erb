@@ -1,5 +1,14 @@
 <div class="navbar navbar-expand navbar-light navbar-lewagon align-items-center px-0 py-4 <%= params[:action] == "vr" ? "white-background z-index" : "transparent" %>">
 
+  <% searchAction = "" %>
+  <% if params[:controller] == 'spaces' %>
+    <% searchAction = "/spaces" %>
+  <% elsif params[:controller] == 'users' && params[:action] == 'index' %>
+    <% searchAction = "/users" %>
+  <% elsif params[:controller] == 'users' && params[:action] == 'show' %>
+    <% searchAction = "/users/#{user.id}" %>
+  <% end %>
+
   <%= link_to "/", class: "navbar-brand navbar-logo-margin" do %>
     <h1 class="logo">MUSE</h1>
     <% if (params[:controller] == 'spaces' && params[:action] == 'new') %>
@@ -11,7 +20,7 @@
   <%  if (params[:controller] == 'users' && params[:action] == 'show') %>
     <span style="width:100%; max-width: 150px;"></span>
     <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search" style="margin:auto;">
-      <form action="/users/<%=user.id%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+      <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
         <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search for a gallery" name="search" aria-label="Search">
         <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
       </form>
@@ -23,14 +32,7 @@
   <% if (params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index' %>
 
     <span style="width:100%; max-width: 250px;"></span>
-    <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search" style="min-width: 300px;">
-
-      <% searchAction = "" %>
-      <% if params[:controller] == 'spaces' %>
-        <% searchAction = "/spaces" %>
-      <% elsif params[:controller] == 'users' %>
-        <% searchAction = "/users" %>
-      <% end %>
+    <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search">
 
       <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
         <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
@@ -54,12 +56,12 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <i class="fas fa-bars fa-2x  dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+          <button class="dropdown-toggle border-0 transparent" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars fa-2x"></i></button>
           <div class="dropdown-menu dropdown-menu-right transparent border-0" style="text-align: right; margin-right: -24px;" aria-labelledby="navbarDropdown">
 
             <% if ((params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index') || (params[:controller] == 'users' && params[:action] == 'show')  %>
               <div class="navbar-collapse-search-dropdown-custom" id="navbar-search" style="width:200px;">
-                <form action="/spaces" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+                <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
                   <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
                   <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
                 </form>
