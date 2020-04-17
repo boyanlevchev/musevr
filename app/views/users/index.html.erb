@@ -1,5 +1,7 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
+<% @title="Muse VR - Artist index page" %>
+
 <div id="background-1">
   <% @users.each do |user| %>
     <div id="background-2">

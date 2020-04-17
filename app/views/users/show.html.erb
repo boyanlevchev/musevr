@@ -1,5 +1,7 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
+<% @title="Muse VR - Artist profile page" %>
+
 <div class="page-container">
   <div class="d-flex justify-content-around" style="width:100%">
     <h1 id="user-page-header"><%= @user.username %></h1>
@@ -23,7 +25,7 @@
 
   <div  class="container show-page-container">
     <div class="row">
-      <% @user.spaces.each do |space| %>
+      <% @spaces.each do |space| %>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer">
           <%= (render partial: 'shared/card', locals: { space: space }) %>
         </div>

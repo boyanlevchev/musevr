@@ -4,9 +4,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if params[:search] == "" || params[:search].nil?
-      @spaces = Space.all
+      @spaces = Space.where("user_id = ?", params[:id])
     else
-      @spaces = Space.search(params[:search])
+      @spaces = Space.where("user_id = ?", params[:id]).search(params[:search])
     # raise
     end
   end

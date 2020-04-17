@@ -17,8 +17,6 @@
   // top: 0;
   height: 100vh;
   background-color: $pink;
-  overflow: hidden;
-  white-space: nowrap;
   @include for-phone-only {
     width: 50%;
     transition: 0.2s;
@@ -28,24 +26,10 @@
     transition: 0.2s;
   }
 }
-.left-panel-top-space {
-  @include for-phone-only {
-    height: 75%;
-    transition: 0.2s;
-  }
-  @include for-tablet-portrait-up {
-    height: 45%;
-    transition: 0.2s;
-  }
-
-}
 
 #landing-image-strip {
-  // background-image: image-url('gallery.jpg');
   background-size: cover;
   background-position: center top;
-  // position: absolute;
-  // top: 0;
 
   height:100vh;
   @include for-phone-only {
@@ -84,10 +68,8 @@
 }
 
 #biglogovr {
-  // margin-left: 0px;
   font-size: 60px;
   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
-  // font-weight: lighter;
   letter-spacing: 0px;
   font-weight: 700;
   color: $text;
@@ -97,7 +79,6 @@
 #biglogoart {
   font-size: 70px;
   font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
-  // font-weight: lighter;
   letter-spacing: 0px;
   font-weight: 600;
   color: $text-faded;
@@ -122,22 +103,29 @@
 .main-page-logo {
   @include for-phone-only {
     opacity: 0;
+    visibility: hidden;
+    height: 0px;
+    overflow: hidden;
     transition: 0.2s;
   }
   @include for-tablet-portrait-up {
     opacity: 100;
+    visibility: visible;
+    height: 30vh;
     transition: 0.2s;
   }
 }
 
 .main-page-button-list {
+  height:100vh;
+  position: absolute;
+  z-index: 2;
   @include for-phone-only {
     margin-left: 24px;
     transition: 0.2s;
   }
   @include for-tablet-portrait-up {
     margin-left: 86px;
-    opacity: 100;
     transition: 0.2s;
   }
 }

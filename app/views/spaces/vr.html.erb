@@ -1,6 +1,8 @@
 
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
+<% @title="Muse VR - Welcome to Virtual Reality" %>
+
 <div id="key-prompts">
   <button class="close" onclick="document.getElementById('key-prompts').style.display='none'" >close</button>
   <p>Use WASD keys or ARROW keys to move around!</p><br>
