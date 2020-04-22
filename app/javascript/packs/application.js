@@ -25,20 +25,28 @@ import { saveArtwork } from './vr.js'
 
 import { switchToLogin, switchToSignup, closeLoginModal, setLoginModal, switchToPasswordReset, backToLogin } from './signup_login.js'
 
+import { animateDropdown } from './navbar.js'
 
 import JQuery from 'jquery';
 window.$ = window.JQuery = JQuery;
 
 document.addEventListener('turbolinks:load', () => {
+
+  //Create gallery page - visually removes the modal checkbox from the gallery selector carousel
   addClass();
+
+  //Login/Signup
   switchToLogin();
   switchToSignup();
   closeLoginModal();
   setLoginModal();
-  // loginButtonClicked();
   switchToPasswordReset();
   backToLogin();
 
+  //Navbar
+  animateDropdown();
+
+  //VR stuff
   const vr = document.getElementById('embeddedScene');
   if (vr) {
     saveArtwork();

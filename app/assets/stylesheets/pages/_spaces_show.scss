@@ -1,0 +1,155 @@
+
+
+.gallery-show-height {
+  transition: 0.2s;
+  @include for-tablet-landscape-down {
+    height: 200px;
+  }
+  @include for-desktop-up {
+    height: 300px;
+  }
+}
+
+.gallery-show-header-margin {
+  @include for-tablet-landscape-down {
+    margin: 24px 0 24px 18px;
+  }
+  @include for-desktop-up {
+    margin: 24px 0 24px 40px;
+  }
+}
+
+.gallery-show-header-padding {
+  @include for-tablet-landscape-down {
+    padding:32px 0 32px 18px;
+  }
+  @include for-desktop-up {
+    padding:32px 0 32px 40px;
+  }
+}
+
+.gallery-show-title {
+  font-weight: 600;
+  color: $text;
+  transition: 0.2s;
+  @include for-tablet-landscape-down {
+    font-size: 32px;
+  }
+  @include for-desktop-up {
+    font-size: 64px;
+  }
+}
+
+.gallery-show-bio {
+  color: $subtext;
+  transition: 0.2s;
+  @include for-tablet-landscape-down {
+    font-size: 12px;
+  }
+  @include for-desktop-up {
+    font-size: 24px;
+  }
+}
+
+.edit-gallery-info-button {
+  color: $text-faded;
+  border: 1px solid $text-faded;
+
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", sans-serif;
+  font-weight: 500;
+
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  transition: 0.2s;
+  &:hover {
+    color: $text;
+    border: 1px solid $text;
+  }
+  @include for-tablet-landscape-down {
+    font-size: 8px;
+    padding: 2px 3px 2px 3px;
+  }
+  @include for-desktop-up {
+    font-size: 12px;
+    padding: 4px 8px 4px 8px;
+  }
+}
+
+.edit-gallery-padding {
+  @include for-tablet-landscape-down {
+    padding-bottom: 5px;
+  }
+  @include for-desktop-up {
+    padding-bottom: 13px;
+  }
+}
+
+
+.launch-room-button {
+  color: $text-faded;
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 1px;
+  border: 1px solid $text-faded;
+  transition: 0.3s;
+  @include for-tablet-landscape-down {
+    font-size: 12px;
+    padding: 6px 12px 6px 12px;
+  }
+  @include for-desktop-up {
+    font-size: 24px;
+    padding: 12px 24px 12px 24px;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: #e8f9e8;
+    color: $text;
+    border-color: #e8f9e8;
+    // border: 2px solid $text;
+  }
+}
+
+.cardMain {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+  transition: 0.2s;
+  @include for-tablet-landscape-down {
+    width: 150px;
+    height: 150px;
+  }
+  @include for-desktop-up {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+.cardMain:after {
+  position: absolute;
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  background: rgba(250,250,250, 0.2);
+  z-index: 1;
+  opacity: 1;
+  box-shadow: none;
+  @include for-tablet-landscape-down {
+    width: 150px;
+    height: 150px;
+    outline-offset: -18px;
+    outline: 8px solid $pink;
+  }
+  @include for-desktop-up {
+    width: 300px;
+    height: 300px;
+    outline-offset: -40px;
+    outline: 20px solid $pink;
+  }
+}
+
+//create one file for widths and heights and set it to all the guys
