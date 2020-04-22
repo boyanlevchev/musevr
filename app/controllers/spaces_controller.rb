@@ -47,7 +47,11 @@ class SpacesController < ApplicationController
   end
 
   def update
-    @space.update(space_params)
+    if @space.update!(space_params)
+      redirect_to space_path(@space)
+    else
+      render 'spaces/show'
+    end
   end
 
 

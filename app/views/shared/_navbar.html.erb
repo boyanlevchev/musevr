@@ -16,73 +16,74 @@
     <% end %>
   <% end %>
 
+  <div class="d-flex">
+    <%  if (params[:controller] == 'users' && params[:action] == 'show') %>
+      <span style="width:100%; max-width: 150px;"></span>
+      <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search" style="margin:auto;">
+        <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+          <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search for a gallery" name="search" aria-label="Search">
+          <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
+        </form>
+      </div>
+      <span style="width:100%; max-width: 250px;"></span>
+    <% end %>
 
-  <%  if (params[:controller] == 'users' && params[:action] == 'show') %>
-    <span style="width:100%; max-width: 150px;"></span>
-    <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search" style="margin:auto;">
-      <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
-        <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search for a gallery" name="search" aria-label="Search">
-        <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
-      </form>
+
+    <% if (params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index' %>
+
+      <!-- <span style="width:100%; max-width: 250px;"></span> -->
+      <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search">
+
+        <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+          <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
+          <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
+        </form>
+      </div>
+      <!-- <span style="width:100%; max-width: 170px;"></span> -->
+
+      <div class="" id="menu">
+        <%= link_to 'Galleries', spaces_path, class: "menu-item #{'active' if params[:controller] == 'spaces'} navbar-collapse-links-custom" %>
+        <%= link_to 'Artists', users_path, class: "menu-item #{'active' if params[:controller] == 'users'} navbar-collapse-links-custom"  %>
+      </div>
+    <% end %>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <button class="dropdown-toggle border-0 transparent" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars fa-2x"></i></button>
+            <div class="dropdown-menu dropdown-menu-right border-0 dropdown-width" style="text-align: right; margin-right: -24px;" aria-labelledby="navbarDropdown">
+
+              <% if ((params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index') || (params[:controller] == 'users' && params[:action] == 'show')  %>
+                <div class="navbar-collapse-search-dropdown-custom" id="navbar-search" style="">
+                  <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
+                    <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
+                    <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
+                  </form>
+                </div>
+              <% end %>
+
+              <%if params[:controller] == 'users' && params[:action] == 'index' %>
+                <%= link_to 'Galleries', spaces_path, class: "dropdown-item navbar-collapse-links-dropdown-custom" %>
+                <div class="dropdown-divider navbar-collapse-links-dropdown-custom divider-color-width"></div>
+              <% elsif params[:controller] == 'spaces' && params[:action] == 'index' %>
+                <%= link_to 'Artists', users_path, class: "dropdown-item navbar-collapse-links-dropdown-custom"  %>
+                <div class="dropdown-divider navbar-collapse-links-dropdown-custom divider-color-width"></div>
+              <% end %>
+
+              <%= link_to "Home", spaces_path, class: "dropdown-item mt-2" %>
+              <% if user_signed_in? %>
+                <%= link_to "My spaces", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Create new space", new_space_path, class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              <% else %>
+                <!-- <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal"> -->
+                <%= link_to "Login", "#", id: "login-modal-trigger" , class: "dropdown-item", data: {toggle: "modal", target: "#loginModal", backdrop: false} %>
+
+              <% end %>
+            </div>
+          </li>
+      </ul>
     </div>
-    <span style="width:100%; max-width: 250px;"></span>
-  <% end %>
-
-
-  <% if (params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index' %>
-
-    <span style="width:100%; max-width: 250px;"></span>
-    <div class="mr-auto medium-width navbar-collapse-search-custom" id="navbar-search">
-
-      <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
-        <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
-        <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
-      </form>
-    </div>
-    <span style="width:100%; max-width: 170px;"></span>
-
-    <div class="" id="menu">
-      <%= link_to 'Galleries', spaces_path, class: "menu-item #{'active' if params[:controller] == 'spaces'} navbar-collapse-links-custom" %>
-      <%= link_to 'Artists', users_path, class: "menu-item #{'active' if params[:controller] == 'users'} navbar-collapse-links-custom"  %>
-    </div>
-  <% end %>
-
-
-<!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right: 45px;">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <button class="dropdown-toggle border-0 transparent" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars fa-2x"></i></button>
-          <div class="dropdown-menu dropdown-menu-right transparent border-0" style="text-align: right; margin-right: -24px;" aria-labelledby="navbarDropdown">
-
-            <% if ((params[:controller] == 'spaces' || params[:controller] == 'users') && params[:action] == 'index') || (params[:controller] == 'users' && params[:action] == 'show')  %>
-              <div class="navbar-collapse-search-dropdown-custom" id="navbar-search" style="width:200px;">
-                <form action="<%=searchAction%>" method="get" class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2">
-                  <input class="form-control form-control-sm mr-3 w-75 search-bar" style="border:0px; border-bottom: 1px solid #CCC9A1; border-radius: 0px; background-color: transparent;" type="text" placeholder="Search" name="search" aria-label="Search">
-                  <button type="submit" class="border-0" style="background-color: transparent;"><i class="fas fa-search" aria-hidden="true"></i></button>
-                </form>
-              </div>
-            <% end %>
-
-            <!-- <div class="dropdown-divider navbar-collapse-search-dropdown-custom divider-color"></div> -->
-
-            <%= link_to "Home", spaces_path, class: "dropdown-item mt-2" %>
-            <% if user_signed_in? %>
-              <%= link_to "My spaces", user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Create new space", new_space_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            <% else %>
-              <!-- <button type="button" class="transparent addArtButton" style="border:0;" data-toggle="modal" data-target="#artworkModal"> -->
-              <%= link_to "Login", "#", id: "login-modal-trigger" , class: "dropdown-item", data: {toggle: "modal", target: "#loginModal", backdrop: false} %>
-
-            <% end %>
-          </div>
-        </li>
-    </ul>
   </div>
 </div>
 
