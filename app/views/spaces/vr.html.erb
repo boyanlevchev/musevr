@@ -3,6 +3,10 @@
 
 <% @title="Muse VR - Welcome to Virtual Reality" %>
 
+<div id="loader" style="height:100vh;width:100vw;background-color:#FCE2DB;position:absolute;z-index:3;display:flex;justify-content:center;align-items: center;">
+  <%= image_tag("810.gif", style: "width: 50px; height: 50px") %>
+</div>
+
 <div id="key-prompts">
   <button class="close" onclick="document.getElementById('key-prompts').style.display='none'" >close</button>
   <p>Use WASD keys or ARROW keys to move around!</p><br>
@@ -16,35 +20,6 @@
   <% end %>
 </div>
 
-
-<div id="embeddedScene" style="display:none;">
-  <a-scene id="aframeScene" background="color: #FAFAFA" embedded>
-    <a-assets>
-        <img id="outerspace" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583494818/milkyway_zbfpih.jpg">
-        <img id="city" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583803118/cityscape_qhvlo5.jpg">
-        <img id="info" src="<%= image_path "info-circle-solid.svg" %>">
-        <a-asset-item id="scene" src="<%= @space.modelURL %>">
-        <a-asset-item id="frame" src="https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/fancy_picture_frame/scene.gltf">
-
-        <%# @space.artworks.each_with_index do |artwork, index| %>
-
-            <%# raise %>
-          <%#= cl_image_path "#{artwork.photo.key}.gltz" %>
-        <%# end %>
-         <a-asset-item id="artworkTest" src="https://res.cloudinary.com/dt47helyp/image/upload/v1586354442/0x4b6io6kdutqpavb6hem46jh92f.gltf">
-    </a-assets>
-
-    <%# @space.artworks.each_with_index do |artwork, index| %>
-    <a-entity light="type: point; color: #CCC; intensity:1.6" position="2 0 0"></a-entity>
-    <a-gltf-model src="#artworkTest" position="1 0 0" scale="0.18 0.18 0.18"></a-gltf-model>
-    <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 1 0" look-controls></a-camera>
-      </a-entity>
-    <%# end %>
-    <a-sky src="#city"></a-sky>
-
-  </a-scene>
-</div>
 
 <div id="embeddedScene">
   <input type="hidden" id="space-id" value="<%= @space.id %>">
@@ -119,9 +94,9 @@
         <% else %>
 
               <% if artwork.artwork_type == "3D Model" %>
-                <a-gltf-model src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="0 0 0" scale="0.18 0.18 0.18" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected infoopen></a-gltf-model>
+                <a-gltf-model src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" selected infoopen></a-gltf-model>
               <% elsif artwork.artwork_type == "Image" %>
-                <a-entity id="entity<%=artwork.id%>" geometry="primitive: box;" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" selected updatedimensions infoopen>
+                <a-entity id="entity<%=artwork.id%>" geometry="primitive: box;" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" selected updatedimensions infoopen>
               <% end %>
 
         <% end %>

@@ -21,7 +21,7 @@ import { showPanel } from '../components/a_frame_components';
 import { updatePosition } from '../components/a_frame_components';
 import { addClass } from './new_gallery.js'
 import { menuOpen, updateDimensions, selected } from './aframe.js'
-import { saveArtwork } from './vr.js'
+import { saveArtwork, loadingBar } from './vr.js'
 
 import { switchToLogin, switchToSignup, closeLoginModal, setLoginModal, switchToPasswordReset, backToLogin } from './signup_login.js'
 
@@ -50,6 +50,7 @@ document.addEventListener('turbolinks:load', () => {
   const vr = document.getElementById('embeddedScene');
   if (vr) {
     saveArtwork();
+    loadingBar();
     updateDimensions();
     selected();
     scaleControl();
