@@ -10,7 +10,10 @@
 </div>
  -->
 
+
+<!-- , remote: true  -->
 <%= simple_form_for [@space, @artwork] do |f| %>
+  <%= f.error_notification %>
   <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "The name of your artwork" %>
   <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Describe your artwork", placeholder: 'Talk about materials, size-dimensions, historical context...' %>
   <%=  f.label :artwork_type, label: "What type of artwork are you uploading?", required: true %>

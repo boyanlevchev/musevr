@@ -68,8 +68,8 @@ export const updateDimensions = () => {
       aImageBack.setAttribute('height', painting.height/1000);
       aImageBack.setAttribute('width', painting.width/1000);
 
-      imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 });
-
+      // imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 }); //For uglier frame
+      imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*1.2, z: (painting.width/1000)*1.2});
     }
   });
 }
