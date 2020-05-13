@@ -82,9 +82,7 @@
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
       <a-gltf-model src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
       <a-entity light="type: ambient; color: #BBB; intensity: 7;"></a-entity>
-      <a-entity light="type: directional; color: #FFF; intensity: 1;"  position="-0.5 1 1" geometry="primitive: sphere;" material="color: red" dragndrop></a-entity>
-      <!-- <a-entity light="type:ambient; intensity: 1" geometry="primitive: sphere;" material="color: red" position="1 1 1" id="entity0>" dragndrop rotation-control selected scale-control toggle-side-panel dragndrop></a-entity> -->
-      <!-- <a-light type="ambient" color="#222" intensity="4.5" position="1 1 1"></a-light> -->
+      <a-entity light="type: directional; color: #FFF; intensity: 1;"  position="-0.5 1 1"  ></a-entity>
       <a-entity setCamera id='cameraWrapper' position="0 0 0">
         <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
       </a-entity>
