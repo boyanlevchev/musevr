@@ -95,7 +95,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
         const diff = end - start;
         console.log(`${diff} is the amount of time`)
 
-        // const innerEl = document.getElementById(el.id);
+        const innerEl = document.getElementById(el.id);
 
         const rx = document.querySelector("#rx");
         const ry = document.querySelector("#ry");
@@ -114,8 +114,6 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
         const spaceID = document.getElementById('space-id').value
         const artworkID = el.id.replace("entity", "").replace("selected", "")
 
-        // const button = document.getElementById('saveArtworkButton');
-        // const form = document.getElementById('saveArtworkForm');
         if (diff < 170) {
           if (panel.children[0].innerText !== pic.alt) {
             panel.children[0].innerText = pic.alt;
@@ -127,7 +125,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
             size.value = el.getAttribute('scale').x;
 
             form.action = `/spaces/${spaceID}/artworks/${artworkID}`
-            // form.action = space_artwork_path(spaceID,artworkID)
+
 
 
             posx.value = el.getAttribute('position').x

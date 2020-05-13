@@ -1,12 +1,23 @@
 class ArtworksController < ApplicationController
+  # respond_to :html, :js
+
   def create
     @artwork = Artwork.new(artwork_params)
     @space = Space.find(params[:space_id])
     @artwork.space = @space
-    if @artwork.save!
+
+    if @artwork.save   # Note that save() only returns false on validation errors (when valid? returns false). If other errors occur at the database level, like a database deadlock or trying to insert null into a column that doesn’t allow it, that will still raise an exception.
+    # if @artwork.valid?
+      # @artwork.save!
       redirect_to space_path(@space)
     else
-      render 'spaces/show'
+      # respond_with resource and return
+      # render :json => { :success => false, :data => resource.errors.full_messages }
+      # respond_to do |format|
+      #     format.js
+      #   end
+      # render 'spaces/show'
+      redirect_to space_path(@space)
     end
   end
 
@@ -18,12 +29,12 @@ class ArtworksController < ApplicationController
     else
       @artwork.space = @space
     end
-    # @artwork.update!(artwork_params)
-    if @artwork.update!(artwork_params)
-      redirect_to space_path(@artwork.space)
-    else
-      render 'spaces/show'
-    end
+    @artwork.update!(artwork_params)
+    # if @artwork.update!(artwork_params)
+    #   redirect_to space_path(@artwork.space)
+    # else
+    #   render 'spaces/show'
+    # end
   end
 
   def destroy
