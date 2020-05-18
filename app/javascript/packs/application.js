@@ -25,7 +25,8 @@ import { saveArtwork, loadingBar } from './vr.js'
 
 import { switchToLogin, switchToSignup, closeLoginModal, setLoginModal, switchToPasswordReset, backToLogin } from './signup_login.js'
 
-import { animateDropdown } from './navbar.js'
+// import { animateDropdown } from './navbar.js'
+import { closeAboutModal, setAboutModal } from './about'
 
 import JQuery from 'jquery';
 window.$ = window.JQuery = JQuery;
@@ -44,7 +45,13 @@ document.addEventListener('turbolinks:load', () => {
   backToLogin();
 
   //Navbar
-  animateDropdown();
+  // animateDropdown();
+  const homePage = document.getElementById('landing-flex-box');
+
+  if (homePage) {
+    closeAboutModal();
+    setAboutModal();
+  }
 
   //VR stuff
   const vr = document.getElementById('embeddedScene');
