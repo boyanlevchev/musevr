@@ -3,7 +3,7 @@ const updatePosition = () =>  { AFRAME.registerComponent('update-position', {
       const el = this.el
 
       if (el.id.includes("selected")){
-        const id = el.id.replace("selected", "");
+        const id = el.id.replace("selected", "").replace("VideoGroup", "");
         const infoRotator = document.getElementById(`${id}inforotatorselected`)
 
         infoRotator.object3D.position.set(
@@ -82,7 +82,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
     init: function () {
       const el = this.el;
       const panel = document.querySelector(".sidePanel")
-      const pic = document.querySelector(`#${el.id.replace("selected", "")}painting`)
+      const pic = document.querySelector(`#${el.id.replace("selected", "").replace("VideoGroup", "")}painting`)
       let start = 0
       let end = 0
 
@@ -114,9 +114,11 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
         const spaceID = document.getElementById('space-id').value
         const artworkID = el.id.replace("entity", "").replace("selected", "")
 
+        const artworkname = pic.getAttribute("data-artworkname")
+
         if (diff < 170) {
-          if (panel.children[0].innerText !== pic.alt) {
-            panel.children[0].innerText = pic.alt;
+          if (panel.children[0].innerText !== artworkname) {
+            panel.children[0].innerText = artworkname;
             panel.classList.remove("hidden");
 
             rx.value = el.getAttribute('rotation').x;
@@ -137,7 +139,7 @@ const showPanel = () => { AFRAME.registerComponent('toggle-side-panel', {
             scale.value = el.getAttribute('scale').x
 
           } else if (panel.classList.contains("hidden")) {
-            panel.children[0].innerText = pic.alt;
+            panel.children[0].innerText = artworkname;
             panel.classList.remove("hidden");
             rx.value = el.getAttribute('rotation').x;
             ry.value = el.getAttribute('rotation').y;

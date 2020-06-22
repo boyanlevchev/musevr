@@ -7,104 +7,125 @@
   <%= image_tag("810.gif", style: "width: 50px; height: 50px") %>
 </div>
 
-<div id="key-prompts">
-  <button class="close" onclick="document.getElementById('key-prompts').style.display='none'" >close</button>
-  <p>Use WASD keys or ARROW keys to move around!</p><br>
-  <%= image_tag "wasd2.png", class: 'wasd'%>
-  <p>Use your mouse to look around!</p>
-  <% if @space.user == current_user %>
-    <p>Click on artworks to edit them!</p>
-    <p>Drag artworks to move them around!</p>
-  <% else %>
-    <p>Click on artworks to view information!</p>
-  <% end %>
-</div>
 
-
+<!-- testing scene -->
 <div id="embeddedScene" style="display:none;">
   <input type="hidden" id="space-id" value="<%= @space.id %>">
-  <% decoderPath = 'https://www.gstatic.com/draco/v1/decoders/'; %>
+  <%# decoderPath = 'https://www.gstatic.com/draco/v1/decoders/'; %>
 
-  <a-scene id="aframeScene" background="color: #FAFAFA" gltf-model="dracoDecoderPath: <%= decoderPath %>" embedded>
+  <a-scene id="aframeScene" background="color: #FAFAFA"  embedded>
     <a-assets>
-        <a-asset-item id="frame3" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589376014/final_frame_3_hsyn7d.glb">
+        <!-- <a-asset-item id="frame3" src="http://d270od7aj4kefu.cloudfront.net/models/vr_gallery_-_light_baked/scene.gltf" crossorigin="anonymous">
+        <img id="blue-sky" src="https://res.cloudinary.com/dt47helyp/image/upload/v1589901377/sky_daytime_blue_whfikl.jpg" crossorigin="anonymous"> -->
+        <!-- <audio id="river" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></audio>
+        <video id="mtn" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></video> -->
+        <%#= image_tag("play-button.png", id:"play-button", style: "width: 64px; height: 64px")%>
 
+        <!-- <a-asset-item class="not-raycastable" id="frame" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589377747/final_frame_4_pbrzks.glb" crossorigin="anonymous"> -->
+
+
+        <%# @space.artworks.each_with_index do |artwork, index| %>
+          <%# if artwork.artwork_type == "Video" %>
+            <%# video_path = cl_video_path(artwork.photo.key, crossorigin:"anonymous") %>
+            <!-- <video src="<%#= video_path %>" id="entity<%#=artwork.id%>painting" preload="auto" crossorigin="anonymous"></video> -->
+          <%# end %>
+        <%# end %>
     </a-assets>
     <!-- <a-entity gltf-model="url(https://res.cloudinary.com/dt47helyp/raw/upload/v1589335207/frame6_addgav.glb)"></a-entity> -->
-    <!-- <a-gltf-model src="#frame3" position="0 0 0" scale="1 1 1"></a-gltf-model> -->
+    <!-- <a-gltf-model src="#frame" position="3 0 0" scale="1 1 1"></a-gltf-model>
+
+    <a-sky class="not-raycastable" src="#blue-sky"></a-sky>
+    <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity> -->
+
   </a-scene>
 </div>
 
-
+<!-- main scene -->
 <div id="embeddedScene" style="">
+
   <input type="hidden" id="space-id" value="<%= @space.id %>">
 
-  <a-scene id="aframeScene" background="color: #FAFAFA" embedded
-          renderer="
-                   colorManagement: true;">
+  <a-scene id="aframeScene" background="color: #FAFAFA" embedded renderer="colorManagement: true;" cusor="rayOrigin: mouse;" raycaster="objects: .raycastable">
+
+    <div id="key-prompts">
+      <button class="close" onclick="document.getElementById('key-prompts').style.display='none'" >close</button>
+      <p>Use WASD keys or ARROW keys to move around!</p><br>
+      <%= image_tag "wasd2.png", class: 'wasd'%>
+      <p>Use your mouse to look around!</p>
+      <% if @space.user == current_user %>
+        <p>Click on artworks to edit them!</p>
+        <p>Drag artworks to move them around!</p>
+      <% else %>
+        <p>Click on artworks to view information!</p>
+      <% end %>
+    </div>
+
+
     <a-assets>
-        <img id="outerspace" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583494818/milkyway_zbfpih.jpg">
-        <img id="city" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583803118/cityscape_qhvlo5.jpg">
-        <img id="info" src="<%= image_path "info-circle-solid.svg" %>">
-        <a-asset-item id="scene" src="<%= @space.modelURL %>">
+        <img class="not-raycastable" id="outerspace" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583494818/milkyway_zbfpih.jpg" crossorigin="anonymous">
+        <img class="not-raycastable" id="city" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583803118/cityscape_qhvlo5.jpg" crossorigin="anonymous">
+        <img class="not-raycastable" id="info" src="<%= image_path "info-circle-solid.svg" %>" crossorigin="anonymous">
+        <a-asset-item class="not-raycastable" id="scene" src="<%= @space.modelURL %>">
+
         <!-- <a-asset-item id="frame" material="shader:flat;" src="https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/fancy_picture_frame/scene.gltf"> -->
-        <a-asset-item id="frame" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589377747/final_frame_4_pbrzks.glb">
+        <a-asset-item class="not-raycastable" id="frame1" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589377747/final_frame_4_pbrzks.glb" crossorigin="anonymous">
+
+        <%= image_tag "play-button.png", id:"play-button", alt: "play button", size: "512x512" %>
 
         <% @space.artworks.each_with_index do |artwork, index| %>
           <% if artwork.artwork_type == "3D Model" %>
-            <% model_path = cl_image_path("#{artwork.photo.key}.gltf") %>
-            <a-asset-item id="entity<%=artwork.id%>painting" src="<%= model_path %>">
+            <% model_path = cl_image_path("#{artwork.photo.key}.gltf", crossorigin:"anonymous") %>
+            <a-asset-item class="not-raycastable" id="entity<%=artwork.id%>painting" src="<%= model_path %>" crossorigin="anonymous" data-artworkname="<%=artwork.name%>">
             <%#= image_tag model_path, alt: "alttext" %>
           <% elsif artwork.artwork_type == "Image" %>
-            <%= cl_image_tag artwork.photo.key, id: "entity#{artwork.id}painting", :width=>1000, :crop=>"fill", alt: "#{artwork.name}" %>
+            <%#= cl_image_tag artwork.photo.key, id: "entity#{artwork.id}paintingOriginal", width:"2048", crop: "fill", crossorigin:"anonymous" %>
+            <%= cl_image_tag artwork.photo.key, id: "entity#{artwork.id}painting", width:"1000", crop: "fill", data: { artworkname: artwork.name}, crossorigin:"anonymous" %>
+
+          <% elsif artwork.artwork_type == "Audio" %>
+            <% audio_path = cl_video_path(artwork.photo.key, crossorigin:"anonymous") %>
+            <audio src="<%= audio_path %>" id="entity<%=artwork.id%>painting" preload="auto" crossorigin="anonymous" data-artworkname="<%=artwork.name%>"></audio>
+
+          <% elsif artwork.artwork_type == "Video" %>
+            <% video_path = cl_video_path(artwork.photo.key, crossorigin:"anonymous", width:"1000") %>
+            <video src="<%= video_path %>" id="entity<%=artwork.id%>painting" preload="auto" data-artworkname="<%=artwork.name%>" crossorigin="anonymous"></video>
           <% end %>
         <% end %>
 
         <!-- <a-asset-item id="frame2" src="https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/Frames/art_painting/GLB/untitled.gltf"> -->
-
     </a-assets>
+
+    <a-entity class="not-raycastable" setCamera id='cameraWrapper' position="0 0 0">
+      <a-camera class="not-raycastable" setCamera id='camera' position="0 2 0" look-controls></a-camera>
+    </a-entity>
 
 
     <% if @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_vintage_for_product_showcase_2019/scene.gltf' %>
-      <a-gltf-model src="#scene" position="1 0 0" scale="0.02 0.02 0.02"></a-gltf-model>
-      <a-entity light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
-      <a-sky src="#city"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="1 0 0" scale="0.02 0.02 0.02"></a-gltf-model>
+      <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
+      <a-sky class="not-raycastable" src="#city"></a-sky>
+
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019/scene.gltf' %>
-      <a-gltf-model src="#scene" position="0 5 0" scale="0.04 0.04 0.04"></a-gltf-model>
-      <a-entity light="type: ambient; color: #CCC; intensity: 2.7" position="4 6 4"></a-entity>
-      <a-sky src="#outerspace"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="0 5 0" scale="0.04 0.04 0.04"></a-gltf-model>
+      <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity: 2.7" position="4 6 4"></a-entity>
+      <a-sky class="not-raycastable" src="#outerspace"></a-sky>
+
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
-      <a-gltf-model src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
-      <a-entity light="type: ambient; color: #BBB; intensity: 7;"></a-entity>
-      <a-entity light="type: directional; color: #FFF; intensity: 1;"  position="-0.5 1 1"  ></a-entity>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
+      <a-entity class="not-raycastable" light="type: ambient; color: #BBB; intensity: 7;"></a-entity>
+      <a-entity class="not-raycastable" light="type: directional; color: #FFF; intensity: 1;"  position="-0.5 1 1"  ></a-entity>
+
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/gd55_el_a1_erikhernandez/scene.gltf' %>
-      <a-gltf-model src="#scene" position="0 0 0"></a-gltf-model>
-      <a-entity light="type:point; intensity:7;" position="0.2 0.2 0.2"></a-entity>
-      <a-sky src="#outerspace"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="0 0 0"></a-gltf-model>
+      <a-entity class="not-raycastable" light="type:point; intensity:7;" position="0.2 0.2 0.2"></a-entity>
+      <a-sky class="not-raycastable" src="#outerspace"></a-sky>
+
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/abandoned_warehouse_-_interior_scene_comp/scene.gltf' %>
-      <a-gltf-model src="#scene" position="-10 5.7 13" scale="10 10 10"></a-gltf-model>
-      <a-entity light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
-      <a-sky src="#city"></a-sky>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="-10 5.7 13" scale="10 10 10"></a-gltf-model>
+      <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
+      <a-sky class="not-raycastable" src="#city"></a-sky>
+
     <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/bagan_-_khayiminga_temple_interior/scene.gltf' %>
-      <a-gltf-model src="#scene" position="0 1 -3" rotation="0 180 0" scale=".6 0.6 0.6"></a-gltf-model>
-      <a-entity setCamera id='cameraWrapper' position="0 0 0">
-        <a-camera setCamera id='camera' position="0 2 0" look-controls></a-camera>
-      </a-entity>
+      <a-gltf-model class="not-raycastable" src="#scene" position="0 1 -3" rotation="0 180 0" scale=".6 0.6 0.6"></a-gltf-model>
     <% end %>
 
     <!-- Add all objects below -->
@@ -113,34 +134,76 @@
         <% if @space.user == current_user%>
 
               <% if artwork.artwork_type == "3D Model" %>
-                <a-gltf-model src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" material="emissiveIntensity: 0;" rotation-control selected scale-control toggle-side-panel dragndrop infoopen update-position></a-gltf-model>
+                <a-gltf-model class="raycastable" src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>"
+                              scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>"
+                              material="emissiveIntensity: 0;" rotation-control selected scale-control toggle-side-panel dragndrop infoopen update-position></a-gltf-model>
+
               <% elsif artwork.artwork_type == "Image" %>
-                <a-entity id="entity<%=artwork.id%>" geometry="primitive: box; depth: 0.05" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" rotation-control selected updatedimensions scale-control toggle-side-panel dragndrop infoopen update-position>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>" geometry="primitive: box; depth: 0.05" material="transparent: true; opacity: 0; shader: flat; depthWrite: false"
+                          position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>"
+                          rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" rotation-control selected updatedimensions scale-control toggle-side-panel dragndrop infoopen update-position>
+
+              <% elsif artwork.artwork_type == "Audio" %>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>" geometry="primitive: sphere" material="color: red; opacity: 0.4; shader: flat;"
+                          position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"
+                          sound="src:#entity<%=artwork.id%>painting; on: click; loop: false" selected dragndrop toggle-side-panel infoopen update-position></a-entity>
+
+              <% elsif artwork.artwork_type == "Video" %>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>VideoGroup" position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"
+                          geometry="primitive: box; depth: 0.05" material="transparent: true; opacity: 0; shader: flat; depthWrite: false"
+                          scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>"
+                          rotation-control selected scale-control toggle-side-panel dragndrop infoopen update-position set-video-dimensions playvideo>
+
+                  <a-video  class="not-raycastable" id="entity<%=artwork.id%>" src="#entity<%=artwork.id%>painting" width="1" height="0.5625"></a-video>
+                  <a-image  class="not-raycastable" id="entity<%=artwork.id%>PlayButton" src="#play-button" height="" position="0 0 0.01"></a-image>
+
+                </a-entity>
               <% end %>
 
         <% else %>
 
               <% if artwork.artwork_type == "3D Model" %>
-                <a-gltf-model src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" material="shader:flat;" selected infoopen></a-gltf-model>
+                <a-gltf-model class="raycastable" src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>"
+                              scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>"
+                              material="shader:flat;" selected infoopen></a-gltf-model>
+
               <% elsif artwork.artwork_type == "Image" %>
-                <a-entity id="entity<%=artwork.id%>" geometry="primitive: box;" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" selected updatedimensions infoopen>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>" geometry="primitive: box;" material="transparent: true; opacity: 0; shader: flat; depthWrite: false"
+                          position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>" scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>"
+                          rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>" selected updatedimensions infoopen>
+
+              <% elsif artwork.artwork_type == "Audio" %>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>" geometry="primitive: sphere" material="color: red; opacity: 0.4; shader: flat;"
+                          position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"
+                          sound="src:#entity<%=artwork.id%>painting; on: click; loop: false" infoopen></a-entity>
+
+              <% elsif artwork.artwork_type == "Video" %>
+                <a-entity class="raycastable" id="entity<%=artwork.id%>VideoGroup" position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"
+                          geometry="primitive: box; depth: 0.05" material="transparent: true; opacity: 0; shader: flat; depthWrite: false"
+                          scale="<%=artwork.scale%> <%=artwork.scale%> <%=artwork.scale%>" rotation="<%=artwork.rotx%> <%=artwork.roty%> <%=artwork.rotz%>"
+                          selected infoopen set-video-dimensions playvideo>
+
+                  <a-video  class="not-raycastable" id="entity<%=artwork.id%>" src="#entity<%=artwork.id%>painting" width="1" height="0.5625"></a-video>
+                  <a-image  class="not-raycastable" id="entity<%=artwork.id%>PlayButton" src="#play-button" position="0 0 0.01"></a-image>
+
+                </a-entity>
               <% end %>
 
         <% end %>
 
               <% if artwork.artwork_type == "Image" %>
-                  <a-entity id="entity<%=artwork.id%>inner">
-                    <a-image src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
+                  <a-entity class="not-raycastable" id="entity<%=artwork.id%>inner">
+                    <a-image class="not-raycastable" src="#entity<%=artwork.id%>painting" id="entity<%=artwork.id%>innerimage" material="shader:flat; npot:true;" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-image>
                     <!-- <a-gltf-model src="#frame" id="entity<%=artwork.id%>innerimageframe" scale="1 1 1" material="shader:flat" rotation="0 -90 0"></a-gltf-model> -->
-                    <a-gltf-model src="#frame" id="entity<%=artwork.id%>innerimageframe" position="0 0 -0.01" rotation="0 -90 0" scale="1 1 1"></a-gltf-model>
+                    <a-gltf-model class="not-raycastable" src="#frame1" id="entity<%=artwork.id%>innerimageframe" position="0 0 -0.01" rotation="0 -90 0" scale="1 1 1"></a-gltf-model>
 
-                    <a-plane id="entity<%=artwork.id%>innerimageback" position="0 0 -0.02" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-plane>
+                    <!-- <a-plane class="not-raycastable" id="entity<%=artwork.id%>innerimageback" position="0 0 -0.02" rotation="0 0 0" color="#FFFFFF" side="double" width=""></a-plane> -->
                   </a-entity>
                 </a-entity>
               <% end %>
 
-          <a-entity id="entity<%=artwork.id%>inforotator" visible="true" geometry="primitive: box; depth: 0.02" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" rotation="0 <%=artwork.roty%> 0">
-            <a-text id="entity<%=artwork.id%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="-1.15 0 0" rotation="0 0 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
+          <a-entity class="not-raycastable" id="entity<%=artwork.id%>inforotator" visible="true" geometry="primitive: box; depth: 0.02" material="transparent: true; opacity: 0; shader: flat; depthWrite: false" position="<%=artwork.posx%> <%=artwork.posy%> <%=artwork.posz%>" rotation="0 <%=artwork.roty%> 0">
+            <a-text class="not-raycastable" id="entity<%=artwork.id%>info" visible="false" x-offset="0.02" y-offset="0.02" font="kelsonsans" color="#333333" align="left" anchor="center" baseline="bottom" width="1" font="roboto"  value="Title: <%= @space.artworks[id].name %>\n\n Description: \n <%= @space.artworks[id-1].description %>" position="-1.15 0 0" rotation="0 0 0" geometry="primitive:plane; height:0.42; width: 1" material="color: #FCE2DB; opacity:0.7; side: double" side="double"></a-text>
           </a-entity>
       <% end %>
 
