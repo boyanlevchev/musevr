@@ -20,7 +20,7 @@ import { rotationControl } from '../components/a_frame_components';
 import { showPanel } from '../components/a_frame_components';
 import { updatePosition } from '../components/a_frame_components';
 import { addClass } from './new_gallery.js'
-import { menuOpen, updateDimensions, selected } from './aframe.js'
+import { menuOpen, updateDimensions, selected, playVideo, setVideoDimensions } from './aframe.js'
 import { saveArtwork, loadingBar } from './vr.js'
 
 import { switchToLogin, switchToSignup, closeLoginModal, setLoginModal, switchToPasswordReset, backToLogin } from './signup_login.js'
@@ -56,10 +56,12 @@ document.addEventListener('turbolinks:load', () => {
   //VR stuff
   const vr = document.getElementById('embeddedScene');
   if (vr) {
+    selected();
     saveArtwork();
+    playVideo();
+    setVideoDimensions();
     loadingBar();
     updateDimensions();
-    selected();
     scaleControl();
     rotationControl();
     showPanel();

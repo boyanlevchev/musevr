@@ -5,7 +5,7 @@ AFRAME.registerComponent('infoopen', {
       const el = this.el;
       if (el != null ) {
         el.addEventListener('click', function () {
-          const id = el.id.replace("selected", "");
+          const id = el.id.replace("selected", "").replace("VideoGroup", "");
           const info = document.getElementById(`${id}info`);
           if (info != null ) {
             info.setAttribute('visible', !info.getAttribute('visible'))
@@ -29,8 +29,10 @@ export const selected = () => {
           other.id = other.id.replace("selected", "")
         );
       }
+      const cleanEl = el.id.replace("VideoGroup", "");
       const innerEl = document.getElementById(`${el.id}inner`)
-      const rotator = document.getElementById(`${el.id}inforotator`)
+      const rotator = document.getElementById(`${cleanEl}inforotator`)
+      console.log(rotator.id, "rotator")
 
       el.id = el.id.concat("selected");
 
@@ -55,21 +57,87 @@ export const updateDimensions = () => {
       const aImageBack = document.getElementById(`${el.id}innerimageback`)
       const imageFrame = document.getElementById(`${el.id}innerimageframe`)
 
-      // el.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
-      // if ( rotator != null ) {
-      //   rotator.attributes.geometry.value = `primitive: box; width: 0.15; height: ${painting.height/1000}; depth: ${painting.width/1000}`
-      // }
-      el.setAttribute('geometry', `height: ${(painting.height/1000)}`)
-      el.setAttribute('geometry', `width: ${(painting.width/1000)}`)
+      // console.log("el", el.object3D.scale.x === 1)
 
-      aImage.setAttribute('height', painting.height/1000);
-      aImage.setAttribute('width', painting.width/1000);
+      // el.setAttribute('geometry', `height: ${(painting.height/painting.width)}`)
+      // el.setAttribute('geometry', `width: ${(painting.width/painting.width)}`)
+      // // if (el.object3D.scale.x === 1 && el.object3D.scale.y === 1 && el.object3D.scale.z === 1) {
+      // //   el.object3D.scale.set(1, (painting.height/painting.width), (painting.width/painting.width));
+      // // }
 
-      aImageBack.setAttribute('height', painting.height/1000);
-      aImageBack.setAttribute('width', painting.width/1000);
+      // aImage.setAttribute('height', painting.height/painting.width);
+      // aImage.setAttribute('width', painting.width/painting.width);
+      // // aImage.object3D.scale.set(1, (painting.height/painting.width), (painting.width/painting.width));
+
+      // aImageBack.setAttribute('height', painting.height/painting.width);
+      // aImageBack.setAttribute('width', painting.width/painting.width);
+      // // aImageBack.object3D.scale.set(1, (painting.height/painting.width), (painting.width/painting.width));
+
+      // // imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 }); //For uglier frame
+      // imageFrame.setAttribute('scale', { x: 1, y: (painting.height/painting.width)*1.2, z: (painting.width/painting.width)*1.2});
+      // // imageFrame.object3D.scale.set(1, 1.1, 1.1);
+
+      // // el.setAttribute("x", 1)
+      // // el.setAttribute("y", (painting.height/painting.width))
+      // // el.setAttribute("z", (painting.width/painting.width))
+
+    // ......................
+
+      el.setAttribute('geometry', `height: ${(painting.height/painting.width)}`)
+      el.setAttribute('geometry', `width: ${(painting.width/painting.width)}`)
+
+      aImage.setAttribute('height', painting.height/painting.width);
+      aImage.setAttribute('width', painting.width/painting.width);
+
+      // aImageBack.setAttribute('height', painting.height/1000);
+      // aImageBack.setAttribute('width', painting.width/1000);
 
       // imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*0.675, z: (painting.width/1000)*0.85 }); //For uglier frame
-      imageFrame.setAttribute('scale', { x: 1, y: (painting.height/1000)*1.2, z: (painting.width/1000)*1.2});
+      imageFrame.setAttribute('scale', { x: 1, y: (painting.height/painting.width)*1.2, z: (painting.width/painting.width)*1.2});
     }
   });
 }
+
+export const setVideoDimensions = () => {
+AFRAME.registerComponent('set-video-dimensions', {
+    init: function () {
+      const el = this.el;
+      if (el) {
+        const id = el.id.replace("selected", "").replace("VideoGroup", "");
+        const video = document.getElementById(`${id}painting`);
+        const height = video.videoHeight;
+        const width = video.videoWidth;
+        const renderedVideo = document.getElementById(`${id}`);
+        const playButton = document.getElementById(`${id}PlayButton`);
+        renderedVideo.setAttribute('width', width/width);
+        renderedVideo.setAttribute('height', height/width);
+        playButton.setAttribute('width', ((width/width)/2));
+        playButton.setAttribute('height', ((width/width)/2));
+      }
+    }
+  });
+};
+
+export const playVideo = () => {
+AFRAME.registerComponent('playvideo', {
+    init: function () {
+      const el = this.el;
+      if (el != null ) {
+        el.addEventListener('click', function () {
+          const id = el.id.replace("selected", "").replace("VideoGroup", "");
+          const video = document.getElementById(`${id}painting`);
+          const playButton = document.getElementById(`${id}PlayButton`);
+          if (video) {
+            if (video.paused) {
+              video.play()
+              playButton.setAttribute("visible", "false")
+            } else {
+              video.pause()
+              playButton.setAttribute("visible", "true")
+            }
+          }
+        });
+      }
+    }
+  });
+};

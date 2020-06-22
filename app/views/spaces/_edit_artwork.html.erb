@@ -8,5 +8,8 @@
   <%#= f.label :photo, label: "Choose your artwork", label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" } %>
   <%#= cl_upload_tag(@artwork.id) %>
   <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
-  <%= f.submit "Update artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
-<% end %>
+  <div style="display:flex; justify-content: space-between;">
+    <%= link_to "Delete", artwork_path(artwork), class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;", data: { confirm: 'Are you sure?' }, method: :delete %>
+    <%= f.submit "Update artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
+  </div>
+  <% end %>
