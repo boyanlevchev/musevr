@@ -69,7 +69,8 @@
             </ul> -->
               <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Name your gallery" %>
               <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Gallery description" %>
-              <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
+              <%= f.file_field :photo, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
+              <!-- This submit will actually store the above values into a local variable, rather than create the model immediately - thus allowing user to create gallery first, and then create model upon saving their gallery -->
               <%= f.submit "Add art to your gallery>>", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px; margin-bottom: 48px;" %>
             <% end %>
           </div>

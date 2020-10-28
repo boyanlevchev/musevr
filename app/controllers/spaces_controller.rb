@@ -1,10 +1,10 @@
 class SpacesController < ApplicationController
-  skip_before_action :authenticate_user! #, only: [:index, :show, :vr]
+  skip_before_action :authenticate_user!
   before_action :set_space, only: [:show, :edit, :destoy, :update]
 
   def index
     if params[:search] == "" || params[:search].nil?
-      @spaces = Space.all
+      @spaces = Space.where.not(user_id: 0)
     else
       @spaces = Space.search(params[:search])
     # raise
@@ -29,7 +29,12 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-    @space.user = current_user
+    # @space.photo.attach(params[:photo])
+    if current_user
+      @space.user = current_user
+    else
+      @space.user_id = 0
+    end
     if @space.save
       redirect_to space_path(@space)
     else
@@ -47,6 +52,7 @@ class SpacesController < ApplicationController
   end
 
   def update
+    # @space.photo.attach(params[:photo])
     if @space.update!(space_params)
       redirect_to space_path(@space)
     else

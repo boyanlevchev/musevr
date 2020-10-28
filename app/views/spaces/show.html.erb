@@ -2,6 +2,8 @@
 
 <% @title="Muse VR - Gallery assets page" %>
 
+<% modelViewerActive = false %>
+
 <div class="page-container">
 
   <div class="d-flex m-auto w-100 justify-content-center gallery-show-height">
@@ -44,6 +46,7 @@
 
     <div class="row">
       <% @space.artworks.each do |artwork| %>
+        <% modelViewerActive = true if artwork.artwork_type == "3D Model" %>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer">
           <%= (render partial: 'shared/space_show_artwork_card', locals: { artwork: artwork }) %>
         </div>
@@ -83,3 +86,13 @@
     </div>
   </div>
 </div>
+
+
+<!-- Some scripts which handle showing 3d asset on page - will be good to move later when showing 3d assets on other pages - such as within
+a JS file that loads scripts dependent on page - akin to how you currently have your index.js set up -->
+<% if modelViewerActive %>
+  <!-- Loads model-viewer for modern browsers -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+  <!-- Loads model-viewer for older browsers -->
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+<% end %>

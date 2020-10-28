@@ -15,8 +15,8 @@
 
   <a-scene id="aframeScene" background="color: #FAFAFA"  embedded>
     <a-assets>
-        <!-- <a-asset-item id="frame3" src="http://d270od7aj4kefu.cloudfront.net/models/vr_gallery_-_light_baked/scene.gltf" crossorigin="anonymous">
-        <img id="blue-sky" src="https://res.cloudinary.com/dt47helyp/image/upload/v1589901377/sky_daytime_blue_whfikl.jpg" crossorigin="anonymous"> -->
+        <a-asset-item id="frame" src="http://d270od7aj4kefu.cloudfront.net/models/vr_gallery_-_light_baked/scene.gltf" crossorigin="anonymous">
+        <img id="blue-sky" src="https://res.cloudinary.com/dt47helyp/image/upload/v1589901377/sky_daytime_blue_whfikl.jpg" crossorigin="anonymous">
         <!-- <audio id="river" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></audio>
         <video id="mtn" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></video> -->
         <%#= image_tag("play-button.png", id:"play-button", style: "width: 64px; height: 64px")%>
@@ -32,16 +32,16 @@
         <%# end %>
     </a-assets>
     <!-- <a-entity gltf-model="url(https://res.cloudinary.com/dt47helyp/raw/upload/v1589335207/frame6_addgav.glb)"></a-entity> -->
-    <!-- <a-gltf-model src="#frame" position="3 0 0" scale="1 1 1"></a-gltf-model>
+    <a-gltf-model src="#frame" position="3 0 0" scale="1 1 1"></a-gltf-model>
 
     <a-sky class="not-raycastable" src="#blue-sky"></a-sky>
-    <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity> -->
+    <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
 
   </a-scene>
 </div>
 
 <!-- main scene -->
-<div id="embeddedScene" style="">
+<div id="embeddedScene" >
 
   <input type="hidden" id="space-id" value="<%= @space.id %>">
 
@@ -65,33 +65,32 @@
         <img class="not-raycastable" id="outerspace" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583494818/milkyway_zbfpih.jpg" crossorigin="anonymous">
         <img class="not-raycastable" id="city" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583803118/cityscape_qhvlo5.jpg" crossorigin="anonymous">
         <img class="not-raycastable" id="info" src="<%= image_path "info-circle-solid.svg" %>" crossorigin="anonymous">
-        <a-asset-item class="not-raycastable" id="scene" src="<%= @space.modelURL %>">
+        <!-- <a-asset-item class="not-raycastable" id="scene" src="<%= @space.modelURL %>"> -->
 
-        <!-- <a-asset-item id="frame" material="shader:flat;" src="https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/fancy_picture_frame/scene.gltf"> -->
         <a-asset-item class="not-raycastable" id="frame1" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589377747/final_frame_4_pbrzks.glb" crossorigin="anonymous">
 
-        <%= image_tag "play-button.png", id:"play-button", alt: "play button", size: "512x512" %>
+        <% hasVideo = false %>
 
         <% @space.artworks.each_with_index do |artwork, index| %>
           <% if artwork.artwork_type == "3D Model" %>
-            <% model_path = cl_image_path("#{artwork.photo.key}.gltf", crossorigin:"anonymous") %>
+            <% model_path = url_for artwork.photo %>
             <a-asset-item class="not-raycastable" id="entity<%=artwork.id%>painting" src="<%= model_path %>" crossorigin="anonymous" data-artworkname="<%=artwork.name%>">
-            <%#= image_tag model_path, alt: "alttext" %>
           <% elsif artwork.artwork_type == "Image" %>
-            <%#= cl_image_tag artwork.photo.key, id: "entity#{artwork.id}paintingOriginal", width:"2048", crop: "fill", crossorigin:"anonymous" %>
-            <%= cl_image_tag artwork.photo.key, id: "entity#{artwork.id}painting", width:"1000", crop: "fill", data: { artworkname: artwork.name}, crossorigin:"anonymous" %>
+            <%= image_tag artwork.photo.service_url, id: "entity#{artwork.id}painting", width:"1000", crop: "fill", data: { artworkname: artwork.name}, crossorigin:"anonymous" %>
 
           <% elsif artwork.artwork_type == "Audio" %>
-            <% audio_path = cl_video_path(artwork.photo.key, crossorigin:"anonymous") %>
+            <% audio_path = video_path(artwork.photo.service_url, crossorigin:"anonymous") %>
             <audio src="<%= audio_path %>" id="entity<%=artwork.id%>painting" preload="auto" crossorigin="anonymous" data-artworkname="<%=artwork.name%>"></audio>
 
           <% elsif artwork.artwork_type == "Video" %>
-            <% video_path = cl_video_path(artwork.photo.key, crossorigin:"anonymous", width:"1000") %>
+            <% hasVideo = true %>
+            <% video_path = video_path(artwork.photo.service_url, crossorigin:"anonymous", width:"1000") %>
             <video src="<%= video_path %>" id="entity<%=artwork.id%>painting" preload="auto" data-artworkname="<%=artwork.name%>" crossorigin="anonymous"></video>
           <% end %>
         <% end %>
 
-        <!-- <a-asset-item id="frame2" src="https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/Frames/art_painting/GLB/untitled.gltf"> -->
+        <%= image_tag "play-button.png", id:"play-button", alt: "play button", size: "512x512" if hasVideo %>
+
     </a-assets>
 
     <a-entity class="not-raycastable" setCamera id='cameraWrapper' position="0 0 0">
@@ -146,7 +145,7 @@
               <% elsif artwork.artwork_type == "Audio" %>
                 <a-entity class="raycastable" id="entity<%=artwork.id%>" geometry="primitive: sphere" material="color: red; opacity: 0.4; shader: flat;"
                           position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"
-                          sound="src:#entity<%=artwork.id%>painting; on: click; loop: false" selected dragndrop toggle-side-panel infoopen update-position></a-entity>
+                          sound="src:#entity<%=artwork.id%>painting; on: click; loop: false" selected dragndrop toggle-side-panel rotation-control infoopen update-position></a-entity>
 
               <% elsif artwork.artwork_type == "Video" %>
                 <a-entity class="raycastable" id="entity<%=artwork.id%>VideoGroup" position="<%= artwork.posx ? "#{artwork.posx} #{artwork.posy} #{artwork.posz}" : "0 2 -2"%>"

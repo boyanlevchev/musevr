@@ -13,7 +13,8 @@ class UsersController < ApplicationController
 
   def index
     if params[:search] == "" || params[:search].nil?
-      @users = User.all
+      # we skip the 0 user, as this is just a temp user until user registers
+      @users = User.where.not(id: 0)
     else
       @users = User.search_users(params[:search])
     # raise

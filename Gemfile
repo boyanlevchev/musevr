@@ -11,6 +11,7 @@ gem 'redis'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'pg_search', '~> 2.3.0'
+gem 'aws-sdk-s3', require: false
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.12.0'

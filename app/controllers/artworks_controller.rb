@@ -29,12 +29,12 @@ class ArtworksController < ApplicationController
     else
       @artwork.space = @space
     end
-    @artwork.update!(artwork_params)
-    # if @artwork.update!(artwork_params)
-    #   redirect_to space_path(@artwork.space)
-    # else
-    #   render 'spaces/show'
-    # end
+    # @artwork.update!(artwork_params)
+    if @artwork.update!(artwork_params)
+      redirect_to space_path(@artwork.space)
+    else
+      render 'spaces/show'
+    end
   end
 
   def destroy

@@ -1,6 +1,6 @@
 <%= simple_form_for @space, method: :patch, url: space_path(@space) do |f| %>
   <%= f.input :name, input_html: { value: @space.name, class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "The name of your gallery" %>
   <%= f.input :description, input_html: { value: @space.description, class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Gallery description" %>
-  <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose a new cover photo" %>
+  <%= f.file_field :photo, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose a new cover photo" %>
   <%= f.submit "Update gallery details", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
 <% end %>
