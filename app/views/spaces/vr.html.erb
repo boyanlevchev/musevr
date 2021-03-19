@@ -9,14 +9,14 @@
 
 
 <!-- testing scene -->
-<div id="embeddedScene" style="display:none;">
-  <input type="hidden" id="space-id" value="<%= @space.id %>">
+<!-- <div id="embeddedScene" style="display:none;">
+  <input type="hidden" id="space-id" value="<%= @space.id %>"> -->
   <%# decoderPath = 'https://www.gstatic.com/draco/v1/decoders/'; %>
 
-  <a-scene id="aframeScene" background="color: #FAFAFA"  embedded>
+<!--   <a-scene id="aframeScene" background="color: #FAFAFA"  embedded>
     <a-assets>
-        <a-asset-item id="frame" src="http://d270od7aj4kefu.cloudfront.net/models/vr_gallery_-_light_baked/scene.gltf" crossorigin="anonymous">
-        <img id="blue-sky" src="https://res.cloudinary.com/dt47helyp/image/upload/v1589901377/sky_daytime_blue_whfikl.jpg" crossorigin="anonymous">
+        <a-asset-item id="frame" src="https://d270od7aj4kefu.cloudfront.net/models/vr_gallery_-_light_baked/scene.gltf" crossorigin="anonymous">
+        <img id="blue-sky" src="https://res.cloudinary.com/dt47helyp/image/upload/v1589901377/sky_daytime_blue_whfikl.jpg" crossorigin="anonymous"> -->
         <!-- <audio id="river" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></audio>
         <video id="mtn" src="https://res.cloudinary.com/dt47helyp/video/upload/v1592353392/atyll27ugalz7zvpej9tyvmglfz8.mov" preload="auto" crossorigin="anonymous"></video> -->
         <%#= image_tag("play-button.png", id:"play-button", style: "width: 64px; height: 64px")%>
@@ -30,15 +30,15 @@
             <!-- <video src="<%#= video_path %>" id="entity<%#=artwork.id%>painting" preload="auto" crossorigin="anonymous"></video> -->
           <%# end %>
         <%# end %>
-    </a-assets>
+    <!-- </a-assets> -->
     <!-- <a-entity gltf-model="url(https://res.cloudinary.com/dt47helyp/raw/upload/v1589335207/frame6_addgav.glb)"></a-entity> -->
-    <a-gltf-model src="#frame" position="3 0 0" scale="1 1 1"></a-gltf-model>
+    <!-- <a-gltf-model src="#frame" position="3 0 0" scale="1 1 1"></a-gltf-model> -->
 
-    <a-sky class="not-raycastable" src="#blue-sky"></a-sky>
-    <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
+<!--     <a-sky class="not-raycastable" src="#blue-sky"></a-sky>
+    <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity> -->
 
-  </a-scene>
-</div>
+<!--   </a-scene>
+</div> -->
 
 <!-- main scene -->
 <div id="embeddedScene" >
