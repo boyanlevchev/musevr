@@ -24,7 +24,7 @@ gem 'popper_js'
 
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
-gem 'activerecord-session_store', '~> 1.0'
+gem 'activerecord-session_store', '~> 2.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
