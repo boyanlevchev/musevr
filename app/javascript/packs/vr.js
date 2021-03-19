@@ -14,7 +14,7 @@ const counterReached = (counter, assets, loader) => {
     const scene = document.querySelector('a-scene');
     scene.addEventListener('loaded', function (e) {
       setTimeout(function(){ loader.style.display = "none"; }, 3000);
-      console.log("this shit loaded")
+      console.log("this shit loaded!!!")
     });
   }
 }
@@ -23,7 +23,7 @@ const counterReached = (counter, assets, loader) => {
 export const loadingBar = () => {
   const loader = document.querySelector('#loader')
   const assets = document.querySelector('a-assets')
-  console.log("loading bar JS is set")
+  console.log("loading bar JS is set!!!!!!!")
   // assets.addEventListener('timeout', function(e) {
   //   console.log("assets timed out!")
   //   loader.style.display = "none";
@@ -57,20 +57,3 @@ export const loadingBar = () => {
 
 
 
-//   // Rails.ajax({
-//   //   url: "/books",
-//   //   type: "put",
-//   //   data: "",
-//   //   success: function(data) {},
-//   //   error: function(data) {}
-//   // })
-
-//   // $.ajax({
-//   //     url: "/space",
-//   //     type: "PUT",
-//   //     data: {a hash of the data retrieved from the inputs},
-//   //     dataType: "json",
-//   //     success: function(data) {
-//   //         //replace data of div you want here using String(data["html"], html being the attribute passed back via json from the controller.
-//   //     }
-//   // });

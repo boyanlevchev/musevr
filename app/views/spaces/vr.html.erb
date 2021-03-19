@@ -62,29 +62,42 @@
 
 
     <a-assets>
+
+        <a-asset-item class="not-raycastable" id="scene" src="<%=@space.getSpaceModel%>"  crossorigin="anonymous">
+
         <img class="not-raycastable" id="outerspace" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583494818/milkyway_zbfpih.jpg" crossorigin="anonymous">
         <img class="not-raycastable" id="city" src="https://res.cloudinary.com/dt47helyp/image/upload/v1583803118/cityscape_qhvlo5.jpg" crossorigin="anonymous">
         <img class="not-raycastable" id="info" src="<%= image_path "info-circle-solid.svg" %>" crossorigin="anonymous">
-        <!-- <a-asset-item class="not-raycastable" id="scene" src="<%= @space.modelURL %>"> -->
+
+
 
         <a-asset-item class="not-raycastable" id="frame1" src="https://res.cloudinary.com/dt47helyp/raw/upload/v1589377747/final_frame_4_pbrzks.glb" crossorigin="anonymous">
 
         <% hasVideo = false %>
 
+
+
         <% @space.artworks.each_with_index do |artwork, index| %>
+
+
           <% if artwork.artwork_type == "3D Model" %>
-            <% model_path = url_for artwork.photo %>
+
+            <% model_path = artwork.getArtworkURL %>
             <a-asset-item class="not-raycastable" id="entity<%=artwork.id%>painting" src="<%= model_path %>" crossorigin="anonymous" data-artworkname="<%=artwork.name%>">
+
           <% elsif artwork.artwork_type == "Image" %>
-            <%= image_tag artwork.photo.service_url, id: "entity#{artwork.id}painting", width:"1000", crop: "fill", data: { artworkname: artwork.name}, crossorigin:"anonymous" %>
+
+              <%#= image_tag artwork.getArtworkURL, id: "entity#{artwork.id}painting", width:"1000", data: { artworkname: artwork.name}, crossorigin:"anonymous" %>
+              <img src="<%= artwork.getArtworkURL %>" id="entity<%=artwork.id%>painting">
 
           <% elsif artwork.artwork_type == "Audio" %>
-            <% audio_path = video_path(artwork.photo.service_url, crossorigin:"anonymous") %>
+
+            <% audio_path = video_path(artwork.getArtworkURL, crossorigin:"anonymous") %>
             <audio src="<%= audio_path %>" id="entity<%=artwork.id%>painting" preload="auto" crossorigin="anonymous" data-artworkname="<%=artwork.name%>"></audio>
 
           <% elsif artwork.artwork_type == "Video" %>
             <% hasVideo = true %>
-            <% video_path = video_path(artwork.photo.service_url, crossorigin:"anonymous", width:"1000") %>
+            <% video_path = video_path(artwork.getArtworkURL, crossorigin:"anonymous", width:"1000") %>
             <video src="<%= video_path %>" id="entity<%=artwork.id%>painting" preload="auto" data-artworkname="<%=artwork.name%>" crossorigin="anonymous"></video>
           <% end %>
         <% end %>
@@ -98,34 +111,36 @@
     </a-entity>
 
 
-    <% if @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_vintage_for_product_showcase_2019/scene.gltf' %>
+    <% if @space.public_space_template.model_url == 'models/vr_gallery_vintage_for_product_showcase_2019/scene.gltf' %>
       <a-gltf-model class="not-raycastable" src="#scene" position="1 0 0" scale="0.02 0.02 0.02"></a-gltf-model>
       <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity:1.6" position="4 12 4"></a-entity>
       <a-sky class="not-raycastable" src="#city"></a-sky>
 
-    <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019/scene.gltf' %>
+    <% elsif @space.public_space_template.model_url == 'models/vr_gallery_for_product_showcase_2019/scene.gltf' %>
       <a-gltf-model class="not-raycastable" src="#scene" position="0 5 0" scale="0.04 0.04 0.04"></a-gltf-model>
       <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity: 2.7" position="4 6 4"></a-entity>
       <a-sky class="not-raycastable" src="#outerspace"></a-sky>
 
-    <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
+    <% elsif @space.public_space_template.model_url == 'models/vr_gallery_for_product_showcase_2019_outdated/scene.gltf' %>
       <a-gltf-model class="not-raycastable" src="#scene" position="1 0 0" scale="0.01 0.01 0.01"></a-gltf-model>
       <a-entity class="not-raycastable" light="type: ambient; color: #BBB; intensity: 7;"></a-entity>
       <a-entity class="not-raycastable" light="type: directional; color: #FFF; intensity: 1;"  position="-0.5 1 1"  ></a-entity>
 
-    <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/gd55_el_a1_erikhernandez/scene.gltf' %>
+    <% elsif @space.public_space_template.model_url == "models/gd55_el_a1_erikhernandez/scene.gltf" %>
+
       <a-gltf-model class="not-raycastable" src="#scene" position="0 0 0"></a-gltf-model>
       <a-entity class="not-raycastable" light="type:point; intensity:7;" position="0.2 0.2 0.2"></a-entity>
       <a-sky class="not-raycastable" src="#outerspace"></a-sky>
 
-    <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/abandoned_warehouse_-_interior_scene_comp/scene.gltf' %>
+    <% elsif @space.public_space_template.model_url == 'models/abandoned_warehouse_-_interior_scene_comp/scene.gltf' %>
       <a-gltf-model class="not-raycastable" src="#scene" position="-10 5.7 13" scale="10 10 10"></a-gltf-model>
       <a-entity class="not-raycastable" light="type: ambient; color: #CCC; intensity: 4.5" position="1 1 1"></a-entity>
       <a-sky class="not-raycastable" src="#city"></a-sky>
 
-    <% elsif @space.modelURL == 'https://raw.githubusercontent.com/boyanlevchev/threedeemodels/master/models/bagan_-_khayiminga_temple_interior/scene.gltf' %>
+    <% elsif @space.public_space_template.model_url == 'models/bagan_-_khayiminga_temple_interior/scene.gltf' %>
       <a-gltf-model class="not-raycastable" src="#scene" position="0 1 -3" rotation="0 180 0" scale=".6 0.6 0.6"></a-gltf-model>
     <% end %>
+
 
     <!-- Add all objects below -->
 
@@ -208,7 +223,13 @@
 
     <%# if @space.user == current_user %>
     <div id="#side-panel" class="sidePanel hidden">
+
       <h2>Howdy</h2>
+
+       <button class="side-panel-notch">
+         <
+       </button>
+
 
       <label for="size">Size</label>
       <input type="range" id="size" name="size"
@@ -227,7 +248,7 @@
         min="0" max="360" value="0" step="1">
       <%#  artwork = @space.artworks.select {|artwork| artwork.name }%>
       <div class="sidePanelSave">
-        <%= simple_form_for :artwork, method: :patch, html: { id: "saveArtworkForm" } do |f| %>
+        <%= simple_form_for :artwork, method: :patch, html: { id: "saveArtworkForm" }, remote: true do |f| %>
           <%= f.input :posx, input_html: { style: "display: none;", id: "saveposx" }, label: false %>
           <%= f.input :posy, input_html: { style: "display: none;", id: "saveposy" }, label: false %>
           <%= f.input :posz, input_html: { style: "display: none;", id: "saveposz" }, label: false %>

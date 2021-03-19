@@ -1,23 +1,30 @@
 <div class="artwork-card d-flex">
     <div class="artwork-card-art-panel">
+      <% photo = "" %>
+      <% if artwork.photo.attached? %>
+        <% photo = artwork.photo %>
+      <% elsif artwork.fast_photo.attached? %>
+        <% photo = artwork.fast_photo %>
+      <% end %>
       <% if artwork.artwork_type == "3D Model" %>
-        <% path = url_for artwork.photo %>
-        <model-viewer src="<%= path %>" alt="Muse 3D model asset - id <%=artwork.id%>" auto-rotate camera-controls auto-rotate-delay="0" style="height: 100%; width: 100%;" ></model-viewer>
-        <%#=  image_tag(artwork.photo.service_url, fetch_format: "png", width: "300px", background: "transparent", style: "height: 100%; width: 100%; object-fit: cover;") %>
+        <model-viewer src="<%= artwork.getArtworkURL %>" alt="Muse 3D model asset - id <%=artwork.id%>" auto-rotate camera-controls auto-rotate-delay="0" style="height: 100%; width: 100%;" ></model-viewer>
+        <%#=  image_tag(photo.service_url, fetch_format: "png", width: "300px", background: "transparent", style: "height: 100%; width: 100%; object-fit: cover;") %>
       <% elsif artwork.artwork_type == "Image" %>
-        <%= image_tag(artwork.photo.service_url, width: "300px", style: "height: 100%; width: 100%; object-fit: cover;") %>
+
+          <%= image_tag(artwork.getArtworkURL, width: "300px", style: "height: 100%; width: 100%; object-fit: cover;") %>
+
       <% elsif artwork.artwork_type == "Video" %>
         <div>
-          <%= video_tag(artwork.photo.service_url, width: "300px", controls: true, style: "height: 100%; width: 100%; object-fit: contain;") %>
+          <%= video_tag(artwork.getArtworkURL, width: "300px", controls: true, style: "height: 100%; width: 100%; object-fit: contain;") %>
         </div>
       <% elsif artwork.artwork_type == "Audio" %>
         <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 
         <!-- WILL NEED TO ADD AN IMAGE OF THE AUDIO FILE'S SOUNDWAVE - SEE IF THERE IS A GEM FOR THIS?? -->
         <div style="height:500; position: relative;">
-            <%= image_tag(artwork.photo.service_url, width: "300px", height: "200px",flags: "waveform", resource_type: "video", color: "black", background: "transparent", controls: true, style: "width: 100%; margin-top: 50%; transform: translate(0, -50%);") %>
+            <%#= image_tag(photo.service_url, width: "300px", height: "200px",flags: "waveform", resource_type: "video", color: "black", background: "transparent", controls: true, style: "width: 100%; margin-top: 50%; transform: translate(0, -50%);") %>
             <div style="height:500; position: absolute; top: 50%;">
-              <%= video_tag(artwork.photo.service_url, width: "300px", height: "50px", controls: true, style:"height: 100%; width: 100%; object-fit: contain;") %>
+              <%= video_tag(artwork.getArtworkURL, width: "300px", height: "50px", controls: true, style:"height: 100%; width: 100%; object-fit: contain;") %>
             </div>
         </div>
 

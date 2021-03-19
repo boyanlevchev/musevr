@@ -8,22 +8,38 @@
 
 .sidePanel {
   // border: 5px solid rgb(150,150,150);
-  border-radius: 2px;
-  position: absolute;
-  top: 99px;
-  right: 40px;
-  height: 80%;
-  width: 200px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 320px;
   z-index: 1;
-  background-color: rgba(255,255,255,0.8);
+  background-color: white;
   padding:30px;
   font-weight: bold;
-  outline: 10px solid $pink;
-  outline-offset: 10px;
+  transition: 0.2s;
+  border-left: 4px solid rgb(40,40,40);
+}
+
+.side-panel-notch {
+  position: absolute;
+  background-color: rgb(40,40,40);
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .sidePanel.hidden {
-  visibility: hidden;
+  transform: translateX(290px);
 }
 
 

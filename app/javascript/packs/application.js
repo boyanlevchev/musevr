@@ -21,7 +21,7 @@ import { showPanel } from '../components/a_frame_components';
 import { updatePosition } from '../components/a_frame_components';
 import { addClass } from './new_gallery.js'
 import { menuOpen, updateDimensions, selected, playVideo, setVideoDimensions } from './aframe.js'
-import { saveArtwork, loadingBar } from './vr.js'
+import { saveArtwork, loadingBar, toggleSidePandel } from './vr.js'
 
 import { switchToLogin, switchToSignup, closeLoginModal, setLoginModal, switchToPasswordReset, backToLogin } from './signup_login.js'
 

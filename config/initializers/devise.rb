@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# Assuming you have not yet modified this file, each configuration option below
+# is set to its default value. Note that some are commented out while others
+# are not: uncommented lines are intended to protect your configuration from
+# breaking changes in upgrades (i.e., in the event that future versions of
+# Devise change the default values for those options).
+#
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -8,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '18a7616cce8ba72961e1045ce33790787d5fb48b3eeb08e9efb0989de3717ddd3d26137b115359c890ed80f1dde951e90bf8b8f38ed2c309c2a20cae30b87438'
+  # config.secret_key = 'cfbb8ae0492d89bf4659ebadf8e725236691ab88a93c824512c60e50d65949c53e970e4223a0c2335eb64a7ce15920ae85794a315d9f003958896a31253c52d4'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -68,12 +74,15 @@ Devise.setup do |config|
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
   # given strategies, for example, `config.http_authenticatable = [:database]` will
-  # enable it only for database authentication. The supported strategies are:
+  # enable it only for database authentication.
+  # For API-only applications to support authentication "out-of-the-box", you will likely want to
+  # enable this with :database unless you are using a custom strategy.
+  # The supported strategies are:
   # :database      = Support basic authentication with authentication key + password
   # config.http_authenticatable = false
 
   # If 401 status code should be returned for AJAX requests. True by default.
-  config.http_authenticatable_on_xhr = false
+  # config.http_authenticatable_on_xhr = true
 
   # The realm used in Http Basic Authentication. 'Application' by default.
   # config.http_authentication_realm = 'Application'
@@ -103,18 +112,21 @@ Devise.setup do |config|
   # config.reload_routes = true
 
   # ==> Configuration for :database_authenticatable
-  # For bcrypt, this is the cost for hashing the password and defaults to 11. If
+  # For bcrypt, this is the cost for hashing the password and defaults to 12. If
   # using other algorithms, it sets how many times you want the password to be hashed.
+  # The number of stretches used for generating the hashed password are stored
+  # with the hashed password. This allows you to change the stretches without
+  # invalidating existing passwords.
   #
   # Limiting the stretches to just one in testing will increase the performance of
   # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
   # a value less than 10 in other environments. Note that, for bcrypt (the default
   # algorithm), the cost increases exponentially with the number of stretches (e.g.
   # a value of 20 is already extremely slow: approx. 60 seconds for 1 calculation).
-  config.stretches = Rails.env.test? ? 1 : 11
+  config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '2d0ab769655b2aa8ec6d382eccc9a3aeaf01348be992d4296ebd2ff7b83ce78266a3bfc4e1038fa299af410f2f131ad5d86958fd818bfe1287be307e173f9a12'
+  # config.pepper = 'db0294fff971726f993a74665ae4ed17844916fd891ed2f296ae4d195a38e8c491cba0d6abe9d6bfef7b68b7816c54aa121acdbc023e45581c2646fdd31972fd'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -176,7 +188,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  config.timeout_in = 72.hours
+  # config.timeout_in = 30.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -251,7 +263,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  config.navigational_formats = [:"*/*", "*/*", :html, :js]
+  # config.navigational_formats = ['*/*', :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -269,9 +281,8 @@ Devise.setup do |config|
   # change the failure app, you can configure them inside the config.warden block.
   #
   # config.warden do |manager|
-  #   manager.failure_app = CustomFailure
-  #   # manager.intercept_401 = false
-  #   # manager.default_strategies(scope: :user).unshift :some_external_strategy
+  #   manager.intercept_401 = false
+  #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
 
   # ==> Mountable engine configurations

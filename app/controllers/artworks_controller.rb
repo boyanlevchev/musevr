@@ -1,5 +1,6 @@
 class ArtworksController < ApplicationController
   # respond_to :html, :js
+  # before_action :set_aws
 
   def create
     @artwork = Artwork.new(artwork_params)
@@ -46,7 +47,13 @@ class ArtworksController < ApplicationController
 
   private
 
+  # def set_aws
+  #   if user_signed_in?
+  #     current_user.subscription == "paid" ? s3_service.set_bucket(ENV['S3_BUCKET_PAID']) : s3_service.set_bucket(ENV['S3_BUCKET'])
+  #   end
+  # end
+
   def artwork_params
-    params.require(:artwork).permit(:name, :description, :user_id, :photo, :posx, :posy, :posz, :rotx, :roty, :rotz, :scale, :artwork_type)
+    params.require(:artwork).permit(:name, :description, :user_id, :fast_photo, :photo, :posx, :posy, :posz, :rotx, :roty, :rotz, :scale, :artwork_type)
   end
 end

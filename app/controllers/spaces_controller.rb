@@ -1,6 +1,7 @@
 class SpacesController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :vr]
   before_action :set_space, only: [:show, :edit, :destoy, :update]
+  # before_action :set_aws
 
   def index
     if params[:search] == "" || params[:search].nil?
@@ -29,12 +30,8 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-    # @space.photo.attach(params[:photo])
-    if current_user
-      @space.user = current_user
-    else
-      @space.user_id = 0
-    end
+    @space.user = current_user
+
     if @space.save
       redirect_to space_path(@space)
     else
@@ -72,6 +69,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id, :photo, :modelURL, :savedHTML)
+    params.require(:space).permit(:name, :description, :user_id, :fast_photo, :photo, :modelURL)
   end
 end

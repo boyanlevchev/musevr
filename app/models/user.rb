@@ -11,8 +11,12 @@ class User < ApplicationRecord
   has_many :artworks, through: :spaces
   has_one_attached :photo
 
+  COLORS = ['#fce2db', '#DE7800', '#FFFFDD']
+  SUBSCRIPTIONS = ['free', 'paid']
+
   validates :username, presence: true, uniqueness: true
   before_create :set_color_to_random_value
+  before_create :set_user_subscription
 
   include PgSearch::Model
   pg_search_scope :search_users,
@@ -29,9 +33,11 @@ class User < ApplicationRecord
     end
   end
 
-  COLORS = ['#fce2db', '#DE7800', '#FFFFDD']
-
   private
+
+  def set_user_subscription
+    self.subscription = "free"
+  end
 
   def set_color_to_random_value
     if User.all.empty?

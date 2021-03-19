@@ -22,6 +22,10 @@
   </div>
   <%#= f.label :photo, label: "Choose your artwork", label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" } %>
   <%#= cl_upload_tag(@artwork.id) %>
-  <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
+  <% if current_user.subscription == "paid" %>
+    <%= f.input :fast_photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
+  <% else %>
+    <%= f.input :photo, as: :file, label_html: {style: "color: $text; font-weight: 600; font-size: 16px;" }, label: "Choose your artwork" %>
+  <% end %>
   <%= f.submit "Add artwork", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
 <% end %>
