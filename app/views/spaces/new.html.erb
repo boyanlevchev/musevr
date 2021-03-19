@@ -1,6 +1,6 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
-<% @title="Muse VR - Create new gallery page" %>
+<% @title="Musei - Create new gallery page" %>
 
 <div class="container-fluid p-0" style="margin:none;">
   <div class="row w-100 h-100">
@@ -10,7 +10,7 @@
           <div class="carousel-inner" style="width: 100%; height:100%;">
             <%= simple_form_for @space, html: {class:"w-100 h-100"} do |f| %>
               <%= f.collection_radio_buttons(
-                  :modelURL,
+                  :public_space_template_id,
                   PublicSpaceTemplate.get_all_templates,
                   :first, :last,  :item_wrapper_class => 'carousel-item w-100 h-100') do |space| %>
 

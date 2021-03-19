@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
+  before_action :redirect_to_home_if_not_logged_in, unless: :devise_controller?
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { host: ENV["www.musevr.art"] || "localhost:3000" }
+    { host: ENV["www.musei.io"] || "localhost:3000" }
   end
 
   def after_sign_in_path_for(resource)
@@ -34,6 +35,13 @@ class ApplicationController < ActionController::Base
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  def redirect_to_home_if_not_logged_in
+    unless user_signed_in?
+      flash.alert = "Before you can access that page, you must first sign up or log in"
+      redirect_to root_path
+    end
   end
 
 end

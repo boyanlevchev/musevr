@@ -13,17 +13,23 @@ class Users::SessionsController < Devise::SessionsController
   # def create
   #   raise
   # end
- #  def create
- #  resource = User.find_for_database_authentication(email: params[:user][:email])
- #  return invalid_login_attempt unless resource
+  def create
+    resource = User.find_for_database_authentication(email: params[:user][:email])
+    unless resource
+      @success = "false"
+      respond_with resource and return
+    end
 
- #  if resource.valid_password?(params[:user][:password])
- #    sign_in :user, resource
- #    return render nothing: true
- #  end
-
- #  invalid_login_attempt
- # end
+    if resource.valid_password?(params[:user][:password])
+      # puts "no error"
+      sign_in :user, resource
+      @success = "true"
+      respond_with resource and return
+    else
+      @success = "false"
+      respond_with resource and return
+    end
+   end
 
  #  # DELETE /resource/sign_out
  #  # def destroy

@@ -59,12 +59,14 @@ export const closeLoginModal = () => {
       console.log("clicked");
       $( "#loginModal" ).addClass( "login-modal-backdrop-blurout", 200);
       $( "#loginModal" ).animate({ 'opacity': '0'}, 200);
+
       setTimeout(function() {
         console.log("timeout worked!!")
         $( "#loginModal" ).removeClass( "login-modal-backdrop-blurout");
         $('#loginModal').modal('hide');
         $( "#loginModal" ).removeClass( "show");
         $( "#loginModal" ).attr( "style", "display: none;");
+        $('#signup-modal-view').attr( 'style', 'display: none;');
         $( ".modal-backdrop" ).remove();
       } , 200);
 
@@ -91,12 +93,25 @@ export const closeAboutModal = () => {
 export const setLoginModal = () => {
   $('#login-modal-trigger').click(function () {
       console.log("clicked");
+      $('#login-modal-dialog').animate({ 'margin': '1.75rem auto' }, 200);
+      $('#login-modal-dialog').animate({ 'maxWidth': '500px'}, 200);
+      $('#login-modal-view').attr( 'style', 'display: block;');
       $( "#loginModal" ).attr( "style", "display: block;");
       $( "#loginModal" ).attr( 'style', 'opacity: 100;');
   });
 };
 
-
+export const setSignUpModal = () => {
+  $('#signup-modal-trigger').click(function () {
+      console.log("clicked");
+      $('#login-modal-view').attr( 'style', 'display: none;');
+      $('#login-modal-dialog').animate({ 'maxWidth': '100vw'}, 200);
+      $('#signup-modal-view').animate({ 'opacity': '100'}, 300);
+      $('#signup-modal-view').attr( 'style', 'display: block;');
+      $( "#loginModal" ).attr( "style", "display: block;");
+      $( "#loginModal" ).attr( 'style', 'opacity: 100;');
+  });
+};
 
 
 

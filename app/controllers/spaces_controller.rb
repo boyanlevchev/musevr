@@ -1,7 +1,6 @@
 class SpacesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :vr]
+  skip_before_action :redirect_to_home_if_not_logged_in, only: [:index, :vr]
   before_action :set_space, only: [:show, :edit, :destoy, :update]
-  # before_action :set_aws
 
   def index
     if params[:search] == "" || params[:search].nil?
@@ -69,6 +68,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id, :fast_photo, :photo, :modelURL)
+    params.require(:space).permit(:name, :description, :user_id, :fast_photo, :photo, :public_space_template_id)
   end
 end

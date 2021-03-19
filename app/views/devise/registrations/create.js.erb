@@ -1,7 +1,5 @@
-// $("#signupErrorsTest").html("<%= resource.errors.full_messages %>");
 
 <% if resource.errors.any? %>
-  console.log("resources exist!");
   $('.signupLabelAppendage').remove();
 
   <% if resource.errors.full_messages.include?("Email can't be blank") %>

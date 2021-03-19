@@ -1,1 +1,5 @@
-$('.errors').html("Incorrect Email or Password | ")
+<% if resource.errors.any? %>
+  $('.errors').html("Incorrect Email or Password | ")
+<% else %>
+  location.reload();
+<% end %>

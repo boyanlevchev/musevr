@@ -1,7 +1,7 @@
 <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 
-<% @title="Muse VR - Art in Virtual Reality - Homepage" %>
+<% @title="Musei - Art in Virtual Reality - Homepage" %>
 
 <div class="d-flex" id="landing-flex-box">
   <div id="landing-panel-left">
@@ -14,15 +14,19 @@
           <li class="landing-list"><%= link_to "About", "#", id: "about-modal-trigger" , data: {toggle: "modal", target: "#aboutModal", backdrop: false} %></li>
           <li class="landing-list"><%= link_to 'View Galleries', spaces_path %></li>
           <li class="landing-list"><%= link_to 'View Artists', users_path %></li>
-          <li class="landing-list"><%= link_to 'Make your own', new_space_path, data: {turbolinks: false} %></li>
+          <% if user_signed_in? %>
+            <li class="landing-list"><%= link_to 'Make your own', new_space_path, data: {turbolinks: false} %></li>
+          <% else %>
+             <li class="landing-list"> <%= link_to "Sign up and make your own", "#", id: "signup-modal-trigger" , class: "", data: {toggle: "modal", target: "#loginModal", backdrop: false} %></li>
+          <% end %>
         </ul>
       </div>
 
       <div class="main-page-logo">
         <div>
-          <span id="biglogo">MUSE</span>
-          <span id="biglogovr">VR</span>
-          <span id="biglogoart">.art</span>
+          <span id="biglogo">MUSEI</span>
+          <!-- <span id="biglogovr">.io</span> -->
+          <span id="biglogoart" class="ml-2">.io</span>
         </div>
       </div>
 

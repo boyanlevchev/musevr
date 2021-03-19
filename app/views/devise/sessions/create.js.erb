@@ -1,5 +1,5 @@
-// const modal = document.querySelector('.modal')
-// $(document).ready(function() {
-//   $('.modal').modal('hide');
-// })
-location.reload();
+<% if @success == "false" %>
+  $('.errors').html("Incorrect Email or Password | ");
+<% else %>
+  location.reload();
+<% end %>
