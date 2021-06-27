@@ -34,6 +34,7 @@ window.$ = window.JQuery = JQuery;
 document.addEventListener('turbolinks:load', () => {
 
   //Create gallery page - visually removes the modal checkbox from the gallery selector carousel
+
   addClass();
 
   //Login/Signup

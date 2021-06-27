@@ -1,4 +1,3 @@
-<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 
 <% @title="Musei - Art in Virtual Reality - Homepage" %>
@@ -11,11 +10,11 @@
 
       <div>
         <ul style="list-style-type: none; padding: 0 0 8px 0; margin: 0;">
-          <li class="landing-list"><%= link_to "About", "#", id: "about-modal-trigger" , data: {toggle: "modal", target: "#aboutModal", backdrop: false} %></li>
+          <li class="landing-list"><%= link_to "About", about_path %></li>
           <li class="landing-list"><%= link_to 'View Galleries', spaces_path %></li>
           <li class="landing-list"><%= link_to 'View Artists', users_path %></li>
           <% if user_signed_in? %>
-            <li class="landing-list"><%= link_to 'Make your own', new_space_path, data: {turbolinks: false} %></li>
+            <li class="landing-list"><%= link_to 'Make your own', new_space_path %></li>
           <% else %>
              <li class="landing-list"> <%= link_to "Sign up and make your own", "#", id: "signup-modal-trigger" , class: "", data: {toggle: "modal", target: "#loginModal", backdrop: false} %></li>
           <% end %>
@@ -44,15 +43,3 @@
   </div>
 </div>
 
-<div class="modal login-modal-backdrop" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" id="about-modal-dialog" style="margin-top: 2vh; margin-bottom: 2vh;" role="document">
-    <div class="modal-content modal-blur-in" id="login-modal-content" style="background: transparent; border: 0; margin-top: 32px;">
-      <div class="d-flex justify-content-center" style="width: 100vw;">
-        <button id="close-about-modal" class="login-close remove-glow" style="border:none; width:80%; text-align:right; background: transparent;">X</button>
-      </div>
-      <div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
-        <%= render partial: "about" %>
-      </div>
-    </div>
-  </div>
-</div>

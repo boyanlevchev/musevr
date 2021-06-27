@@ -1,75 +1,137 @@
-<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 <% @title="Musei - Create new gallery page" %>
 
-<div class="container-fluid p-0" style="margin:none;">
-  <div class="row w-100 h-100">
-    <div class="col-md-12 col-lg-6 p-0">
-      <div style="width: 100%; height:100%;">
-        <div id="carouselExampleControls" class="carousel slide" data-interval="false" style="width: 100%; height:100%;">
-          <div class="carousel-inner" style="width: 100%; height:100%;">
-            <%= simple_form_for @space, html: {class:"w-100 h-100"} do |f| %>
-              <%= f.collection_radio_buttons(
-                  :public_space_template_id,
-                  PublicSpaceTemplate.get_all_templates,
-                  :first, :last,  :item_wrapper_class => 'carousel-item w-100 h-100') do |space| %>
+<%= simple_form_for @space, html: {class:""} do |f| %>
+  <div class="container p-0 page-size" style="margin:none;">
+    <div class="row page-size">
 
-              <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text, space: space }) } %>
-            <% end %>
-          </div>
+      <div class="col-md-12 col-lg-6 p-0">
 
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <div class="h-100 d-flex flex-column align-items-center justify-content-center">
+          <section>
+            <p>Choose a template for your gallery</p>
+            <div id="carouselExampleControls" class="carousel slide template-picker-size" data-interval="false">
+              <div class="carousel-inner h-100 w-100">
 
-          <div id="carouselTextHolder">
-          </div>
-          <h2 id="carouselText">Click an image above to pick your gallery</h2>
-        </div>
-      </div>
-    </div>
+                <%= f.collection_radio_buttons(
+                     :public_space_template_id,
+                     PublicSpaceTemplate.get_all_templates,
+                     :first, :last,  :item_wrapper_class => 'carousel-item h-100 w-100') do |space| %>
 
-    <div class="col-md-12 col-lg-6 p-0">
-      <!-- <div> -->
-        <div class="d-flex flex-column" style="height:100%; width: 80%; margin: auto;">
+                  <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text, space: space }) } %>
+                <% end %>
+              </div>
 
-          <div style="height:35%;">
-            <div class="h-100 d-flex flex-column justify-content-end">
-              <% if @space.errors.any? %>
-                <div id="error_explanation">
-                  <ul style="list-style: none; color: red; padding-left: 0;">
-                    <li style="padding-bottom: 24px;">
-                      <% error = @space.errors.full_messages.last.split(" ")%>
-                      <% error.shift %>
-                      <%= error.join(" ") %>
-                    </li>
-                  </ul>
+              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </section>
+
+          <section class="mt-4">
+            <p>You haven't added any custom spaces yet - add one below</p>
+            <% if current_user.user_space_templates.any? %>
+            <% else %>
+            <div class="w-100">
+              <%= link_to "#", class: "text-decoration-none ", data: {toggle: "modal", target: "#addNewTemplateModal", backdrop: "true"} do %>
+                <div class="mx-auto template-picker-size add-new-space-template d-flex align-items-center justify-content-center">
+                  <i class="fas fa-plus"></i>
                 </div>
               <% end %>
+
+            </div>
+            <% end %>
+          </section>
+
+       </div>
+
+
+
+        <!-- <div style="width: 100%; height:100%;">
+          <div id="carouselExampleControls" class="carousel slide" data-interval="false" style="width: 100%; height:100%;">
+            <div class="carousel-inner" style="width: 100%; height:100%;">
+
+                <%#= f.collection_radio_buttons(
+                    :public_space_template_id,
+                    PublicSpaceTemplate.get_all_templates,
+                    :first, :last,  :item_wrapper_class => 'carousel-item w-100 h-100') do |space| %>
+
+                <%#= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text, space: space }) } %>
+              <%# end %>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+
+            <div id="carouselTextHolder">
+            </div>
+            <h2 id="carouselText">Click an image above to pick your gallery</h2>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="col-md-12 col-lg-6 p-0">
+        <!-- <div> -->
+          <div class="d-flex flex-column" style="height:100%; width: 80%; margin: auto;">
+
+            <div style="height:35%;">
+              <div class="h-100 d-flex flex-column justify-content-end">
+                <% if @space.errors.any? %>
+                  <div id="error_explanation">
+                    <ul style="list-style: none; color: red; padding-left: 0;">
+                      <li style="padding-bottom: 24px;">
+                        <% error = @space.errors.full_messages.last.split(" ")%>
+                        <% error.shift %>
+                        <%= error.join(" ") %>
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div style="height:25%; width: 100%;">
+                <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Name your gallery" %>
+                <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Gallery description" %>
+                <% if current_user.subscription == "free" %>
+                  <%= f.file_field :photo, required: true, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
+                <% else %>
+                  <%= f.file_field :fast_photo, required: true, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
+                <% end %>
+                <%= f.submit "Add art to your gallery>>", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px; margin-bottom: 48px;" %>
+
             </div>
           </div>
-
-          <div style="height:25%; width: 100%;">
-           <!--  <ul style="list-style-type: none; padding: 0px;">
-              <li class="landing-list"><%= link_to 'About us', '#' %></li>
-              <li class="landing-list"><%= link_to 'View Galleries', spaces_path %></li>
-              <li class="landing-list"><%= link_to 'View Artists', users_path %></li>
-              <li class="landing-list"><%= link_to 'Make your own', new_space_path %></li>
-            </ul> -->
-              <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Name your gallery" %>
-              <%= f.input :description, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label_html: {style: "color: $text; font-weight: 600; font-size: 32px;" }, label: "Gallery description" %>
-              <%= f.file_field :photo, label_html: {style: "color: $text; font-weight: 600; font-size: 24px;" }, label: "Upload a cover photo for your gallery" %>
-              <!-- This submit will actually store the above values into a local variable, rather than create the model immediately - thus allowing user to create gallery first, and then create model upon saving their gallery -->
-              <%= f.submit "Add art to your gallery>>", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px; margin-bottom: 48px;" %>
-            <% end %>
-          </div>
         </div>
+      <!-- </div> -->
+    </div>
+  </div>
+<% end %>
+
+
+<div class="modal fade" id="addNewTemplateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="background-color: rgba(255,255,255,0.93); border-radius: 8px;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add your own space template</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    <!-- </div> -->
+      <div class="modal-body pt-4">
+        <%= render "add_new_user_template" %>
+      </div>
+    </div>
   </div>
 </div>

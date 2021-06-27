@@ -22,6 +22,7 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @user_space_template = UserSpaceTemplate.new
     @images = Dir.chdir(Rails.root.join('app/assets/images')) do
       Dir.glob("spaces/*.png")
     end

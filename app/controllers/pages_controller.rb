@@ -4,4 +4,6 @@ class PagesController < ApplicationController
   def home
     # ADD ARTISTS AND SPACES FOR FEATURED STUFF
   end
+
+  def about; end
 end

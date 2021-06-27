@@ -1,0 +1,19 @@
+.template-picker-size {
+  height: 300px;
+  width: 400px;
+}
+
+.add-new-space-template {
+  text-decoration: none;
+  height: 100px;
+  width: 100px;
+  border: 10px solid $text-faded;
+  transition: 0.2s;
+  font-size: 5rem;
+  color: $text-faded;
+  &:hover {
+    border: 10px solid white;
+    color: white;
+  }
+}
+

@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
 
   has_many :spaces, dependent: :destroy
+  has_many :user_space_templates, dependent: :destroy
+
   has_many :artworks, through: :spaces
   has_one_attached :photo
 

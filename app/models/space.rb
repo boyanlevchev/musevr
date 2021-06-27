@@ -1,12 +1,15 @@
 class Space < ApplicationRecord
   belongs_to :user
-  belongs_to :public_space_template
+  belongs_to :public_space_template, optional: true
+  belongs_to :user_space_template, optional: true
 
   has_many :artworks, dependent: :destroy
   has_one_attached :photo, service: :s3_free
   has_one_attached :fast_photo, service: :s3_paid
 
   validates :name, presence: true
+  validates :photo, presence: true, if: -> { user.subscription == 'free' }
+  validates :fast_photo, presence: true, if: -> { user.subscription == 'paid' }
   # validates :modelURL, presence: { message: "You must choose a gallery template from the left" }
 
   include PgSearch::Model
