@@ -38,8 +38,8 @@
   </head>
   <body>
 
-
     <%= render 'shared/flashes' %>
+    <%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
     <%= yield %>
 
   </body>

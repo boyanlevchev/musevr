@@ -3,6 +3,7 @@ class ArtworksController < ApplicationController
   # before_action :set_aws
 
   def create
+    raise
     @artwork = Artwork.new(artwork_params)
     @space = Space.find(params[:space_id])
     @artwork.space = @space

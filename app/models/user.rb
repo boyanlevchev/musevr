@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
 
   has_many :spaces, dependent: :destroy
+  has_many :user_space_templates, dependent: :destroy
+
   has_many :artworks, through: :spaces
   has_one_attached :photo
 
@@ -31,6 +33,10 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.skip_confirmation!
     end
+  end
+
+  def get_all_user_templates
+    user_space_templates.map { |space| [space.id, [space.image_url, space.name]] }
   end
 
   private

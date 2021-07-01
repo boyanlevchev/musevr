@@ -1,0 +1,2 @@
+module ArtworksInSpaceHelper
+end

@@ -1,11 +1,27 @@
-<%= render partial: 'shared/navbar', locals: { space: @space, user: @user } %>
 
 <% @title="Musei - Artist profile page" %>
 
 <div class="page-container">
   <div class="d-flex justify-content-around" style="width:100%">
-    <h1 class="user-page-header"><%= @user.username %></h1>
+    <div class="d-flex align-items-center">
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
+      <% else  %>
+        <%= image_tag "avatar_placeholder.png", class: "avatar-large" %>
+      <% end %>
+
+      <h1 class="user-page-header ml-3">
+        <%= @user.username %>
+        <% if user_signed_in? && @user == current_user %>
+          <span class="p-small font-weight-light">
+            <%= link_to "edit", edit_user_registration_path(current_user), class: "text-muted" %>
+          </span>
+        <% end %>
+      </h1>
+
+    </div>
   </div>
+
 
   <div class="d-flex justify-content-around" style="width:100%">
     <h4 class="user-page-bio"><%= @user.bio %></h4>
@@ -15,12 +31,6 @@
     <%= link_to "contact #{@user.username}", '#', class: "user-contact" %>
   </div>
 
-  <!--
-  <% if @user.photo.attached? %>
-    <%= cl_image_tag @user.photo.key, class: "avatar-large" %>
-  <% else  %>
-    <%= image_tag "avatar_placeholder", class: "avatar-large" %>
-  <% end %> -->
 
 
   <div  class="container show-page-container">

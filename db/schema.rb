@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_105723) do
+ActiveRecord::Schema.define(version: 2021_06_28_150210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,10 +43,18 @@ ActiveRecord::Schema.define(version: 2021_03_19_105723) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "artwork_in_spaces", force: :cascade do |t|
+    t.bigint "artwork_id", null: false
+    t.bigint "space_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artwork_id"], name: "index_artwork_in_spaces_on_artwork_id"
+    t.index ["space_id"], name: "index_artwork_in_spaces_on_space_id"
+  end
+
   create_table "artworks", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "space_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "posx"
@@ -57,7 +65,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_105723) do
     t.float "rotz"
     t.float "scale"
     t.string "artwork_type"
-    t.index ["space_id"], name: "index_artworks_on_space_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_artworks_on_user_id"
   end
 
   create_table "public_space_templates", force: :cascade do |t|
@@ -85,8 +94,18 @@ ActiveRecord::Schema.define(version: 2021_03_19_105723) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "live", default: false
     t.bigint "public_space_template_id"
+    t.bigint "user_space_template_id"
     t.index ["public_space_template_id"], name: "index_spaces_on_public_space_template_id"
     t.index ["user_id"], name: "index_spaces_on_user_id"
+    t.index ["user_space_template_id"], name: "index_spaces_on_user_space_template_id"
+  end
+
+  create_table "user_space_templates", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_space_templates_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -109,7 +128,9 @@ ActiveRecord::Schema.define(version: 2021_03_19_105723) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "artworks", "spaces"
+  add_foreign_key "artwork_in_spaces", "artworks"
+  add_foreign_key "artwork_in_spaces", "spaces"
   add_foreign_key "spaces", "public_space_templates"
   add_foreign_key "spaces", "users"
+  add_foreign_key "user_space_templates", "users"
 end

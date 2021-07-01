@@ -3,8 +3,18 @@
   border-radius: 50%;
 }
 .avatar-large {
-  width: 56px;
+  min-width: 56px;
+  max-width: 56px;
+  min-height: 56px;
+  max-height: 56px;
   border-radius: 50%;
+
+  @include for-tablet-landscape-down {
+    min-width: 42px;
+    max-width: 42px;
+    min-height: 42px;
+    max-height: 42px;
+  }
 }
 .avatar-bordered {
   width: 40px;

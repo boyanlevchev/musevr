@@ -22,6 +22,7 @@ class SpacesController < ApplicationController
 
   def new
     @space = Space.new
+    @user_space_template = UserSpaceTemplate.new
     @images = Dir.chdir(Rails.root.join('app/assets/images')) do
       Dir.glob("spaces/*.png")
     end
@@ -34,6 +35,7 @@ class SpacesController < ApplicationController
     if @space.save
       redirect_to space_path(@space)
     else
+      @user_space_template = UserSpaceTemplate.new
       render :new
     end
   end
@@ -68,6 +70,6 @@ class SpacesController < ApplicationController
   end
 
   def space_params
-    params.require(:space).permit(:name, :description, :user_id, :fast_photo, :photo, :public_space_template_id)
+    params.require(:space).permit(:name, :description, :user_id, :fast_photo, :photo, :public_space_template_id, :user_space_template_id, :public_or_custom)
   end
 end
