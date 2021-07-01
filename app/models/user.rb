@@ -35,6 +35,10 @@ class User < ApplicationRecord
     end
   end
 
+  def get_all_user_templates
+    user_space_templates.map { |space| [space.id, [space.image_url, space.name]] }
+  end
+
   private
 
   def set_user_subscription

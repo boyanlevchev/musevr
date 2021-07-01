@@ -15,6 +15,7 @@
     "fullpage.js": "^3.0.8",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
+    "swiper": "^6.7.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

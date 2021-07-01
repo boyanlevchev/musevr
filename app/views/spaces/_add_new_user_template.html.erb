@@ -2,8 +2,9 @@
   <%= simple_form_for @user_space_template do |f| %>
     <%= f.error_notification %>
     <%= f.input :name, input_html: { class: "transparent simpleFormInput", style: "border: 0; border-bottom: 1px dotted #333333;" }, label: "Give your template a name" %>
+    <%= f.input :photo, as: :file, label: "Pick a cover photo for your gallery" %>
     <%= f.input :model, as: :file, label: "Upload 3D model - we currently only accept .glb", input_html: { accept: '.glb' } %>
-    <%= f.submit "Create space", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
+    <%= f.submit "Upload custom template", class: "transparent submitButton", style: "border:0; float: right; margin-top: 24px;" %>
   <% end %>
 
 </div>

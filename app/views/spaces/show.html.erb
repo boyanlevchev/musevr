@@ -44,7 +44,7 @@
     </div>
 
     <div class="row">
-      <% @space.artworks.each do |artwork| %>
+      <% @space.artwork_in_spaces.each do |artwork| %>
         <% modelViewerActive = true if artwork.artwork_type == "3D Model" %>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 d-flex justify-content-center bottom-buffer">
           <%= (render partial: 'shared/space_show_artwork_card', locals: { artwork: artwork }) %>

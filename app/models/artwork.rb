@@ -1,7 +1,9 @@
 class Artwork < ApplicationRecord
-  belongs_to :space
+  belongs_to :user
   has_one_attached :photo, service: :s3_free
   has_one_attached :fast_photo, service: :s3_paid
+
+  has_many :artwork_in_spaces
 
   OPTIONS = ["Image", "Audio", "Video", "3D Model"]
 

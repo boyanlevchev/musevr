@@ -1,51 +1,104 @@
 
 <% @title="Musei - Create new gallery page" %>
 
-<%= simple_form_for @space, html: {class:""} do |f| %>
+<%= simple_form_for @space, html: {class:""}, defaults: {label: false} do |f| %>
   <div class="container p-0 page-size" style="margin:none;">
     <div class="row page-size">
 
       <div class="col-md-12 col-lg-6 p-0">
 
         <div class="h-100 d-flex flex-column align-items-center justify-content-center">
-          <section>
+          <section class="w-100">
             <p>Choose a template for your gallery</p>
-            <div id="carouselExampleControls" class="carousel slide template-picker-size" data-interval="false">
-              <div class="carousel-inner h-100 w-100">
 
-                <%= f.collection_radio_buttons(
-                     :public_space_template_id,
-                     PublicSpaceTemplate.get_all_templates,
-                     :first, :last,  :item_wrapper_class => 'carousel-item h-100 w-100') do |space| %>
+            <div class="row">
+              <div class="col-3 ">
+                <div class="nav flex-column nav-pills nav-fill h-100" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                  <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text, space: space }) } %>
-                <% end %>
+                  <a class="pill-picker-toggle nav-link d-flex align-items-center justify-content-center <%= @space.public_or_custom.nil? || @space.public_or_custom == "Public" ? "active" : "" %>" id="v-pills-public-tab" data-input-id="public" data-toggle="pill" href="#v-pills-public" role="tab" aria-controls="v-pills-public" aria-selected=<%= @space.public_or_custom.nil? || @space.public_or_custom == "Public" ? true : false %>> Public </a>
+                  <a class="pill-picker-toggle nav-link d-flex align-items-center justify-content-center <%= @space.public_or_custom == "Custom" ? "active" : "" %>" id="v-pills-custom-tab" data-input-id="custom" data-toggle="pill" href="#v-pills-custom" role="tab" aria-controls="v-pills-custom" aria-selected=<%= @space.public_or_custom == "Custom" ? true : false %>>My spaces</a>
+                </div>
+                <%#= raise "" %>
+                <%= f.input :public_or_custom,
+                    as: :radio_buttons,
+                    collection: Space::PUBLIC_OR_CUSTOM_OPTIONS,
+                    checked: "public",
+                    label: "",
+                    legend_tag: false,
+                    item_label_class: "d-none",
+                    input_html: {class: "d-none"}
+                    %>
               </div>
+              <div class="col-9">
+                <div class="tab-content" id="v-pills-tabContent">
+                  <div class="tab-pane fade show <%= @space.public_or_custom.nil? || @space.public_or_custom == "Public" ? "active" : "" %>" id="v-pills-public" role="tabpanel" aria-labelledby="v-pills-public-tab">
+                    <!-- Slider main container -->
+                    <div class="swiper-container">
+                      <!-- Additional required wrapper -->
+                      <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <%= f.collection_radio_buttons(
+                             :public_space_template_id,
+                             PublicSpaceTemplate.get_all_templates,
+                             :first, :last,  :item_wrapper_class => 'swiper-slide') do |space| %>
+                                <div class="space-name-overlay"><%= space.text[1] %></div>
+                                <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text[0], space: space }) } %>
+                        <% end %>
+                      </div>
+                      <!-- If we need pagination -->
+                      <div class="swiper-pagination"></div>
 
-              <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+                      <!-- If we need navigation buttons -->
+                      <div class="swiper-button-prev"></div>
+                      <div class="swiper-button-next"></div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade <%= @space.public_or_custom == "Custom" ? "active" : "" %>" id="v-pills-custom" role="tabpanel" aria-labelledby="v-pills-custom-tab">
+                    <!-- Slider main container -->
+                    <% if current_user.user_space_templates.any? %>
+                      <div class="swiper-container-2">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                          <!-- Slides -->
+                            <%= f.collection_radio_buttons(
+                                 :user_space_template_id,
+                                 current_user.get_all_user_templates,
+                                 :first, :last,  :item_wrapper_class => 'swiper-slide custom-slides') do |space| %>
+                                  <div class="space-name-overlay"><%= space.text[1] %></div>
+                                  <%= space.label(:class => "h-100 w-100"){(render partial: 'shared/space_modal_card', locals: { image: space.text[0], space: space }) } %>
+                            <% end %>
+                        </div>
+                        <%# raise "" %>
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
+
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+
+                      </div>
+                    <% else %>
+                      <div class="swiper-container d-flex align-items-center justify-content-center">
+                        <p>You haven't added any custom templates yet</p>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </section>
 
           <section class="mt-4">
-            <p>You haven't added any custom spaces yet - add one below</p>
-            <% if current_user.user_space_templates.any? %>
-            <% else %>
+            <p>Add a new template to your library</p>
             <div class="w-100">
               <%= link_to "#", class: "text-decoration-none ", data: {toggle: "modal", target: "#addNewTemplateModal", backdrop: "true"} do %>
                 <div class="mx-auto template-picker-size add-new-space-template d-flex align-items-center justify-content-center">
                   <i class="fas fa-plus"></i>
                 </div>
               <% end %>
-
             </div>
-            <% end %>
           </section>
 
        </div>

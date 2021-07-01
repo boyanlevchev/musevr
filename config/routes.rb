@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'artworks_in_space/create'
+  get 'artworks_in_space/destroy'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth',
                                     sessions: 'users/sessions',
                                     registrations: 'users/registrations',

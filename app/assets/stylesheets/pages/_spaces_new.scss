@@ -17,3 +17,51 @@
   }
 }
 
+.space-name-overlay {
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  background-color: $pink;
+  padding: 0.5rem;
+  transform: skew(-15deg);
+  z-index: 3;
+}
+
+.swiper-container, .swiper-container-2 {
+  max-width: 400px;
+  height: 300px;
+  overflow-y: hidden;
+}
+
+
+
+.swiper-slide{
+width: 200px;
+}
+// .swiper-slide-prev,
+// .swiper-slide-active,
+// .swiper-slide-next{
+// opacity: 1;
+// }
+
+fieldset.space_public_or_custom {
+  height: 100%;
+}
+
+.public-or-custom-toggle {
+
+  height: 50%;
+  width: 100%;
+  label {
+    border: 1px solid gray;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.public-or-custom-toggle input:checked + label {
+  background-color: red;
+}
+
+
+
